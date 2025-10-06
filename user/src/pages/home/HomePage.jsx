@@ -1,13 +1,15 @@
-import React from "react";
-import Footer from "../../component/footer/Footer";
- 
+import { BoardMembers } from "../../sections/boardMembers/BoardMembers";
+import { Hero } from "../../sections/Hero/Hero";
+import { UniversityPortal } from "../../sections/portal/UniversityPortal";
 
 const HomePage = () => {
   return (
     <>
-      <div className="w-full h-screen bg-blue-600">
-        {/*footer  */}
-        <Footer/>
+      <div className="w-full flex flex-col">
+
+        <Hero />
+        <UniversityPortal />
+        <BoardMembers />
       </div>
     </>
   );

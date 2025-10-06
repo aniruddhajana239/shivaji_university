@@ -1,5 +1,5 @@
 import React from "react";
-import greaterthan_arrow_icon from "../../assets/icon/greaterthan_arrow_icon.png";
+import ChevronRightIcon from "../../assets/icons/chevron_right.png";
 
 const Footer = () => {
   return (
@@ -14,31 +14,31 @@ const Footer = () => {
               <ul className="border-r border-[#5C5C5C] pr-5">
                 <li className="m-[12px] border-b border-[#5C5C5C] pb-[8px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     Quick Links
                   </a>
                 </li>
                 <li className="m-[12px] border-b border-[#5C5C5C] pb-[8px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     Placement Cell
                   </a>
                 </li>
                 <li className="m-[12px] border-b border-[#5C5C5C] pb-[8px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     Students' Council Election
                   </a>
                 </li>
                 <li className="m-[12px] border-b border-[#5C5C5C] pb-[8px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     Madhyamvidhya / Media Spectrum
                   </a>
                 </li>
                 <li className="m-[12px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     Special Cell
                   </a>
                 </li>
@@ -50,31 +50,31 @@ const Footer = () => {
               <ul className="border-r border-[#5C5C5C] pr-4">
                 <li className="m-[12px] border-b border-[#5C5C5C] pb-[8px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     Compiled online literature on Chhatrapati Shivaji Maharaj
                   </a>
                 </li>
                 <li className="m-[12px] border-b border-[#5C5C5C] pb-[8px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     Intranet
                   </a>
                 </li>
                 <li className="m-[12px] border-b border-[#5C5C5C] pb-[8px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     Online Receipt Portal
                   </a>
                 </li>
                 <li className="m-[12px] border-b border-[#5C5C5C] pb-[8px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     University Publications
                   </a>
                 </li>
                 <li className="m-[12px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     शैक्षणिक गीत
                   </a>
                 </li>
@@ -86,31 +86,31 @@ const Footer = () => {
               <ul className="border-r border-[#5C5C5C] pr-4">
                 <li className="m-[12px] border-b border-[#5C5C5C] pb-[8px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     Photo Gallery
                   </a>
                 </li>
                 <li className="m-[12px] border-b border-[#5C5C5C] pb-[8px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     Right To Services
                   </a>
                 </li>
                 <li className="m-[12px] border-b border-[#5C5C5C] pb-[8px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     Grievance Redressal
                   </a>
                 </li>
                 <li className="m-[12px] border-b border-[#5C5C5C] pb-[8px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     Other Tenders / Quotations
                   </a>
                 </li>
                 <li className="m-[12px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     शैक्षणिक गीत विडीओ
                   </a>
                 </li>
@@ -122,31 +122,31 @@ const Footer = () => {
               <ul>
                 <li className="m-[12px] border-b border-[#5C5C5C] pb-[8px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     Right to Information
                   </a>
                 </li>
                 <li className="m-[12px] border-b border-[#5C5C5C] pb-[8px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     Recruitments
                   </a>
                 </li>
                 <li className="m-[12px] border-b border-[#5C5C5C] pb-[8px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     Mobile Apps
                   </a>
                 </li>
                 <li className="m-[12px] border-b border-[#5C5C5C] pb-[8px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     Archive
                   </a>
                 </li>
                 <li className="m-[12px] px-[20px] whitespace-nowrap">
                   <a className="flex items-center gap-[12px] hover:underline" href="#">
-                    <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+                    <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
                     Anti Ragging Information
                   </a>
                 </li>
@@ -162,15 +162,15 @@ const Footer = () => {
         <div className="container max-w-7xl mx-auto flex flex-col md:flex-row justify-between text-[#FFFFFF]">
           <div className="flex flex-col gap-4 mb-2 md:mb-0">
             <a className="flex items-center gap-[12px] hover:text-white" href="#">
-              <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+              <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
               Terms of Use
             </a>
             <a className="flex items-center gap-[12px] hover:text-white" href="#">
-              <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+              <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
               Privacy Policy
             </a>
             <a className="flex items-center gap-[12px] hover:text-white" href="#">
-              <img src={greaterthan_arrow_icon} alt="icon" className="w-[6.75px] h-[11.67px]" />
+              <img src={ChevronRightIcon} alt="icon" className="w-[6.75px] h-[11.67px]" />
               Contact
             </a>
           </div>
