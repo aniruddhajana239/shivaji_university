@@ -1,0 +1,21 @@
+export const UniversityServicesLinks = [
+  { title: "Complied online literature on", link: "#" },
+  { title: "Photo Gallery", link: "#" },
+  { title: "Right to Information", link: "#" },
+  { title: "Placement Cell", link: "#" },
+  { title: "Intranet", link: "#" },
+  { title: "Right To Services", link: "#" },
+  { title: "Recruitments", link: "#" },
+  { title: "Swami Vivekanand Yuva Surotsha Yojna", link: "#" },
+  { title: "Online Receipt Portal", link: "#" },
+  { title: "Grievance Redressal", link: "#" },
+  { title: "Mobile Apps", link: "#" },
+  { title: "Madhyamvidhya / Media Spectrum", link: "#" },
+  { title: "University Publications", link: "#" },
+  { title: "Other Tenders / Quotations", link: "#" },
+  { title: "Archive", link: "#" },
+  { title: "Special Cell", link: "#" },
+  { title: "विद्यापीठ गीत", link: "#" },
+  { title: " विद्यापीठगीत रिंगटोन", link: "#" },
+  { title: "Anti Regging Information", link: "#" }
+];
