@@ -6,7 +6,6 @@ const HomePage = () => {
   return (
     <>
       <div className="w-full flex flex-col">
-
         <Hero />
         <UniversityPortal />
         <BoardMembers />
