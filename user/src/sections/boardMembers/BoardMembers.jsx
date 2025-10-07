@@ -28,7 +28,7 @@ const members = [
 
 export const BoardMembers = () => {
     return (
-        <div className="w-full bg-white px-6 py-12 flex fex-col gap-6 justify-start items-start">
+        <div className="w-full bg-white px-6 lg:px-[48px] py-8 flex fex-col gap-6 justify-start items-start">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 w-full p-4 rounded-[10px] bg-[#EEFBFF] p-6">
                 {members.map((member, index) => (
                     <div key={index} className="flex gap-4 justify-start items-start bg-white rounded-[5px] p-3">

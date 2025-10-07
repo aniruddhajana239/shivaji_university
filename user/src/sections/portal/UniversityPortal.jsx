@@ -64,7 +64,7 @@ const cardItems = [
 ];
 export const UniversityPortal = () => {
     return (
-        <div className="w-full bg-[#001F42] p-6 py-12 flex flex-col gap-6 justify-start items-start -mt-[8px]">
+        <div className="w-full bg-[#001F42] p-6 px-[48px] py-12 flex flex-col gap-6 justify-start items-start -mt-[8px]">
             <span className="text-white text-[30px] font-[500]">University Portal</span>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grd-cols-8 gap-4 w-full">
                 {cardItems?.map((item, index) => (

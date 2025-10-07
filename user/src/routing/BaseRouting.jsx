@@ -18,15 +18,13 @@ const BaseRouting = () => {
 };
 
 const Layout = () => {
-  // const location = useLocation();
   return (
     <div className="min-h-screen  w-full flex flex-col">
       <Header />
       <div className="flex-grow">
         <PublicRoutes />
       </div>
-      {/* {location.pathname !== "/" && <StickyBar />} */}
-       <Footer/>
+      <Footer />
     </div>
   );
 };

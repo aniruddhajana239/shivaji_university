@@ -1,0 +1,131 @@
+/* Ensure full visibility of arrows and slides */
+.af-carousel {
+  position: relative;
+  overflow: visible !important;
+}
+
+.af-carousel .slick-slider {
+  width: 100%;
+  overflow: visible;
+}
+
+.af-carousel .slick-list {
+  width: 100%;
+  overflow: visible !important; /* prevents arrow clipping */
+}
+
+.af-carousel .slick-track {
+  display: flex;
+  align-items: stretch;
+}
+
+/* Remove float for consistent flexbox alignment */
+.af-carousel .slick-slide {
+  float: none;
+  padding: 0 12px; /* default spacing between slides */
+  transition: all 0.3s ease-in-out;
+}
+
+/* Remove padding for first and last visible cards */
+.af-carousel .slick-active:first-child {
+  padding-left: 0 !important;
+}
+.af-carousel .slick-active:last-child {
+  padding-right: 0 !important;
+}
+
+/* Also handle cloned slides (before/after current set) */
+.af-carousel .slick-cloned {
+  padding: 0 !important;
+}
+
+/* Custom Arrow Positioning */
+.af-carousel .slick-prev,
+.af-carousel .slick-next {
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.af-carousel .slick-prev {
+  left: -60px; /* move arrow fully outside */
+}
+.af-carousel .slick-next {
+  right: -60px;
+}
+
+/* Hide default slick icons */
+.af-carousel .slick-prev:before,
+.af-carousel .slick-next:before {
+  display: none;
+}
+
+/* Arrow image fix */
+.af-carousel .slick-prev img,
+.af-carousel .slick-next img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* Dots below the slide */
+.af-carousel .slick-dots {
+  position: absolute;
+  bottom: -45px; /* move dots below the visible slide */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Reuse your styled dot container */
+.affiliated-dots-container {
+  bottom: -45px;
+}
+
+/* Dot styling */
+.affiliated-dots-container li {
+  margin: 0 4px;
+}
+
+.affiliated-dots-container .affiliated-dot-indicator {
+  width: 8px;
+  height: 8px;
+  background-color: #07739445;
+  border-radius: 9999px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.affiliated-dots-container .slick-active .affiliated-dot-indicator {
+  width: 23px;
+  background-color: #2F8AA5;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 600px) {
+  .af-carousel .slick-prev {
+    left: -35px;
+  }
+  .af-carousel .slick-next {
+    right: -35px;
+  }
+
+  .affiliated-dots-container {
+    bottom: -35px;
+  }
+
+  .affiliated-dots-container .affiliated-dot-indicator {
+    width: 6px;
+    height: 6px;
+  }
+
+  .affiliated-dots-container .slick-active .affiliated-dot-indicator {
+    width: 16px;
+  }
+}
