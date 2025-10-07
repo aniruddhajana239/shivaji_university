@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, useLocation } from "react-router-dom";
+import { BrowserRouter as Router} from "react-router-dom";
 import { useEffect } from "react";
 import { Header } from "../sections/common/header/Header";
 import Footer from "../sections/common/footer/Footer";
