@@ -5,6 +5,7 @@ import { FeaturedVideos } from "../../sections/featuredVideos/FeaturdVideos";
 import { Hero } from "../../sections/Hero/Hero";
 import { UniversityPortal } from "../../sections/portal/UniversityPortal";
 import { Recognitions } from "../../sections/recognitions/Recognitions";
+import StatisticalInformation from "../../sections/statisticalInformation/StatisticalInformation";
 import { UniversityServices } from "../../sections/universityServices/UniversityServices";
 
 const HomePage = () => {
@@ -20,6 +21,7 @@ const HomePage = () => {
         <AffiliatedCarousel />
         <FeaturedVideos />
         <Recognitions/>
+        <StatisticalInformation/>
       </div>
     </>
   );
