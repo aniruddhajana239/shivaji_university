@@ -1,58 +1,57 @@
 import React from "react";
 import ChevronRightIcon from "../../assets/icons/chevron_right.png";
+import { Link } from "react-router-dom";
 
 const FooterButton = () => {
   return (
     <>
-      <footer className="w-full bg-[#3B3B3B] text-[#FFFFFF] text-[16px] font-[400]">
-        {/*  Bottom Section  */}
-        <div className="bg-[#2A2A2A] py-4 text-[16px]">
-          <div className="container max-w-7xl mx-auto flex flex-col md:flex-row justify-between text-[#FFFFFF]">
-            <div className="flex flex-col gap-4 mb-2 md:mb-0">
-              <a
-                className="flex items-center gap-[12px] hover:text-white"
-                href="#"
-              >
-                <img
-                  src={ChevronRightIcon}
-                  alt="icon"
-                  className="w-[6.75px] h-[11.67px]"
-                />
-                Terms of Use
-              </a>
-              <a
-                className="flex items-center gap-[12px] hover:text-white"
-                href="#"
-              >
-                <img
-                  src={ChevronRightIcon}
-                  alt="icon"
-                  className="w-[6.75px] h-[11.67px]"
-                />
-                Privacy Policy
-              </a>
-              <a
-                className="flex items-center gap-[12px] hover:text-white"
-                href="#"
-              >
-                <img
-                  src={ChevronRightIcon}
-                  alt="icon"
-                  className="w-[6.75px] h-[11.67px]"
-                />
-                Contact
-              </a>
-            </div>
-            <div className="text-center md:text-left pr-40">
-              <p className="text-[18px] font-[500]">Visitors : 4965968</p>
-              <p className="mt-3 text-[18px] font-[500]">
-                Last Updated : June 08, 2025 – 3:50 pm
-              </p>
-              <p className="mt-4 text-[14px] font-[400]">Copyrights © 2025</p>
-            </div>
-          </div>
+      <div className="w-full bg-[#353535] text-[#FFFFFF] text-[16px] font-[400] py-6 px-6 md:px-[48px] flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        
+        {/* Left Section */}
+        <div className="flex flex-col gap-4 w-full md:w-auto">
+          <Link
+            className="flex items-center gap-[12px] hover:text-white"
+          >
+            <img
+              src={ChevronRightIcon}
+              alt="icon"
+              className="w-[6.75px] h-[11.67px]"
+            />
+            Terms of Use
+          </Link>
+          <Link
+            className="flex items-center gap-[12px] hover:text-white"
+          >
+            <img
+              src={ChevronRightIcon}
+              alt="icon"
+              className="w-[6.75px] h-[11.67px]"
+            />
+            Privacy Policy
+          </Link>
+          <Link
+            className="flex items-center gap-[12px] hover:text-white"
+          >
+            <img
+              src={ChevronRightIcon}
+              alt="icon"
+              className="w-[6.75px] h-[11.67px]"
+            />
+            Contact
+          </Link>
         </div>
-      </footer>
+
+        {/* Right Section */}
+        <div className="text-left md:text-left w-full md:w-auto 2xl:pr-[9%]">
+          <p className="text-[16px] md:text-[18px] font-[500]">
+            Visitors : 4965968
+          </p>
+          <p className="mt-3 text-[16px] md:text-[18px] font-[500]">
+            Last Updated : June 08, 2025 – 3:50 pm
+          </p>
+          <p className="mt-4 text-[14px] font-[400]">Copyrights © 2025</p>
+        </div>
+      </div>
     </>
   );
 };
