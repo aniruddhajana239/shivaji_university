@@ -26,7 +26,7 @@ const NewsPaperComposite = ({ content, title }) => {
                   <>
                     <p
                       key={i}
-                      className="text-[16px] font-[400] leading-relaxed text-black"
+                      className="text-[14px] 2xl:text-[16px] font-[400] leading-relaxed text-black"
                     >
                       {text}
                     </p>
@@ -89,7 +89,7 @@ const NewsPaperComposite = ({ content, title }) => {
                           </span>
                         )}
                         {notice?.content && (
-                          <span className="text-[12px] text-justify">
+                          <span className="text-[12px] 2xl:text-[14px] text-justify">
                             {notice?.content}
                           </span>
                         )}

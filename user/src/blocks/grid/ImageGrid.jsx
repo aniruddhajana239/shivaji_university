@@ -8,7 +8,7 @@ export const ImageGrid = ({ title, content }) => {
                         <div className="w-full aspect-4/3 rounded-[10px] flex-shrink-0"> {/* Added flex-shrink-0 */}
                             <img src={item?.img ?? ""} alt={item?.name} className="h-full w-full rounded-[10px] object-cover" /> {/* Changed cover to object-cover */}
                         </div>
-                        <div className="bg-white w-full p-2 rounded-b-[10px] flex flex-col items-center gap-1 flex-grow"> {/* Added flex-grow */}
+                        <div className="bg-white w-full p-2 py-3 rounded-b-[10px] flex flex-col items-center gap-1 flex-grow"> {/* Added flex-grow */}
                             <h4 className="text-[16px] font-[500] text-[#000000] text-center">{item?.name??""}</h4>
                             <span className="text-[14px] text-[#666666] text-center">{item?.qualification??""}</span>
                             <span className="text-[14px] text-[#666666] -mt-2 text-center">{item?.tenure??""}</span>
