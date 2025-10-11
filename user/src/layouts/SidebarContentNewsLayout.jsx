@@ -6,6 +6,8 @@ import { ImageGrid } from "../blocks/grid/ImageGrid";
 import { FormalComposite } from "../blocks/composite/FormalComposite";
 import { SimpleBreadCrumb } from "../components/breadcrumb/SimpleBreadcrumb";
 import { aboutUsContents } from "../constants/AboutUs";
+import NewsPaperComposite from "../blocks/composite/NewsPaperComposite";
+import CityComposite from "../blocks/composite/CityComposite";
 
 export const SidebarContentNewsLayout = ({navItems,parentPath,title}) => {
     const [activeId, setActiveId] = useState(1);
@@ -13,7 +15,7 @@ export const SidebarContentNewsLayout = ({navItems,parentPath,title}) => {
     const [content, setContent] = useState(aboutUsContents?.filter(c=>c?.content_id===activeId)?.[0]||{});
     const handleClick = (id) => {
         setActiveId(id);
-        setContent(aboutUsContents?.filter(c=>c?.content_id===id)?.[0]||{});
+        setContent(aboutUsContents?.filter(c=>c?.content_id===id)?.[0]||{});   
     }
     return (
         <div className="w-full bg-white px-6 lg:px-[48px] py-8 flex flex-col lg:flex-row items-start justify-between gap-5 justify-start items-start">
@@ -34,6 +36,10 @@ export const SidebarContentNewsLayout = ({navItems,parentPath,title}) => {
                 {content?.layout_type === "formal-composite" && <FormalComposite title={content?.title || ""} content={content ||{}}/>}
                  {content?.layout_type === "personal-figured" && <PersonalFigure title={content?.title || ""} content={content ||{}}/>}
                  {content?.layout_type === "image-grid" && <ImageGrid title={content?.title || ""} content={content ||{}}/>}
+
+                {content?.layout_type === "news-composite" && <NewsPaperComposite title={content?.title || ""} content={content ||{}}/>}
+
+                {content?.layout_type === "city-composite" && <CityComposite title={content?.title || ""} content={content ||{}}/>}
             </div>
             <div className="w-full lg:w-[25%]">
             <RightSidebarNavigation
