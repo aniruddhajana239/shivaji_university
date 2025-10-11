@@ -79,8 +79,10 @@ export const aboutSidebarNavItems = [
             { id: 5, text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025", path: "/about" },
         ]
     },
-    { "id": 7,
-        "itemText": "Registrar Desk" },
+    {
+        "id": 7,
+        "itemText": "Registrar Desk"
+    },
     {
         "id": 8,
         "itemText": "Former Vice Chancellors",

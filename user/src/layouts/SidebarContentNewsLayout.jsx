@@ -5,19 +5,22 @@ import { PersonalFigure } from "../blocks/single/PersonalFigure";
 import { ImageGrid } from "../blocks/grid/ImageGrid";
 import { FormalComposite } from "../blocks/composite/FormalComposite";
 import { SimpleBreadCrumb } from "../components/breadcrumb/SimpleBreadcrumb";
+import { aboutUsContents } from "../constants/AboutUs";
 
-export const SidebarContentNewsLayout = ({navItems}) => {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const activeNavItem = navItems[activeIndex] || {};
-    const handleClick = (index) => {
-        setActiveIndex(index);
+export const SidebarContentNewsLayout = ({navItems,parentPath,title}) => {
+    const [activeId, setActiveId] = useState(1);
+    const activeNavItem = navItems[activeId] || {};
+    const [content, setContent] = useState(aboutUsContents?.filter(c=>c?.content_id===activeId)?.[0]||{});
+    const handleClick = (id) => {
+        setActiveId(id);
+        setContent(aboutUsContents?.filter(c=>c?.content_id===id)?.[0]||{});
     }
     return (
-        <div className="w-full bg-white px-6 lg:px-[48px] py-8 flex flex-col lg:flex-row items-start justify-between gap-3 justify-start items-start">
+        <div className="w-full bg-white px-6 lg:px-[48px] py-8 flex flex-col lg:flex-row items-start justify-between gap-5 justify-start items-start">
             {/* Sidebar content can be added here in the future */}
             <div className="w-full lg:w-[20%]">
                 <LeftSidebarNavigation
-                    activeIndex={activeIndex} 
+                    activeId={activeId} 
                     handleClick={handleClick} 
                     title="Related Pages"
                     navItems={navItems}
@@ -32,7 +35,7 @@ export const SidebarContentNewsLayout = ({navItems}) => {
                  {content?.layout_type === "personal-figured" && <PersonalFigure title={content?.title || ""} content={content ||{}}/>}
                  {content?.layout_type === "image-grid" && <ImageGrid title={content?.title || ""} content={content ||{}}/>}
             </div>
-            <div className="w-full lg:w-[27%]">
+            <div className="w-full lg:w-[25%]">
             <RightSidebarNavigation
             title="Updates/News"
             listItems={activeNavItem?.updates || []}
