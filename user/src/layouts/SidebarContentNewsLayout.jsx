@@ -9,6 +9,7 @@ import { aboutUsContents } from "../constants/AboutUs";
 import NewsPaperComposite from "../blocks/composite/NewsPaperComposite";
 import CityComposite from "../blocks/composite/CityComposite";
 
+
 export const SidebarContentNewsLayout = ({navItems,parentPath,title}) => {
     const [activeId, setActiveId] = useState(1);
     const activeNavItem = navItems[activeId] || {};
@@ -18,7 +19,7 @@ export const SidebarContentNewsLayout = ({navItems,parentPath,title}) => {
         setContent(aboutUsContents?.filter(c=>c?.content_id===id)?.[0]||{});   
     }
     return (
-        <div className="w-full bg-white px-6 lg:px-[48px] py-8 flex flex-col lg:flex-row items-start justify-between gap-5 justify-start items-start">
+        <div className="w-full bg-white px-6 lg:px-[48px] py-8 flex flex-col lg:flex-row items-start justify-between gap-5">
             {/* Sidebar content can be added here in the future */}
             <div className="w-full lg:w-[20%]">
                 <LeftSidebarNavigation
