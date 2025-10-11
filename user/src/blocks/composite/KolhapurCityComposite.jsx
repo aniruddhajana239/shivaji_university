@@ -28,24 +28,25 @@ const KolhapurCityComposite = ({ content, title }) => {
             {section?.type === "list" && section?.contentList && (
               <div className=" space-y-6">
                 {section?.contentList?.map((item, i) => {
-                  const [key, value] = Object.entries(item)[0];
+                  {/* const [key, value] = Object.entries(item)[0]; */}
                   return (
                     <div key={i} className="">
-                      <h4 className="text-[18px] font-[600] text-[#077394] mb-1">
-                        {key}
-                      </h4>
+                      {/* <h4 className="text-[18px] font-[600] text-[#077394] mb-1">
+                        {item.boldText}
+                      </h4> */}
 
                       {/* If value is a string */}
-                      {typeof value === "string" && (
+                       
                         <p className="text-[15px] text-[#555] leading-relaxed">
-                          {value}
+                        <span className="text-[18px] font-[600] text-[#000000] mb-1">{item.boldText}</span>
+                          {item.contentText}
                         </p>
-                      )}
+                     
 
                       {/* If value is an array */}
-                      {Array.isArray(value) && (
+                      {Array.isArray(item) && (
                         <ul className="list-disc ml-6 space-y-2 text-[15px] text-[#555]">
-                          {value.map((li, liIndex) => (
+                          {item.map((li, liIndex) => (
                             <li key={liIndex}>{li}</li>
                           ))}
                         </ul>
@@ -58,24 +59,27 @@ const KolhapurCityComposite = ({ content, title }) => {
 
             {/* Type: Image List */}
             {section?.type === "Images-list" && section?.images && (
-              <div className="grid grid-cols-3  gap-[26px] mt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[26px] mt-6">
                 {section.images.map((item, i) => (
                   <div
                     key={i}
-                    className="w-full h-[200px] flex flex-col item-center  bg-white overflow-hidden rounded-[10px] shadow-sm border border-gray-100  ]"
+                    className="w-full flex flex-col item-center  bg-white overflow-hidden rounded-[10px] shadow-sm border border-gray-100  ]"
                   >
                     {/* Image */}
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-full aspect-6/3  rounded-[10px]"
+                      className="w-full aspect-6/3 object-cover rounded-[10px]"
                     />
 
                     {/* Title */}
 
-                    <p className="text-[16px] text-[#000000] font-[500] text-center flex items-center justify-center h-[70px]">
+                    <div className="h-full flex items-center justify-center ">
+                    <p className="text-[16px] text-[#000000] font-[500] text-center bg-white py-[10px] px-2 ">
                       {item.title}
                     </p>
+                    </div>
+                     
                   </div>
                 ))}
               </div>
@@ -84,22 +88,23 @@ const KolhapurCityComposite = ({ content, title }) => {
         ))}
 
         {/* Important Notices (if available) */}
-        {content?.important_notices && content?.important_notices?.length > 0 && (
-          <div className="w-full grid-col-3 gap-4 p-3 py-4 rounded-[15px] bg-[#FA8F21]/10 mt-4">
-            {content.important_notices?.map((notice, index) => (
-              <div key={index} className="space-y-3">
-                <h4 className="text-[20px] font-[600] text-[#001F51]">
-                  {notice.title}
-                </h4>
-                <ul className="list-disc ml-6 space-y-1 text-[15px] text-[#555]">
-                  {notice.listItems.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        )}
+        {content?.important_notices &&
+          content?.important_notices?.length > 0 && (
+            <div className="w-full grid-col-3 gap-4 p-3 py-4 rounded-[15px] bg-[#FA8F21]/10 mt-4">
+              {content.important_notices?.map((notice, index) => (
+                <div key={index} className="space-y-3">
+                  <h4 className="text-[20px] font-[600] text-[#001F51]">
+                    {notice.title}
+                  </h4>
+                  <ul className={`list-disc ml-6 space-y-1 text-[15px] text-[#555]  ${notice?.listItem?.length <=6 ? "columns-1" : (notice?.listItem?.length >6 && notice?.listItem?.length <=12)? "columns-2" : "columns-3"}`}>
+                    {notice.listItems.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          )}
       </div>
     </div>
   );
