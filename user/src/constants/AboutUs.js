@@ -1,26 +1,25 @@
 //..................Former Vc...........................//
-import ChancelorImage from "../assets/images/profile/chancellor.png"
-import Pawar from "../assets/images/profile/vc/pawar.png"
-import Patil from "../assets/images/profile/vc/patil.png"
-import Bhanage from "../assets/images/profile/vc/bhanage.png"
-import Kanbarkar from "../assets/images/profile/vc/kanbarkar.png"
-import Bhogishayana from "../assets/images/profile/vc/bhogishayana.png"
-import Powar from "../assets/images/profile/vc/powar.png"
-import Varute from "../assets/images/profile/vc/varute.png"
-import Dhanagare from "../assets/images/profile/vc/dhanagare.png"
-import Salunkhe from "../assets/images/profile/vc/salunkhe.png"
-import NJPawar from "../assets/images/profile/vc/n-j-pawar.png"
-import Shinde from "../assets/images/profile/vc/shinde.png"
+import ChancelorImage from "../assets/images/profile/chancellor.png";
+import Pawar from "../assets/images/profile/vc/pawar.png";
+import Patil from "../assets/images/profile/vc/patil.png";
+import Bhanage from "../assets/images/profile/vc/bhanage.png";
+import Kanbarkar from "../assets/images/profile/vc/kanbarkar.png";
+import Bhogishayana from "../assets/images/profile/vc/bhogishayana.png";
+import Powar from "../assets/images/profile/vc/powar.png";
+import Varute from "../assets/images/profile/vc/varute.png";
+import Dhanagare from "../assets/images/profile/vc/dhanagare.png";
+import Salunkhe from "../assets/images/profile/vc/salunkhe.png";
+import NJPawar from "../assets/images/profile/vc/n-j-pawar.png";
+import Shinde from "../assets/images/profile/vc/shinde.png";
 
-
-
+//-------------------- About Section -----------------------//
 import aboutImg1 from "../assets/images/aboutUs/aboutImg1.png";
 import aboutImg2 from "../assets/images/aboutUs/aboutImg2.png";
 import aboutImg3 from "../assets/images/aboutUs/aboutImg3.png";
 import aboutImg4 from "../assets/images/aboutUs/aboutImg4.png";
 import aboutImg5 from "../assets/images/aboutUs/aboutImg5.png";
 
-// -------------------- About Kolhapur City -------------------
+//-------------------- About Kolhapur City -------------------//
 import office from "../assets/images/aboutUs/AboutKolhapurCity/Office.png";
 import town from "../assets/images/aboutUs/AboutKolhapurCity/Town.png";
 import binkhambi from "../assets/images/aboutUs/AboutKolhapurCity/Binkhambi.png";
@@ -35,7 +34,9 @@ import bhavani from "../assets/images/aboutUs/AboutKolhapurCity/Bhavani.png";
 import newplace from "../assets/images/aboutUs/AboutKolhapurCity/Palace.png";
 import shalini from "../assets/images/aboutUs/AboutKolhapurCity/Shalini.png";
 
-
+// ------------------ About Contact ---------------------------//
+import location from "../assets/icons/aboutUs/location.png";
+import telephone from "../assets/icons/aboutUs/telephone.png";
 
 export const aboutSidebarNavItems = [
   {
@@ -624,8 +625,6 @@ export const aboutUsKolhapurCity = [
   },
 ];
 
- 
-
 export const aboutUsContents = [
   {
     title: "About University",
@@ -678,20 +677,20 @@ export const aboutUsContents = [
         type: "list",
         contentList: [
           {
-            "boldText":"Air: ",
-            "contentText": `It is a one-hour journey from Bombay to Kolhapur by air. The Ujalaiwadi airport is 10-km away from Kolhapur Main City. One can also travel from Kolhapur to the nearest Airport Pune , which is 238-Km away.`,
+            boldText: "Air: ",
+            contentText: `It is a one-hour journey from Bombay to Kolhapur by air. The Ujalaiwadi airport is 10-km away from Kolhapur Main City. One can also travel from Kolhapur to the nearest Airport Pune , which is 238-Km away.`,
           },
           {
-            "boldText":"Rail: ",
-            "contentText": `Kolhapur has a railway station and it's an 11-hour journey from Mumbai or Bangalore to Kolhapur.`,
+            boldText: "Rail: ",
+            contentText: `Kolhapur has a railway station and it's an 11-hour journey from Mumbai or Bangalore to Kolhapur.`,
           },
           {
-            "boldText":"Road: ",
-            "contentText": `Kolhapur is about 450-km south of Mumbai and it's a ten to eleven hour journey from Mumbai or Banglore to Kolhapur by road. Maharashtra State Transport Corporation (MSTC) has regular service in this route with semi luxury and regular buses. Even private bus service is available to reach here from Mumbai, Pune, Goa, Solapur (also spelt as Sholapur) and Bangalore.`,
+            boldText: "Road: ",
+            contentText: `Kolhapur is about 450-km south of Mumbai and it's a ten to eleven hour journey from Mumbai or Banglore to Kolhapur by road. Maharashtra State Transport Corporation (MSTC) has regular service in this route with semi luxury and regular buses. Even private bus service is available to reach here from Mumbai, Pune, Goa, Solapur (also spelt as Sholapur) and Bangalore.`,
           },
           {
-            "boldText":"Local Transpor: ",
-            "contentText": [
+            boldText: "Local Transpor: ",
+            contentText: [
               `Auto-rickshaws are the most common mode of transport along with the bus service run by the municipal corporation. Taxis are available.Places of Tourist Interest Maharaja's Palace The maharaja's 'new' palace, completed in 1881, houses the Shahaji Chhatrapati Museum, one of the most bizarre collections of memorabilia in India. The building was designed by 'Mad' Charles Mant, the British architect who fashioned the Indo-saracenic style of colonial architecture and is a cross between a Victorian railway station and the Addams Family mansion.`,
 
               `The palace contains a weird and wonderful array of the old maharaja's possessions including his clothes, old hunt photos, silver peocock-shaped elephant saddles and the memorial silver spade he used to 'turn the first sod of the Kolhapur State Railway' in 1888. But dominating every room in the palace are reminders of the maharaja's passion: killing wild animals to decorate his palace.`,
@@ -812,95 +811,178 @@ export const aboutUsContents = [
       },
     ],
   },
-   {
-        "title": "Hon'ble Chancellor",
-        "content_id": 4,
-        "layout_type": "personal-figured",
-        "sections": {
-            "profile_image": ChancelorImage,
-            "person_name": "Governor Shri.  Acharya Devvrat",
-            "text": "The Governor of the Maharashtra State is the Chancellor of all the Universities in the Maharashtra. By virtue of his office he is the head of Shivaji University. At present Hon'ble Governor Shri.  Acharya Devvrat is the Chancellor of Shivaji University, Kolhapur.",
-            "more_details": { "text": "For more details visit", "path": "http://rajbhavan-maharashtra.gov.in/" }
-        }
+  {
+    title: "Hon'ble Chancellor",
+    content_id: 4,
+    layout_type: "personal-figured",
+    sections: {
+      profile_image: ChancelorImage,
+      person_name: "Governor Shri.  Acharya Devvrat",
+      text: "The Governor of the Maharashtra State is the Chancellor of all the Universities in the Maharashtra. By virtue of his office he is the head of Shivaji University. At present Hon'ble Governor Shri.  Acharya Devvrat is the Chancellor of Shivaji University, Kolhapur.",
+      more_details: {
+        text: "For more details visit",
+        path: "http://rajbhavan-maharashtra.gov.in/",
+      },
     },
-    {
-        title: "Former Vice-Chancellors",
-        content_id: 8,
-        layout_type: "image-grid",
-        sections: [
-            {
-                "name": "Dr. A. G. Pawar",
-                "qualification": "MA, LLB, PhD. (London)",
-                "tenure": "20 / 09 / 1962 to 20 / 01 / 1975",
-                "img":Pawar
-            },
-            {
-                "name": "Barr, P. G. Patil",
-                "qualification": "MA, B.A.(London)",
-                "tenure": "21 / 01 / 1975 to 16 / 04 / 1978",
-                "img":Patil
-            },
-            {
-                "name": "Prin, B.S. Bhanage",
-                "qualification": "MA, PhD.",
-                "tenure": "17 / 04 / 1978 to 28 / 03 / 1980",
-                "img":Bhanage
-            },
-            {
-                "name": "Prin, R. K. Kanbarkar",
-                "qualification": "MA.",
-                "tenure": "22 / 09 / 1980 to 21 / 09 / 1983",
-                "img":Kanbarkar
-            },
-            {
-                "name": "Prin, K. Bhogishayana",
-                "qualification": "MA.",
-                "tenure": "22 / 08 / 1983 to 21 / 08 / 1986",
-                "img":Bhogishayana
-            },
-            {
-                "name": "Prof. K. B. Powar",
-                "qualification": "M.Sc., PhD. F.I.A.S.",
-                "tenure": "22 / 09 / 1986 to 21 / 09 / 1992",
-                "img":Powar
-            },
-            {
-                "name": "Dr. A. T. Varute",
-                "qualification": "M.Sc.,Ph.D.",
-                "tenure": "22 / 09 / 1992 to 15 / 06 / 1995",
-                "img":Varute
-            },
-            {
-                "name": "Prof. D. N. Dhanagare",
-                "qualification": "MA.(Norgpur), D.Pini.(Sussex)",
-                "tenure": "01 / 11 / 1995 to 31 / 10 / 2000",
-                "img":Dhanagare
-            },
-            {
-                "name": "Dr. M. M. Salunkhe",
-                "qualification": "M.Sc.,Ph.D.,F.R.S.C.",
-                "tenure": "11 / 06 / 2004 to 02 / 03 / 2009",
-                "img":Salunkhe
-            },
-            {
-                "name": "Prof. Dr. N. J. Pawar",
-                "qualification": "M.Sc.,Ph.D.",
-                "tenure": "26 / 02 / 2010 to 25 / 02 / 2015",
-                "img":NJPawar
-            },
-            {
-                "name": "Prof. D. N. Dhanagare",
-                "qualification": "MA.(Norgpur), D.Pini.(Sussex)",
-                "tenure": "01 / 11 / 1995 to 31 / 10 / 2000",
-                "img":Dhanagare
-            },
-            {
-                "name": "Prof. Devanand B. Shinde",
-                "qualification": "M.Sc.,Ph.D.",
-                "tenure": "18 / 06 / 2015 to 17 / 06 / 2020",
-                "img":Shinde
-            }
-        ]
-    }
-  
+  },
+  {
+    title: "Former Vice-Chancellors",
+    content_id: 8,
+    layout_type: "image-grid",
+    sections: [
+      {
+        name: "Dr. A. G. Pawar",
+        qualification: "MA, LLB, PhD. (London)",
+        tenure: "20 / 09 / 1962 to 20 / 01 / 1975",
+        img: Pawar,
+      },
+      {
+        name: "Barr, P. G. Patil",
+        qualification: "MA, B.A.(London)",
+        tenure: "21 / 01 / 1975 to 16 / 04 / 1978",
+        img: Patil,
+      },
+      {
+        name: "Prin, B.S. Bhanage",
+        qualification: "MA, PhD.",
+        tenure: "17 / 04 / 1978 to 28 / 03 / 1980",
+        img: Bhanage,
+      },
+      {
+        name: "Prin, R. K. Kanbarkar",
+        qualification: "MA.",
+        tenure: "22 / 09 / 1980 to 21 / 09 / 1983",
+        img: Kanbarkar,
+      },
+      {
+        name: "Prin, K. Bhogishayana",
+        qualification: "MA.",
+        tenure: "22 / 08 / 1983 to 21 / 08 / 1986",
+        img: Bhogishayana,
+      },
+      {
+        name: "Prof. K. B. Powar",
+        qualification: "M.Sc., PhD. F.I.A.S.",
+        tenure: "22 / 09 / 1986 to 21 / 09 / 1992",
+        img: Powar,
+      },
+      {
+        name: "Dr. A. T. Varute",
+        qualification: "M.Sc.,Ph.D.",
+        tenure: "22 / 09 / 1992 to 15 / 06 / 1995",
+        img: Varute,
+      },
+      {
+        name: "Prof. D. N. Dhanagare",
+        qualification: "MA.(Norgpur), D.Pini.(Sussex)",
+        tenure: "01 / 11 / 1995 to 31 / 10 / 2000",
+        img: Dhanagare,
+      },
+      {
+        name: "Dr. M. M. Salunkhe",
+        qualification: "M.Sc.,Ph.D.,F.R.S.C.",
+        tenure: "11 / 06 / 2004 to 02 / 03 / 2009",
+        img: Salunkhe,
+      },
+      {
+        name: "Prof. Dr. N. J. Pawar",
+        qualification: "M.Sc.,Ph.D.",
+        tenure: "26 / 02 / 2010 to 25 / 02 / 2015",
+        img: NJPawar,
+      },
+      {
+        name: "Prof. D. N. Dhanagare",
+        qualification: "MA.(Norgpur), D.Pini.(Sussex)",
+        tenure: "01 / 11 / 1995 to 31 / 10 / 2000",
+        img: Dhanagare,
+      },
+      {
+        name: "Prof. Devanand B. Shinde",
+        qualification: "M.Sc.,Ph.D.",
+        tenure: "18 / 06 / 2015 to 17 / 06 / 2020",
+        img: Shinde,
+      },
+    ],
+  },
+  {
+    title: "University Contact Details",
+    content_id: 16,
+    layout_type: "contact-composite",
+    sections: [
+      {
+        heading: "Shivaji University,",
+        type: "address-contact-list",
+        addressContact: [
+          {
+            image: location,
+            contact: "Vidyanagar, Kolhapur- 416 004.Maharashtra, INDIA.",
+          },
+          {
+            image: telephone,
+            contact:
+              "Telephone (EPABX) No.:+ 91 - 0231- 2609000TOLL FREE NUMBER :-1800-233-4871",
+          },
+        ],
+
+        ContactsDetails: [
+          {
+            Office: "General Administration Section",
+            PhoneNo: "0231-2609063",
+            Email: "registrar@unishivaji.ac.in",
+            Links: "#",
+          },
+          {
+            Office: "Public Relation Office (PRO)",
+            PhoneNo: "0231-2609143",
+            Email: "pro@unishivaji.ac.in",
+            Links: "#",
+          },
+          {
+            Office: "Exam Section",
+            PhoneNo: "0231-2609068",
+            Email: "coe@unishivaji.ac.in",
+            Links: "#",
+          },
+          {
+            Office: "Distance Education",
+            PhoneNo: ["0231-2694171", "0231-2694771"],
+            Email: "cde@unishivaji.ac.in",
+            Links: "#",
+          },
+          {
+            Office: "Students Facility Centre",
+            Description:
+              "Certificates: Migration/Transfer/Passing/Merit/Rank/Verification/Attestation/Second Copy of Marksheets, Transcripts and Change in Name procedure",
+            PhoneNo: ["0231-2609411", "0231-2609453", "0231-2609104"],
+            Email: "sfc@unishivaji.ac.in",
+            Links: "#",
+          },
+        ],
+      },
+      {
+        heading: "Contact Directory",
+        type: "Registrar",
+        registrarOffice: [
+          {
+            boldText: "Fax: ",
+            contact: `Fax :Registrar Office: + 91- 0231- 2692333`,
+          },
+        ],
+      },
+    ],
+    important_notices: [
+      {
+        title: "Office Working Hours",
+        content: `The working hours of the various offices of the University are from 10.20 a.m. to 6.00 p.m. The offices are closed for lunch during 2.00 p.m. to 2.30 p.m. All the administrative offices are closed on 2nd and 4th Saturday in addition to other holidays.`,
+      },
+      {
+        title: "Post Office & Banking Hours",
+        content: `The working hours of the Post Office are from 10a.m. to 5p.m. and UCO Bank are from 11 a.m. to 3.00 p.m. on all working days. The post and bank is located in the Shivaji University campus.`,
+      },
+    ],
+
+    
+  },
 ];
+
+ 
