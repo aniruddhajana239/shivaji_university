@@ -908,85 +908,95 @@ export const aboutUsContents = [
             }
         ]
     },
+   {
+  "title": "University Contact Details",
+  "content_id": 16,
+  "layout_type": "contact-composite",
+  "sections": [
     {
-        title: "University Contact Details",
-        content_id: 16,
-        layout_type: "contact-composite",
-        sections: [
-            {
-                heading: "Shivaji University,",
-                type: "address-contact-list",
-                addressContact: [
-                    {
-                        image: location,
-                        contact: "Vidyanagar, Kolhapur- 416 004.Maharashtra, INDIA.",
-                    },
-                    {
-                        image: telephone,
-                        contact:
-                            "Telephone (EPABX) No.:+ 91 - 0231- 2609000TOLL FREE NUMBER :-1800-233-4871",
-                    },
-                ],
-
-                ContactsDetails: [
-                    {
-                        Office: "General Administration Section",
-                        PhoneNo: "0231-2609063",
-                        Email: "registrar@unishivaji.ac.in",
-                        Links: "#",
-                    },
-                    {
-                        Office: "Public Relation Office (PRO)",
-                        PhoneNo: "0231-2609143",
-                        Email: "pro@unishivaji.ac.in",
-                        Links: "#",
-                    },
-                    {
-                        Office: "Exam Section",
-                        PhoneNo: "0231-2609068",
-                        Email: "coe@unishivaji.ac.in",
-                        Links: "#",
-                    },
-                    {
-                        Office: "Distance Education",
-                        PhoneNo: ["0231-2694171", "0231-2694771"],
-                        Email: "cde@unishivaji.ac.in",
-                        Links: "#",
-                    },
-                    {
-                        Office: "Students Facility Centre",
-                        Description:
-                            "Certificates: Migration/Transfer/Passing/Merit/Rank/Verification/Attestation/Second Copy of Marksheets, Transcripts and Change in Name procedure",
-                        PhoneNo: ["0231-2609411", "0231-2609453", "0231-2609104"],
-                        Email: "sfc@unishivaji.ac.in",
-                        Links: "#",
-                    },
-                ],
-            },
-            {
-                heading: "Contact Directory",
-                type: "Registrar",
-                registrarOffice: [
-                    {
-                        boldText: "Fax: ",
-                        contact: "Registrar Office: + 91 - 0231 - 2692333",
-          },
-        ],
-    },
-],
-    important_notices: [
+      "heading": "Shivaji University,",
+      "type": "address-contact-list",
+      "addressContact": [
         {
-            title: "Office Working Hours",
-            content: "The working hours of the various offices of the University are from 10.20 a.m.to 6.00 p.m.The offices are closed for lunch during 2.00 p.m.to 2.30 p.m.All the administrative offices are closed on 2nd and 4th Saturday in addition to other holidays.",
-      },
-{
-    title: "Post Office & Banking Hours",
-        content: "The working hours of the Post Office are from 10a.m.to 5p.m.and UCO Bank are from 11 a.m.to 3.00 p.m.on all working days.The post and bank is located in the Shivaji University campus.",
-      },
-    ],
-
-    
-  },
+          "image": location,
+          "contact": "Vidyanagar, Kolhapur- 416 004.Maharashtra, INDIA."
+        },
+        {
+          "image": telephone,
+          "contact": "Telephone (EPABX) No.:+ 91 - 0231- 2609000TOLL FREE NUMBER :-1800-233-4871"
+        }
+      ],
+      "tableData": {
+        "columns": [
+          { "heading": "Office", "accessor": "Office" },
+          { "heading": "Phone No", "accessor": "PhoneNo", "type": "unorder-list", "by": "none" },
+          { "heading": "Email", "accessor": "Email" },
+          { "heading": "Link", "accessor": "Links", "type": "link" }
+        ],
+        "rows": [
+          {
+            "Office": "General Administration Section",
+            "PhoneNo": ["0231-2609063"],
+            "Email": "registrar@unishivaji.ac.in",
+            "Links": "#"
+          },
+          {
+            "Office": "Public Relation Office (PRO)",
+            "PhoneNo": ["0231-2609143"],
+            "Email": "pro@unishivaji.ac.in",
+            "Links": "#"
+          },
+          {
+            "Office": "Exam Section",
+            "PhoneNo": ["0231-2609068"],
+            "Email": "coe@unishivaji.ac.in",
+            "Links": "#"
+          },
+          {
+            "Office": "Distance Education",
+            "PhoneNo": ["0231-2694171", "0231-2694771"],
+            "Email": "cde@unishivaji.ac.in",
+            "Links": "#"
+          },
+          {
+            "Office": "Students Facility Centre",
+            "Description": {
+                title:"Certificates",
+                listItems:[
+"Migration/ Transfer/ Passing/ Merit/ Rank/ Verification/ Attestation/ ",
+"Second Copy of Marksheets",
+"Transcripts and Change in Name procedure"
+                ]
+            },
+            "PhoneNo": ["0231-2609411", "0231-2609453", "0231-2609104"],
+            "Email": "sfc@unishivaji.ac.in",
+            "Links": "#"
+          }
+        ]
+      }
+    },
+    {
+      "heading": "Contact Directory",
+      "type": "Registrar",
+      "registrarOffice": [
+        {
+          "boldText": "Fax: ",
+          "contact": "Registrar Office: + 91 - 0231 - 2692333"
+        }
+      ]
+    }
+  ],
+  "important_notices": [
+    {
+      "title": "Office Working Hours",
+      "content": "The working hours of the various offices of the University are from 10.20 a.m.to 6.00 p.m.The offices are closed for lunch during 2.00 p.m.to 2.30 p.m.All the administrative offices are closed on 2nd and 4th Saturday in addition to other holidays."
+    },
+    {
+      "title": "Post Office & Banking Hours",
+      "content": "The working hours of the Post Office are from 10a.m.to 5p.m.and UCO Bank are from 11 a.m.to 3.00 p.m.on all working days.The post and bank is located in the Shivaji University campus."
+    }
+  ]
+},
 {
     "title": "Suk Daily News 2025",
         "content_id": 11,

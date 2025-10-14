@@ -87,7 +87,7 @@ export const FormalComposite = ({ content, title }) => {
                 {content?.important_notices?.map((notice, idx) => (
                   <li
                     key={idx}
-                    className="text-[14px] 2xl:text-[16px] text-justify text-[#000000] font-[400] flex flex-col gap-2 itms-start"
+                    className="text-[14px] 2xl:text-[18px] text-justify text-[#000000] font-[400] flex flex-col gap-2 itms-start"
                   >
                     {notice?.title && (
                       <span
@@ -99,7 +99,7 @@ export const FormalComposite = ({ content, title }) => {
                       </span>
                     )}
                     {notice?.content && (
-                      <span className="text-[12px] text-justify">
+                      <span className="text-[14px] 2xl:text-[18px] text-justify">
                         {notice?.content}
                       </span>
                     )}
