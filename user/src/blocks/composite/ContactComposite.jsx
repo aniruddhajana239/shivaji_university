@@ -25,7 +25,10 @@ const ContactComposite = ({ content, title }) => {
             // Phone numbers as unordered list
             if (accessor === "PhoneNo" && Array.isArray(cellValue)) {
               return (
-                <ul className="text-[14px] 2xl:text-[18px] align-top" style={{ listStyleType: "none" }}>
+                <ul
+                  className="text-[14px] 2xl:text-[18px] align-top"
+                  style={{ listStyleType: "none" }}
+                >
                   {cellValue.map((phone, idx) => (
                     <li key={idx}>{phone}</li>
                   ))}
@@ -77,7 +80,7 @@ const ContactComposite = ({ content, title }) => {
               className={`py-3 px-4 align-top ${getWidthClass()}`}
             >
               {renderCellContent()}
-              
+
               {/* Show description with title and list items if available */}
               {accessor === "Office" && row.Description && (
                 <div className="mt-2">
@@ -86,13 +89,14 @@ const ContactComposite = ({ content, title }) => {
                       {row.Description.title}
                     </p>
                   )}
-                  {row.Description.listItems && Array.isArray(row.Description.listItems) && (
-                    <ul className="text-[10px] 2xl:text-[14px] text-wrap text-[#333333] list-none list-inside space-y-1">
-                      {row.Description.listItems.map((item, index) => (
-                        <li key={index}>{item}</li>
-                      ))}
-                    </ul>
-                  )}
+                  {row.Description.listItems &&
+                    Array.isArray(row.Description.listItems) && (
+                      <ul className="text-[10px] 2xl:text-[14px] text-wrap text-[#333333] list-none list-inside space-y-1">
+                        {row.Description.listItems.map((item, index) => (
+                          <li key={index}>{item}</li>
+                        ))}
+                      </ul>
+                    )}
                 </div>
               )}
             </td>
@@ -101,8 +105,6 @@ const ContactComposite = ({ content, title }) => {
       </tr>
     ));
   };
-
-
 
   return (
     <div className="w-full flex flex-col gap-6 bg-white rounded-[20px] p-6 2xl:p-8 shadow-sm">
@@ -121,15 +123,15 @@ const ContactComposite = ({ content, title }) => {
 
           {/* Address & Contact List */}
           {section?.addressContact && (
-            <div className="flex gap-[40px] mb-4 pr-[150px]">
+            <div className="flex flex-col xl:flex-row md:gap-[20px] mb-4 2xl:pr-[150px]">
               {section.addressContact.map((item, i) => (
-                <div key={i} className="flex items-center justify-center gap-3">
-                  <div className="bg-[#2F8AA5] py-[8px] px-[11px] rounded-full flex items-center justify-center">
+                <div key={i} className="flex items-center 2xl:justify-center  gap-3">
+                  <div className="bg-[#2F8AA5] py-[8px] px-[11px] rounded-full flex items-center  justify-center">
                     <img
                       src={item.image}
                       alt="icon"
                       className={`${
-                        i === 0 ? "w-[14px] h-[18px]" : "w-[18px] h-[18px]"
+                        i === 0 ? "w-[15px] h-[16px] md:h-[19px]" : "w-[18px] h-[16px] md:h-[22px] xl:h-[20px]"
                       }`}
                     />
                   </div>
@@ -152,8 +154,11 @@ const ContactComposite = ({ content, title }) => {
           {section?.registrarOffice && (
             <div className="mt-4 flex flex-col gap-2">
               {section.registrarOffice.map((item, i) => (
-                <p key={i} className="text-[14px] text-black">
-                  <span className="font-semibold">{item.boldText}</span>{" "}
+                <p key={i} className="text-[14px] text-black flex flex-col">
+                  <span className="text-[16px] font-[700] flex items-center gap-2">
+                    <span className="inline-block w-[6px] h-[6px] bg-black rounded-full"></span>
+                    {item.boldText}
+                  </span>
                   {item.contact}
                 </p>
               ))}
