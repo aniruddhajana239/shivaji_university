@@ -131,7 +131,7 @@ const ContactComposite = ({ content, title }) => {
                       src={item.image}
                       alt="icon"
                       className={`${
-                        i === 0 ? "w-[15px] h-[16px] md:h-[19px]" : "w-[18px] h-[16px] md:h-[22px] xl:h-[20px]"
+                        i === 0 ? "w-[15px] h-[16px] md:h-[20px] xl:w-[20px] 2xl:h-[25px]" : "w-[23px] h-[17px] md:h-[21px] md:w-[17px] xl:h-[20px] xl:w-[21px] 2xl:h-[26px]"
                       }`}
                     />
                   </div>
