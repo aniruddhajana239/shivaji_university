@@ -123,19 +123,22 @@ const ContactComposite = ({ content, title }) => {
 
           {/* Address & Contact List */}
           {section?.addressContact && (
-            <div className="flex flex-col xl:flex-row md:gap-[20px] mb-4 2xl:pr-[150px]">
+            <div className="flex flex-col md:flex-row mb-4 2xl:pr-[150px]">
               {section.addressContact.map((item, i) => (
-                <div key={i} className="flex items-center 2xl:justify-center  gap-3">
-                  <div className="bg-[#2F8AA5] py-[8px] px-[11px] rounded-full flex items-center  justify-center">
+                <div
+                  key={i}
+                  className="flex items-center gap-3 flex-1 min-w-0 px-2"
+                >
+                  <div className="flex-shrink-0 bg-[#2F8AA5] p-3 rounded-full flex items-center justify-center">
                     <img
                       src={item.image}
                       alt="icon"
-                      className={`${
-                        i === 0 ? "w-[15px] h-[16px] md:h-[20px] xl:w-[20px] 2xl:h-[25px]" : "w-[23px] h-[17px] md:h-[21px] md:w-[17px] xl:h-[20px] xl:w-[21px] 2xl:h-[26px]"
-                      }`}
+                      className="w-4 h-4 object-contain"
                     />
                   </div>
-                  <p className="text-[14px] text-black">{item.contact}</p>
+                  <p className="text-[14px] text-black   flex-1">
+                    {item.contact}
+                  </p>
                 </div>
               ))}
             </div>
