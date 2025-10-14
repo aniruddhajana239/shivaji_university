@@ -3,7 +3,7 @@ export const FormalComposite = ({ content, title }) => {
   return (
     <div className="w-full flex flex-col gap-6 bg-white rounded-[20px] p-6 2xl:p-8 shadow-sm">
       <h3 className="m-0 text-[#001F51] text-[20px] font-[600] 2xl:text-[24px]">
-        {title}
+        {title??""}
       </h3>
       <div className="w-full flex flex-col gap-2 text-[14px] 2xl:text-[16px] text-justify text-[#000000] font-[400]">
         {content?.sections &&
@@ -12,7 +12,7 @@ export const FormalComposite = ({ content, title }) => {
           ? content?.sections?.map((section, index) => (
               <div
                 key={index}
-                className={`w-full flex flex-col gap-2 pb-4 border-b-2 border-b-[#D8D8D8] last-of-type:border-0 ${
+                className={`w-full flex flex-col gap-2 pb-6 mb-2 border-b-2 border-b-[#D8D8D8] last-of-type:border-0 ${
                   index === content?.sections?.length - 1 && "border-none"
                 }`}
               >
@@ -39,6 +39,21 @@ export const FormalComposite = ({ content, title }) => {
                       ))}
                     </ul>
                   )}
+                {section?.type === "order-list" &&
+                  section?.listItems &&
+                  Array.isArray(section?.listItems) &&
+                  section?.listItems?.length > 0 && (
+                    <ol className="w-full flex flex-col gap-1 list-decimal list-inside ml-4">
+                      {section?.listItems?.map((item, idx) => (
+                        <li
+                          key={idx}
+                          className="text-[14px] 2xl:text-[16px] text-justify text-[#000000] font-[400]"
+                        >
+                          {item}
+                        </li>
+                      ))}
+                    </ol>
+                  )}
                 {section?.type === "arrow-list" &&
                   section?.listItems &&
                   Array.isArray(section?.listItems) &&
@@ -49,7 +64,6 @@ export const FormalComposite = ({ content, title }) => {
                           key={idx}
                           className="text-[14px] 2xl:text-[16px] text-justify text-[#000000] font-[400] flex items-start gap-2"
                         >
-                          {/* <span className="text-[#001F51] font-[600] text-[20px] leading-none mt-1">{'➔'}</span> */}
                           <div className="h-4 w-4 rounded-full flex justify-center items-center bg-[#EDFAFE] flex-shrink-0 ">
                             <img
                               src={ChevronRight}
