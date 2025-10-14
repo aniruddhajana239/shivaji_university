@@ -1,26 +1,25 @@
 //..................Former Vc...........................//
-import ChancelorImage from "../assets/images/profile/chancellor.png"
-import Pawar from "../assets/images/profile/vc/pawar.png"
-import Patil from "../assets/images/profile/vc/patil.png"
-import Bhanage from "../assets/images/profile/vc/bhanage.png"
-import Kanbarkar from "../assets/images/profile/vc/kanbarkar.png"
-import Bhogishayana from "../assets/images/profile/vc/bhogishayana.png"
-import Powar from "../assets/images/profile/vc/powar.png"
-import Varute from "../assets/images/profile/vc/varute.png"
-import Dhanagare from "../assets/images/profile/vc/dhanagare.png"
-import Salunkhe from "../assets/images/profile/vc/salunkhe.png"
-import NJPawar from "../assets/images/profile/vc/n-j-pawar.png"
-import Shinde from "../assets/images/profile/vc/shinde.png"
+import ChancelorImage from "../assets/images/profile/chancellor.png";
+import Pawar from "../assets/images/profile/vc/pawar.png";
+import Patil from "../assets/images/profile/vc/patil.png";
+import Bhanage from "../assets/images/profile/vc/bhanage.png";
+import Kanbarkar from "../assets/images/profile/vc/kanbarkar.png";
+import Bhogishayana from "../assets/images/profile/vc/bhogishayana.png";
+import Powar from "../assets/images/profile/vc/powar.png";
+import Varute from "../assets/images/profile/vc/varute.png";
+import Dhanagare from "../assets/images/profile/vc/dhanagare.png";
+import Salunkhe from "../assets/images/profile/vc/salunkhe.png";
+import NJPawar from "../assets/images/profile/vc/n-j-pawar.png";
+import Shinde from "../assets/images/profile/vc/shinde.png";
 
-
-
+//-------------------- About Section -----------------------//
 import aboutImg1 from "../assets/images/aboutUs/aboutImg1.png";
 import aboutImg2 from "../assets/images/aboutUs/aboutImg2.png";
 import aboutImg3 from "../assets/images/aboutUs/aboutImg3.png";
 import aboutImg4 from "../assets/images/aboutUs/aboutImg4.png";
 import aboutImg5 from "../assets/images/aboutUs/aboutImg5.png";
 
-// -------------------- About Kolhapur City -------------------
+//-------------------- About Kolhapur City -------------------//
 import office from "../assets/images/aboutUs/AboutKolhapurCity/Office.png";
 import town from "../assets/images/aboutUs/AboutKolhapurCity/Town.png";
 import binkhambi from "../assets/images/aboutUs/AboutKolhapurCity/Binkhambi.png";
@@ -40,6 +39,9 @@ import shalini from "../assets/images/aboutUs/AboutKolhapurCity/Shalini.png";
 import SamplePDF from "../assets/files/pdf/sample.pdf"
 
 
+// ------------------ About Contact ---------------------------//
+import location from "../assets/icons/aboutUs/location.png";
+import telephone from "../assets/icons/aboutUs/telephone.png";
 
 export const aboutSidebarNavItems = [
     {
@@ -1121,3 +1123,5 @@ export const aboutUsContents = [
 },
 
 ];
+
+ 

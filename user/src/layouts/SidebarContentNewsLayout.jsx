@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { LeftSidebarNavigation } from "../components/navigation/LeftSidebarNavigation";
 import { RightSidebarNavigation } from "../components/navigation/RightSidebarNavigation";
+import { SimpleBreadCrumb } from "../components/breadcrumb/SimpleBreadcrumb";
+
+// Layout Components
+import { FormalComposite } from "../blocks/composite/FormalComposite";
 import { PersonalFigure } from "../blocks/single/PersonalFigure";
 import { ImageGrid } from "../blocks/grid/ImageGrid";
-import { FormalComposite } from "../blocks/composite/FormalComposite";
-import { SimpleBreadCrumb } from "../components/breadcrumb/SimpleBreadcrumb";
 import NewsPaperComposite from "../blocks/composite/NewsPaperComposite";
 import CityComposite from "../blocks/composite/CityComposite";
+import ContactComposite from "../blocks/composite/ContactComposite";
 import { FileListTable } from "../blocks/table/FileListTable";
 import { Comment } from "../blocks/single/Comment";
 import { PDFList } from "../blocks/lists/PDFLists";
@@ -14,49 +17,90 @@ import { SimpleTable } from "../blocks/table/SimpleTable";
 import { MultipleTable } from "../blocks/table/MultipleTable";
 import { CommonBulletList } from "../blocks/lists/CommonBulletList";
 
+const layoutComponents = {
+  "formal-composite": FormalComposite,
+  "personal-figured": PersonalFigure,
+  "image-grid": ImageGrid,
+  "news-composite": NewsPaperComposite,
+  "city-composite": CityComposite,
+  "contact-composite": ContactComposite,
+  "searchbar-table": FileListTable,
+  "comment": Comment,
+  "pdf_list": PDFList,
+  "simple-table": SimpleTable,
+  "multiple-table": MultipleTable,
+  "bullet-list": CommonBulletList,
+};
 
-export const SidebarContentNewsLayout = ({ navItems, parentPath, title ,contentList}) => {
-    const [activeId, setActiveId] = useState(1);
-    const activeNavItem = navItems[activeId] || {};
-    const [content, setContent] = useState(contentList?.filter(c => c?.content_id === activeId)?.[0] || {});
-    const handleClick = (id) => {
-        setActiveId(id);
-        setContent(contentList?.filter(c => c?.content_id === id)?.[0] || {});
+export const SidebarContentNewsLayout = ({ navItems, parentPath, title, contentList }) => {
+  const [activeId, setActiveId] = useState(1);
+
+  const content = useMemo(
+    () => contentList?.find((item) => item.content_id === activeId) || {},
+    [activeId, contentList]
+  );
+
+  const activeNavItem = useMemo(
+    () => navItems[activeId] || {},
+    [navItems, activeId]
+  );
+
+  const handleClick = useCallback((id) => {
+    setActiveId(id);
+  }, []);
+
+  const renderLayout = () => {
+    if (!content || Object.keys(content).length === 0) return null;
+    
+    const Component = layoutComponents[content.layout_type];
+    
+    if (!Component) return null;
+
+    // Handle special props for specific components
+    const additionalProps = {};
+    
+    if (content.layout_type === "simple-table") {
+      additionalProps.autoWidth = content?.isAutoWidth;
+      additionalProps.isWrappableHeader = content?.wrappable;
     }
+
     return (
-        <div className="w-full bg-white px-6 lg:px-[48px] py-8 flex flex-col lg:flex-row items-start justify-between gap-5">
-            {/* Sidebar content can be added here in the future */}
-            <div className="w-full lg:w-[20%]">
-                <LeftSidebarNavigation
-                    activeId={activeId}
-                    handleClick={handleClick}
-                    title="Related Pages"
-                    navItems={navItems}
-                />
-            </div>
-            <div className="w-full lg:w-[55%] flex flex-col gap-2 items-center">
-                <SimpleBreadCrumb
-                    parent={{ "title": title, "path": parentPath }}
-                    current={content?.title || ""}
-                />
-                {content&&Object?.keys(content)?.length>0&&content?.layout_type === "formal-composite" && <FormalComposite title={content?.title || ""} content={content || {}} />}
-                {content&&Object?.keys(content)?.length>0&&content?.layout_type === "personal-figured" && <PersonalFigure title={content?.title || ""} content={content || {}} />}
-                {content&&Object?.keys(content)?.length>0&&content?.layout_type === "image-grid" && <ImageGrid title={content?.title || ""} content={content || {}} />}
-                {content&&Object?.keys(content)?.length>0&&content?.layout_type === "news-composite" && <NewsPaperComposite title={content?.title || ""} content={content || {}} />}
-                {content&&Object?.keys(content)?.length>0&&content?.layout_type === "city-composite" && <CityComposite title={content?.title || ""} content={content || {}} />}
-                {content&&Object?.keys(content)?.length>0&&content?.layout_type === "searchbar-table" && <FileListTable title={content?.title || ""} content={content || {}} />}
-                {content&&Object?.keys(content)?.length>0&&content?.layout_type === "comment" && <Comment title={content?.title || ""} content={content || {}} />}
-                {content&&Object?.keys(content)?.length>0&&content?.layout_type === "pdf_list" && <PDFList title={content?.title || ""} content={content || {}} />}
-                {content&&Object?.keys(content)?.length>0&&content?.layout_type === "simple-table" && <SimpleTable title={content?.title || ""} content={content || {}} autoWidth={content?.isAutoWidth} isWrappableHeader={content?.wrappable}/>}
-                {content&&Object?.keys(content)?.length>0&&content?.layout_type === "multiple-table" && <MultipleTable title={content?.title || ""} content={content || {}} />}
-                {content&&Object?.keys(content)?.length>0&&content?.layout_type === "bullet-list" && <CommonBulletList title={content?.title || ""} content={content || {}} />}
-            </div>
-            <div className="w-full lg:w-[25%]">
-                <RightSidebarNavigation
-                    title="Updates/News"
-                    listItems={activeNavItem?.updates || []}
-                />
-            </div>
-        </div>
+      <Component 
+        title={content.title} 
+        content={content} 
+        {...additionalProps}
+      />
     );
-}   
+  };
+
+  return (
+    <div className="w-full bg-white px-6 lg:px-12 py-8 flex flex-col lg:flex-row gap-6">
+      {/* Left Sidebar */}
+      <div className="w-full lg:w-1/5">
+        <LeftSidebarNavigation
+          title="Related Pages"
+          navItems={navItems}
+          activeId={activeId}
+          handleClick={handleClick}
+        />
+      </div>
+
+      {/* Main Content */}
+      <div className="w-full lg:w-3/5 flex flex-col gap-4">
+        <SimpleBreadCrumb
+          parent={{ title, path: parentPath }}
+          current={content.title || ""}
+        />
+        {renderLayout()}
+      </div>
+
+      {/* Right Sidebar */}
+      <div className="w-full lg:w-1/4">
+        <RightSidebarNavigation
+          title="Updates/News"
+          listItems={activeNavItem?.updates || []}
+        />
+      </div>
+    </div>
+  );
+};
