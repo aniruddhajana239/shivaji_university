@@ -5,7 +5,7 @@ const CollapsableImageGrid = ({ content, title }) => {
   if (!content || !content.sections) return null;
 
   return (
-    <div className="w-full flex flex-col gap-8 bg-white rounded-[20px] p-6 2xl:p-8 shadow-sm">
+    <div className="w-full flex flex-col gap-1 bg-white rounded-[20px] p-6 2xl:p-8 shadow-sm">
       {/* Page Title */}
       <h3 className="text-[#001F51] text-[24px] font-[600]">{title}</h3>
 
@@ -64,11 +64,11 @@ const CollapsableImageGrid = ({ content, title }) => {
               {/* Center button */}
               <div className="flex gap-[12px] justify-center items-center py-[9px] px-[14px] border border-[#C0F0FF] rounded-[38px] bg-white relative z-10">
                 <p>Show More</p>
-                <div className="p-2 bg-[#EDFAFE] rounded-full">
+                <div className="h-[20px] w-[20px] bg-[#EDFAFE] rounded-full flex justify-center items-center">
                   <img
                     src={downarrow_icom}
                     alt="downarrow_icom"
-                    className="h-[8px] w-[12px]"
+                    className="h-[6px] w-[10px] object-cover"
                   />
                 </div>
               </div>
