@@ -1,10 +1,10 @@
 import React from "react";
 
-const CommonTable = ({ columns, data,isWrappableHeader }) => {
+const CommonTable = ({ columns, data,isWrappableHeader,withoutHeaderText }) => {
   return (
     <div className="overflow-x-auto w-full">
       <table className="min-w-full table-auto">
-        <thead className="bg-[#EDFAFE] text-[#001F51] font-[600] rounded-t-[10px]">
+        {!withoutHeaderText&&<thead className="bg-[#EDFAFE] text-[#001F51] font-[600] rounded-t-[10px]">
           <tr>
             {columns.map((col, index) => (
               <th
@@ -16,7 +16,7 @@ const CommonTable = ({ columns, data,isWrappableHeader }) => {
               </th>
             ))}
           </tr>
-        </thead>
+        </thead>}
         <tbody className="bg-white">
           {data?data:<tr>! No Data Found</tr>}
         </tbody>

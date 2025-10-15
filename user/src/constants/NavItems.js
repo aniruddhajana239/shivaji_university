@@ -1,3 +1,7 @@
+import { aboutSidebarNavItems, aboutUsContents } from "./AboutUs";
+import { governanceContents, governanceSidebarNavItems } from "./Governance";
+import { studentContents, studentSidebarNavItems } from "./Students";
+
 export const navItems = [
     {
         id: 1,
@@ -7,7 +11,9 @@ export const navItems = [
     {
         id: 2,
         title: "About Us",
-        path: '/about'
+        path: '/about',
+        contents:aboutUsContents,
+        sidebarItems:aboutSidebarNavItems
     },
     {
         id: 3,
@@ -17,7 +23,9 @@ export const navItems = [
     {
         id: 4,
         title: "Governance",
-        path: '/governance'
+        path: '/governance',
+        contents:governanceContents,
+        sidebarItems:governanceSidebarNavItems
     },
     {
         id: 5,
@@ -27,7 +35,9 @@ export const navItems = [
     {
         id: 6,
         title: "Student",
-        path: '/student'
+        path: '/student',
+        contents:studentContents,
+        sidebarItems:studentSidebarNavItems
     },
     {
         id: 7,

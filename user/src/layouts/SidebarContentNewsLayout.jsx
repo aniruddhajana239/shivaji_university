@@ -74,6 +74,9 @@ export const SidebarContentNewsLayout = ({ navItems, parentPath, title, contentL
       <Component 
         title={content.title} 
         content={content} 
+        viewable={content?.viewable??false}
+        downloadble={content?.downloadble??false}
+        searchable={content?.searchable??false}
         {...additionalProps}
       />
     );
