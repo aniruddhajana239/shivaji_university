@@ -16,6 +16,9 @@ import { PDFList } from "../blocks/lists/PDFLists";
 import { SimpleTable } from "../blocks/table/SimpleTable";
 import { MultipleTable } from "../blocks/table/MultipleTable";
 import { CommonBulletList } from "../blocks/lists/CommonBulletList";
+import HistoryComposite from "../blocks/composite/HistoryComposite";
+import CollapsableImageGrid from "../blocks/grid/CollapsableImageGrid";
+import GovernanceContactComposite from "../blocks/composite/GovernanceContactComposite";
 
 const layoutComponents = {
   "formal-composite": FormalComposite,
@@ -30,6 +33,9 @@ const layoutComponents = {
   "simple-table": SimpleTable,
   "multiple-table": MultipleTable,
   "bullet-list": CommonBulletList,
+  "paragraph-image": HistoryComposite,
+  "CollapsableImageGrid": CollapsableImageGrid,
+  "governance-contact-composite":GovernanceContactComposite,
 };
 
 export const SidebarContentNewsLayout = ({ navItems, parentPath, title, contentList }) => {
