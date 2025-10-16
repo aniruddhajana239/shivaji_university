@@ -19,6 +19,8 @@ import { CommonBulletList } from "../blocks/lists/CommonBulletList";
 import HistoryComposite from "../blocks/composite/HistoryComposite";
 import CollapsableImageGrid from "../blocks/grid/CollapsableImageGrid";
 import GovernanceContactComposite from "../blocks/composite/GovernanceContactComposite";
+import NccComposite from "../blocks/composite/NccComposite";
+import StudentLoginComposite from "../blocks/composite/StudentLoginComposite";
 
 const layoutComponents = {
   "formal-composite": FormalComposite,
@@ -36,6 +38,8 @@ const layoutComponents = {
   "paragraph-image": HistoryComposite,
   "CollapsableImageGrid": CollapsableImageGrid,
   "governance-contact-composite":GovernanceContactComposite,
+  "paragraph":NccComposite,
+  "studentlogin":StudentLoginComposite,
 };
 
 export const SidebarContentNewsLayout = ({ navItems, parentPath, title, contentList }) => {

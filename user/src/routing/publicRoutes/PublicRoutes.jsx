@@ -11,7 +11,7 @@ const PublicRoutes = () => {
     );
 useEffect(()=>{console.log("sidebar routes::",sidebarRoutes)},[sidebarRoutes])
     // Get all valid paths from navItems for 404 handling
-    const validPaths = navItems.map(item => item.path);
+    // const validPaths = navItems.map(item => item.path);
 
     return (
         <>

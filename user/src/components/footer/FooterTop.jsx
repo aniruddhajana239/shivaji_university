@@ -29,7 +29,7 @@ const FooterTop = () => {
                       alt="icon"
                       className="w-[6.75px] h-[11.67px]"
                     />
-                    <span className="text-[16px] font-[400]">
+                    <span className="text-[15px] font-[400]">
                       {item.title}
                     </span>
                   </Link>

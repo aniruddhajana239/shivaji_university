@@ -9,27 +9,27 @@ const HistoryComposite = ({ content, title }) => {
       <h3 className="text-[#001F51] text-[24px] font-[600]">{title}</h3>
 
       {/* Sections (Paragraph + Image) */}
-      {content.sections.map((section, index) => (
+      {content?.sections?.map((section, index) => (
         <div
           key={index}
           className={`flex flex-col ${
-            section.image ? "md:flex-row md:items-start md:gap-6" : ""
+            section?.image ? "md:flex-row md:items-start md:gap-6" : ""
           }`}
         >
           {/* Paragraph */}
           <p className="text-[15px] leading-relaxed text-[#000000] md:w-[65%] text-justify">
-            {section.paraContent}
+            {section?.paraContent}
           </p>
 
           {/* Image (optional) */}
-          {section.image && (
+          {section?.image && (
             <div className="mt-4 md:mt-0 md:w-[35%] flex flex-col items-center">
               <img
                 src={section.image}
                 alt={section.imageTitle}
                 className="rounded-[12px] shadow-md w-full object-cover"
               />
-              {section.imageTitle && (
+              {section?.imageTitle && (
                 <p className="text-[13px] text-[#333333] mt-2 text-center font-medium">
                   {section.imageTitle}
                 </p>
@@ -40,9 +40,9 @@ const HistoryComposite = ({ content, title }) => {
       ))}
 
       {/* Additional Paragraphs */}
-      {content.paragraph?.length > 0 && (
+      {content?.paragraph?.length > 0 && (
         <div className="flex flex-col gap-4">
-          {content.paragraph.map((para, i) => (
+          {content?.paragraph?.map((para, i) => (
             <p
               key={i}
               className="text-[15px] leading-relaxed text-[#000000] text-justify"
