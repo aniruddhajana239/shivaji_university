@@ -95,14 +95,14 @@ const HeroCarouselComponent = () => {
   ];
 
   return (
-    <div className="w-full hero-carousel relative">
+    <div className="w-full hero-carousel relative ">
       <Slider {...settings}>
         {slides.map((slide) => (
           <div key={slide.id} className="carousel-slide">
             <img 
               src={slide.image} 
               alt={slide.alt}
-              className="w-full h-fit object-contain"
+              className="w-full h-[45vh] lg:h-fit object-cover"
             />
           </div>
         ))}

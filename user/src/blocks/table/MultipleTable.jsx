@@ -7,7 +7,7 @@ export const MultipleTable = ({ title, content }) => {
         <div className="w-full flex flex-col gap-6 bg-white rounded-[20px] p-6 2xl:p-8 shadow-sm">
             {/* Main Title */}
             <h3 className="m-0 text-[#001F51] text-[20px] font-[600] 2xl:text-[24px]">
-                {title}
+                {title??""}
             </h3>
 
             {/* Multiple Tables */}

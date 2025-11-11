@@ -30,7 +30,8 @@ import talephone_icom from "../assets/icons/aboutUs/telephone.png";
 
 export const governanceSidebarNavItems = [
   {
-    id: 1,
+    id: "aT46rO_03tZvC0",
+    path: "/governance/authorities/head",
     itemText: "From the Desk of Head",
     updates: [
       {
@@ -61,7 +62,8 @@ export const governanceSidebarNavItems = [
     ],
   },
   {
-    id: 2,
+    id: "bU67sP_19uAwD4",
+    path: "/governance/authorities/department-profile",
     itemText: "Department Profile",
     updates: [
       {
@@ -92,7 +94,8 @@ export const governanceSidebarNavItems = [
     ],
   },
   {
-    id: 3,
+    id: "cV89tQ_25vBxE8",
+    path: "/governance/authorities/brief-history",
     itemText: "Brief History",
     updates: [
       {
@@ -123,7 +126,8 @@ export const governanceSidebarNavItems = [
     ],
   },
   {
-    id: 4,
+    id: "dW01uR_31wCyF2",
+    path: "/governance/authorities/programmes-offered",
     itemText: "Programmes offered",
     updates: [
       {
@@ -154,7 +158,8 @@ export const governanceSidebarNavItems = [
     ],
   },
   {
-    id: 5,
+    id: "eX23vS_37xDzG6",
+    path: "/governance/authorities/learning-outcomes",
     itemText: "Learning Outcomes",
     updates: [
       {
@@ -185,7 +190,8 @@ export const governanceSidebarNavItems = [
     ],
   },
   {
-    id: 6,
+    id: "fY45wT_53yEaH0",
+    path: "/governance/authorities/mous-linkages",
     itemText: "MoUs and Linkages",
     updates: [
       {
@@ -216,7 +222,8 @@ export const governanceSidebarNavItems = [
     ],
   },
   {
-    id: 7,
+    id: "gZ67xU_69zFbI4",
+    path: "/governance/authorities/publication",
     itemText: "Publication",
     updates: [
       {
@@ -247,7 +254,8 @@ export const governanceSidebarNavItems = [
     ],
   },
   {
-    id: 8,
+    id: "hA89yV_75aGcJ8",
+    path: "/governance/authorities/stride-workshop",
     itemText: "Stride Workshop",
     updates: [
       {
@@ -278,7 +286,8 @@ export const governanceSidebarNavItems = [
     ],
   },
   {
-    id: 9,
+    id: "iB01zW_81bHdK2",
+    path: "/governance/authorities/vision-mission",
     itemText: "Vision Mission",
     updates: [
       {
@@ -309,7 +318,8 @@ export const governanceSidebarNavItems = [
     ],
   },
   {
-    id: 10,
+    id: "jC23aX_97cIeL6",
+    path: "/governance/authorities/faculty",
     itemText: "Faculty",
     updates: [
       {
@@ -340,7 +350,8 @@ export const governanceSidebarNavItems = [
     ],
   },
   {
-    id: 11,
+    id: "kD45bY_03dJfM0",
+    path: "/governance/authorities/seminars-conferences",
     itemText: "Seminars Conferences Workshops",
     updates: [
       {
@@ -371,7 +382,8 @@ export const governanceSidebarNavItems = [
     ],
   },
   {
-    id: 12,
+    id: "lE67cZ_19eKgN4",
+    path: "/governance/authorities/infrastructure",
     itemText: "Infrastructure",
     updates: [
       {
@@ -402,7 +414,8 @@ export const governanceSidebarNavItems = [
     ],
   },
   {
-    id: 13,
+    id: "mF89dA_25fLhO8",
+    path: "/governance/authorities/photo-gallery",
     itemText: "Photo Gallery",
     updates: [
       {
@@ -433,7 +446,8 @@ export const governanceSidebarNavItems = [
     ],
   },
   {
-    id: 14,
+    id: "nG01eB_31gMiP2",
+    path: "/governance/authorities/contact",
     itemText: "Contact",
     updates: [
       {
@@ -467,12 +481,13 @@ export const governanceSidebarNavItems = [
 
 export const governanceContents = [
   {
+    id: "aT46rO_03tZvC0",
+    content_id: "aT45rO_03tZvC0",
     title: "From the Desk of Head",
-    content_id: 1,
     layout_type: "comment",
     sections: {
       paraContent: `Established in 1989, the Department of Computer Science has a rich history of taking the lead in Teaching, Research & Development in frontier areas of Computer Science and allied domains.  Department offers three postgraduate programmes namely MCA (Master of Computer Application) , MSc ( Computer Science), and PG Diploma in Data Science, and BCA (Bachelor of Computer application) under science faculty as undergraduate programme. This year (2024) department is starting BSc-MSc AI & ML five years integrated programme under PM-USHA scheme of Government of India. All programmes are designed as per NEP-2020 with multiple entry exit option. Here Main objective is to develop human resources with core competence in various thrust areas of Computer Science like generative AI, Artificial Intelligence, Cloud computing, Data science, Natural language processing and Machine Learning. Other modules include emerging programming, data analytics, software development, Computer networks, database design etc. Our programme focus on preparing students for innovation within major tech companies or entrepreneurship within start-up ventures. Guest lectures, case studies and presentations are organized from time to time to give an insight into the latest development and happenings in the industry. Its not only technical skills of the students but even soft skills of the students are developed with the focus on communication and personality development.\n Department has ICT enabled classrooms and three Computer Labs with 200 high configuration computers. A specialized cyber security lab is also functioning to foster the cyber security research. A new Computer Science building is getting ready where BCA and BSc-MSc integrated programme will be hosted. \n Experiential learning is imparted in the form of projects and internship. Students are motivated for self learning for the latest trends in Computer Science in the form of delivering the seminars. Workshops and expert lectures are organized to give wider exposure the students. Other than academics students are also encouraged to participate in sports activities and cultural events. We do have sports week as well as welcome, sendoff and traditional days celebrations. \n
-                            Given the rapid rate of obsolescence of knowledge, especially in Computational Sciences, the department faculty strives their best to keep abreast with the technology. Department has all doctoral faculty to provide theoretical as well as practical knowledge to students. Almost all the faculties are PhD’s in Computer Science and plays an important role to foster research activities of Department. \n
+                            Given the rapid rate of obsolescence of knowledge, especially in Computational Sciences, the department faculty strives their best to keep abreast with the technology. Department has all doctoral faculty to provide theoretical as well as practical knowledge to students. Almost all the faculties are PhD's in Computer Science and plays an important role to foster research activities of Department. \n
                             Department has a very strong alumni with a very good Alumni interaction, each weekend one of the alumni visits the department and guides students about the current technologies in the IT industry. Some of the alumnae are directors of the company; some are placed in reputed IT companies like Microsoft, Google, Intel etc. One of the alumni has started endowment lecture series, another has started a merit scholarship for MCA students who are from economically weaker section and there are many more.  Alumni play an important role in placement activities of students.`,
       name: "Dr Kavita S. Oza",
       position: "Head,",
@@ -481,8 +496,9 @@ export const governanceContents = [
     },
   },
   {
+    id: "bU67sP_19uAwD4",
+    content_id: "bU67sP_19uAwD4",
     title: "Department Profile",
-    content_id: 2,
     layout_type: "pdf_list",
     sections: {
       files: [
@@ -499,8 +515,27 @@ export const governanceContents = [
     },
   },
   {
+    id: "cV89tQ_25vBxE8",
+    content_id: "cV89tQ_25vBxE8",
+    title: "Brief History of the department along with present focus in academic & research",
+    layout_type: "paragraph-image",
+    sections: [
+      {
+        paraContent: `The Department of Computer Science was established in the year 1989. Academic programs offered by the department are: M.C.A, M.Sc, PGDDS, B. Sc.-M. Sc.-Integrated (AI & ML), B.C.A, M.Phil and Ph.D. The faculties have expertise in various fields of research like machine learning, data mining, mobile computing, soft computing, artificial neural network, Technology integration in pedagogy using LMS and cyber security. Department has signed MoUs with Google, C-DAC, Quick Heal Foundation and have organized various workshops for the faculties to bridge the industry- academia gap. Currently the department is in forefront in conducting FDPs in Cyber Security and Data Science under the ages of MHRD with grants in aid support of over Rs. 6 Crore.`,
+
+        image: ComputerScience,
+        imageTitle: `Department of Computer Science`,
+      },
+    ],
+    paragraph: [
+      `Department of Computer Science adopts innovative teaching-learning methods that involve experiential learning with more focus on hands-on due to the inherent nature of the subject itself. This is further augmented by providing industrial exposure to the students by the way of "industry visits" and internship program with CDAC, Pune. Teaching-learning in the department is synergized with adoption of ICT more specifically using MOODLE and Google Classroom. Few courses in the department such as "web designing" are in great demand by the students from other departments under Choice Based Credit System.`,
+      `The faculty uses open source tools such as Kahoot and MOODLE for evaluation of the students. The research conducted by the department faculty is applied in nature that addresses the prevalent issues of the society. Alumni of the department are well placed in MNCs and blue chip companies and they make it a point to give back to their alma matter by sharing their rich expertise with students and arranging the placement camps. One of the alumnus has contributed to start a lecture series on "Turing Awardees" which has become an annual affairs strengthening the link between the present and past students of the department.`,
+    ],
+  },
+  {
+    id: "dW01uR_31wCyF2",
+    content_id: "dW01uR_31wCyF2",
     title: "Programees Offered",
-    content_id: 4,
     layout_type: "simple-table",
     sections: {
       columns: [
@@ -550,8 +585,9 @@ export const governanceContents = [
     },
   },
   {
+    id: "eX23vS_37xDzG6",
+    content_id: "eX23vS_37xDzG6",
     title: "Learning Outcomes",
-    content_id: 5,
     layout_type: "simple-table",
     sections: {
       columns: [
@@ -561,7 +597,7 @@ export const governanceContents = [
       rows: [
         {
           serial_no: "01",
-          degree: " M.Sc -Master of Computer Science",
+          degree: " M.Sc -Master of Computer Science",
         },
         {
           serial_no: "02",
@@ -569,14 +605,15 @@ export const governanceContents = [
         },
         {
           serial_no: "03",
-          degree: "BCA -Bachelor of Computer Application",
+          degree: "BCA -Bachelor of Computer Application",
         },
       ],
     },
   },
   {
+    id: "fY45wT_53yEaH0",
+    content_id: "fY45wT_53yEaH0",
     title: "MoUs and Linkages",
-    content_id: 6,
     layout_type: "simple-table",
     sections: {
       columns: [
@@ -594,14 +631,15 @@ export const governanceContents = [
         },
         {
           serial_no: "03",
-          link: "Collaboration Agreement (Android Development with Kotlin Training), Google Asia Pacific Pte.Ltd. ",
+          link: "Collaboration Agreement (Android Development with Kotlin Training), Google Asia Pacific Pte.Ltd. ",
         },
       ],
     },
   },
   {
+    id: "gZ67xU_69zFbI4",
+    content_id: "gZ67xU_69zFbI4",
     title: "Research Publications and Projects",
-    content_id: 7, // Assuming next available ID
     layout_type: "simple-table",
     wrappable: true,
     sections: {
@@ -633,8 +671,9 @@ export const governanceContents = [
     },
   },
   {
+    id: "hA89yV_75aGcJ8",
+    content_id: "hA89yV_75aGcJ8",
     title: "Stride Workshop",
-    content_id: 8, // Assuming next available ID
     layout_type: "simple-table",
     wrappable: true,
     sections: {
@@ -677,8 +716,9 @@ export const governanceContents = [
     },
   },
   {
+    id: "iB01zW_81bHdK2",
+    content_id: "iB01zW_81bHdK2",
     title: "Vision Mission and Goals",
-    content_id: 9,
     layout_type: "formal-composite",
     sections: [
       {
@@ -715,8 +755,9 @@ export const governanceContents = [
     ],
   },
   {
+    id: "jC23aX_97cIeL6",
+    content_id: "jC23aX_97cIeL6",
     title: "Faculty",
-    content_id: 10,
     layout_type: "simple-table",
     isAutoWidth: true,
     sections: {
@@ -773,14 +814,15 @@ export const governanceContents = [
     },
   },
   {
+    id: "kD45bY_03dJfM0",
+    content_id: "kD45bY_03dJfM0",
     title: "Seminars / Conferences / Workshops",
-    content_id: 11,
     layout_type: "multiple-table",
     sections: {
       tables: [
         {
           tableTitle: "West Zone Anveshan",
-          content_id: 11,
+          content_id: "kD45bY_03dJfM0_1",
           layout_type: "simple-table",
           isAutoWidth: true,
           sections: {
@@ -804,7 +846,7 @@ export const governanceContents = [
         },
         {
           tableTitle: "Conference (ICFTIT-29th April, 2023)",
-          content_id: 12,
+          content_id: "kD45bY_03dJfM0_2",
           layout_type: "simple-table",
           isAutoWidth: true,
           sections: {
@@ -831,7 +873,7 @@ export const governanceContents = [
         },
         {
           tableTitle: "Workshop for Value Added Course",
-          content_id: 13,
+          content_id: "kD45bY_03dJfM0_3",
           layout_type: "simple-table",
           isAutoWidth: true,
           sections: {
@@ -865,7 +907,7 @@ export const governanceContents = [
         },
         {
           tableTitle: "M S Prasad Endowment Lecture Series",
-          content_id: 14,
+          content_id: "kD45bY_03dJfM0_4",
           layout_type: "simple-table",
           isAutoWidth: true,
           sections: {
@@ -899,7 +941,7 @@ export const governanceContents = [
         },
         {
           tableTitle: "Internship Fair 2022 (10-12-2022)",
-          content_id: 15,
+          content_id: "kD45bY_03dJfM0_5",
           layout_type: "simple-table",
           isAutoWidth: true,
           sections: {
@@ -923,7 +965,7 @@ export const governanceContents = [
         },
         {
           tableTitle: "YEAR 2008-2009",
-          content_id: 17,
+          content_id: "kD45bY_03dJfM0_6",
           layout_type: "simple-table",
           isAutoWidth: true,
           sections: {
@@ -971,7 +1013,7 @@ export const governanceContents = [
         },
         {
           tableTitle: "YEAR 2008-2009",
-          content_id: 17,
+          content_id: "kD45bY_03dJfM0_7",
           layout_type: "simple-table",
           isAutoWidth: true,
           sections: {
@@ -1019,7 +1061,7 @@ export const governanceContents = [
         },
         {
           tableTitle: "YEAR 2008-2009",
-          content_id: 17,
+          content_id: "kD45bY_03dJfM0_8",
           layout_type: "simple-table",
           isAutoWidth: true,
           sections: {
@@ -1067,7 +1109,7 @@ export const governanceContents = [
         },
         {
           tableTitle: "YEAR 2008-2009",
-          content_id: 17,
+          content_id: "kD45bY_03dJfM0_9",
           layout_type: "simple-table",
           isAutoWidth: true,
           sections: {
@@ -1117,8 +1159,9 @@ export const governanceContents = [
     },
   },
   {
+    id: "lE67cZ_19eKgN4",
+    content_id: "lE67cZ_19eKgN4",
     title: "Infrastructure",
-    content_id: 12,
     layout_type: "bullet-list",
     sections: {
       listItems: [
@@ -1132,26 +1175,9 @@ export const governanceContents = [
     },
   },
   {
-    title:
-      "Brief History of the department along with present focus in academic & research",
-    content_id: 3,
-    layout_type: "paragraph-image",
-    sections: [
-      {
-        paraContent: `The Department of Computer Science was established in the year 1989. Academic programs offered by the department are: M.C.A, M.Sc, PGDDS, B. Sc.-M. Sc.-Integrated (AI & ML), B.C.A, M.Phil and Ph.D. The faculties have expertise in various fields of research like machine learning, data mining, mobile computing, soft computing, artificial neural network, Technology integration in pedagogy using LMS and cyber security. Department has signed MoUs with Google, C-DAC, Quick Heal Foundation and have organized various workshops for the faculties to bridge the industry- academia gap. Currently the department is in forefront in conducting FDPs in Cyber Security and Data Science under the ages of MHRD with grants in aid support of over Rs. 6 Crore.`,
-
-        image: ComputerScience,
-        imageTitle: `Department of Computer Science`,
-      },
-    ],
-    paragraph: [
-      `Department of Computer Science adopts innovative teaching-learning methods that involve experiential learning with more focus on hands-on due to the inherent nature of the subject itself. This is further augmented by providing industrial exposure to the students by the way of “industry visits” and internship program with CDAC, Pune. Teaching-learning in the department is synergized with adoption of ICT more specifically using MOODLE and Google Classroom. Few courses in the department such as “web designing” are in great demand by the students from other departments under Choice Based Credit System.`,
-      `The faculty uses open source tools such as Kahoot and MOODLE for evaluation of the students. The research conducted by the department faculty is applied in nature that addresses the prevalent issues of the society. Alumni of the department are well placed in MNCs and blue chip companies and they make it a point to give back to their alma matter by sharing their rich expertise with students and arranging the placement camps. One of the alumnus has contributed to start a lecture series on “Turing Awardees” which has become an annual affairs strengthening the link between the present and past students of the department.`,
-    ],
-  },
-  {
+    id: "mF89dA_25fLhO8",
+    content_id: "mF89dA_25fLhO8",
     title: "Photo Gallery",
-    content_id: 13,
     layout_type: "CollapsableImageGrid",
     sections: [
       {
@@ -1209,8 +1235,9 @@ export const governanceContents = [
     ],
   },
   {
+    id: "nG01eB_31gMiP2",
+    content_id: "nG01eB_31gMiP2",
     title: "Contact us",
-    content_id: 14,
     layout_type: "governance-contact-composite",
     sections: [
        {
@@ -1227,7 +1254,6 @@ export const governanceContents = [
 
         ]
        },
-
     ],
   },
 ];

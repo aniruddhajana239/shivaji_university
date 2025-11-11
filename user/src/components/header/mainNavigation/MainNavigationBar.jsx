@@ -6,12 +6,12 @@ const courses = [{ name: "UG", bgColor: "#5F52B7" }, { name: "PG", bgColor: "#13
 export const MainNavgationBar = () => {
 
     return (
-        <div className="w-full py-3 bg-white shadow-md flex items-center justify-between px-[48px] relative">
+        <div className="w-full py-3 bg-white shadow-md flex items-center justify-between px-[14px] lg:px-[48px] relative">
             <div className="flex gap-8 z-90">
-                <img src={Brand} alt="brand_logo" className="h-[65px] w-auto" />
-                <img src={AssociatedImages} alt="associated_logo" className="h-[65px] w-auto" />
+                <img src={Brand} alt="brand_logo" className="h-[40px] lg:h-[65px] w-auto" />
+                <img src={AssociatedImages} alt="associated_logo" className="h-[40px] lg:h-[65px] w-auto" />
             </div>
-            <div className='flex gap-2 items-center z-90'>
+            <div className='hidden lg:flex gap-2 items-center z-90'>
                 {/* courses */}
                 {courses.map((course, index) => (
                     <button key={index} className='cursor-pointer text-white h-fit text-[12px] font-[500] px-4 py-2 rounded-full' style={{ backgroundColor: course.bgColor }}>{course.name}</button>

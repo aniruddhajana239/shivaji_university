@@ -11,17 +11,17 @@ export const Hero = () => {
       <HeroCarousel />
 
       {/* Social Media Sidebar + Rotated Quick Links */}
-      <div className=" absolute -bottom-[20px] right-0 flex flex-col  items-end ">
+      <div className="absolute -bottom-[200px] right-0 flex flex-col items-end gap-[16px]">
         {/* Social Icons */}
-        <div className="h-[220px] ">
-          <div className=" bg-[#001F51] rounded-l-[14px] py-4 px-4 shadow-lg">
+        <div className="">
+          <div className="bg-[#001F51] rounded-l-[14px] p-3 lg:p-4 shadow-lg">
             <ul className="flex flex-col gap-3 items-center justify-center">
               <li>
                 <Link>
                   <img
                     src={xHandel_icon}
                     alt="X"
-                    className="h-[26px] w-[26px] hover:scale-110 transition-transform duration-200"
+                    className="h-[20px] w-[20px] lg:h-[26px] lg:w-[26px] hover:scale-110 transition-transform duration-200"
                   />
                 </Link>
               </li>
@@ -30,7 +30,7 @@ export const Hero = () => {
                   <img
                     src={linkedin_icon}
                     alt="LinkedIn"
-                    className="h-[26px] w-[26px] hover:scale-110 transition-transform duration-200"
+                    className="h-[20px] w-[20px] lg:h-[26px] lg:w-[26px] hover:scale-110 transition-transform duration-200"
                   />
                 </Link>
               </li>
@@ -39,7 +39,7 @@ export const Hero = () => {
                   <img
                     src={instagram_icon}
                     alt="Instagram"
-                    className="h-[26px] w-[26px] hover:scale-110 transition-transform duration-200"
+                    className="h-[20px] w-[20px] lg:h-[26px] lg:w-[26px] hover:scale-110 transition-transform duration-200"
                   />
                 </Link>
               </li>
@@ -48,7 +48,7 @@ export const Hero = () => {
                   <img
                     src={facebook_icon}
                     alt="Facebook"
-                    className="h-[26px] w-[26px] hover:scale-110 transition-transform duration-200"
+                    className="h-[20px] w-[20px] lg:h-[26px] lg:w-[26px] hover:scale-110 transition-transform duration-200"
                   />
                 </Link>
               </li>
@@ -57,10 +57,10 @@ export const Hero = () => {
         </div>
 
         {/* Rotated Quick Links Button */}
-        <div className="h-auto w-[180px] mt-5 transform -rotate-90">
+        <div className="">
           <Link
             to="/quick-links"
-            className="bg-[#ED3236] text-white text-[18px] font-[600] px-5 py-2 rounded-t-[10px] shadow-md hover:bg-[#c0272c] transition-all"
+            className="bg-[#ED3236] text-white text-[14px] lg:text-[18px] font-[500] p-2 rounded-l-[10px] hover:bg-[c0272c] transition-all block writing-mode-vertical-lr text-center "
           >
             Quick Links
           </Link>

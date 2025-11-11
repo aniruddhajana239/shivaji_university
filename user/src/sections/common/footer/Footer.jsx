@@ -5,7 +5,7 @@ import FooterButton from "../../../components/footer/FooterButton";
 const Footer = () => {
   return (
     <>
-      <div className="flex flex-col w-full sticky top-0 z-50">
+      <div className="flex flex-col w-full">
         <FooterTop />
         <FooterButton />
       </div>

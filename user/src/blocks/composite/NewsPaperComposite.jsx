@@ -2,7 +2,7 @@ import React from "react";
 
 const NewsPaperComposite = ({ content, title }) => {
   if (!content || !content.sections) return null;
-
+console.log("content:",content)
   return (
     <div className="w-full flex flex-col gap-6 bg-white rounded-[20px] p-6 2xl:p-8 shadow-sm">
       {/* Title */}

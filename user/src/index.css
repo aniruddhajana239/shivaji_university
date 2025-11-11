@@ -3,3 +3,7 @@
 :root {
   font-family: "Poppins", sans-serif;
 }
+.writing-mode-vertical-lr {
+  writing-mode:vertical-rl;
+  /* text-orientation: mixed; */
+}

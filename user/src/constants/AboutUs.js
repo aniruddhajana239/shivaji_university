@@ -1,4 +1,3 @@
-//..................Former Vc...........................//
 import ChancelorImage from "../assets/images/profile/chancellor.png";
 import Pawar from "../assets/images/profile/vc/pawar.png";
 import Patil from "../assets/images/profile/vc/patil.png";
@@ -43,7 +42,8 @@ import telephone from "../assets/icons/aboutUs/telephone.png";
 
 export const aboutSidebarNavItems = [
     {
-        id: 1,
+        id: "aB23cD_45eFgH6",
+        path: "/about",
         itemText: "About us",
         updates: [
             {
@@ -74,555 +74,936 @@ export const aboutSidebarNavItems = [
         ],
     },
     {
-        id: 2,
+        id: "bC34dE_56fGhI7",
+        path: "/about/history/foundation",
         itemText: "About Kolhapur",
         updates: [
             {
                 id: 1,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/history/foundation",
             },
             {
                 id: 2,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/history/foundation",
             },
             {
                 id: 3,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/history/foundation",
             },
             {
                 id: 4,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/history/foundation",
             },
             {
                 id: 5,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/history/foundation",
             },
         ],
     },
     {
-        id: 3,
+        id: "cD45eF_67gHiJ8",
+        path: "/about/mission",
         itemText: "Vision Mission Goals",
         updates: [
             {
                 id: 1,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/mission",
             },
             {
                 id: 2,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/mission",
             },
             {
                 id: 3,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/mission",
             },
             {
                 id: 4,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/mission",
             },
             {
                 id: 5,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/mission",
             },
         ],
     },
     {
-        id: 4,
+        id: "dE56fG_78hIjK9",
+        path: "/about/chancellor",
         itemText: "Honorable Chancellor",
         updates: [
             {
                 id: 1,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/chancellor",
             },
             {
                 id: 2,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/chancellor",
             },
             {
                 id: 3,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/chancellor",
             },
             {
                 id: 4,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/chancellor",
             },
             {
                 id: 5,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/chancellor",
             },
         ],
     },
     {
-        id: 5,
+        id: "eF67gH_89iJkL0",
+        path: "/about/vice-chancellor",
         itemText: "Honorable Vice Chancellor",
         updates: [
             {
                 id: 1,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/vice-chancellor",
             },
             {
                 id: 2,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/vice-chancellor",
             },
             {
                 id: 3,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/vice-chancellor",
             },
             {
                 id: 4,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/vice-chancellor",
             },
             {
                 id: 5,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/vice-chancellor",
             },
         ],
     },
     {
-        id: 6,
+        id: "fG78hI_90jKlM1",
+        path: "/about/pro-vice-chancellor",
         itemText: "Honorable Pro Vice Chancellor",
         updates: [
             {
                 id: 1,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/pro-vice-chancellor",
             },
             {
                 id: 2,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/pro-vice-chancellor",
             },
             {
                 id: 3,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/pro-vice-chancellor",
             },
             {
                 id: 4,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/pro-vice-chancellor",
             },
             {
                 id: 5,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/pro-vice-chancellor",
             },
         ],
     },
     {
-        id: 7,
+        id: "gH89iJ_01kLmN2",
+        path: "/about/registrar-desk",
         itemText: "Registrar Desk",
     },
     {
-        id: 8,
+        id: "hI90jK_12lMnO3",
+        path: "/about/former-vice-chancellor",
         itemText: "Former Vice Chancellors",
         updates: [
             {
                 id: 1,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/former-vice-chancellor",
             },
             {
                 id: 2,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/former-vice-chancellor",
             },
             {
                 id: 3,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/former-vice-chancellor",
             },
             {
                 id: 4,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/former-vice-chancellor",
             },
             {
                 id: 5,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/former-vice-chancellor",
             },
         ],
     },
     {
-        id: 9,
+        id: "iJ01kL_23mNoP4",
+        path: "/about/management-council",
         itemText: "Management Council",
         updates: [
             {
                 id: 1,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/management-council",
             },
             {
                 id: 2,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/management-council",
             },
             {
                 id: 3,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/management-council",
             },
             {
                 id: 4,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/management-council",
             },
             {
                 id: 5,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/management-council",
             },
         ],
     },
     {
-        id: 10,
+        id: "jK12lM_34nOpQ5",
+        path: "/about/academic-council",
         itemText: "Academic Council",
         updates: [
             {
                 id: 1,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/academic-council",
             },
             {
                 id: 2,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/academic-council",
             },
             {
                 id: 3,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/academic-council",
             },
             {
                 id: 4,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/academic-council",
             },
             {
                 id: 5,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/academic-council",
             },
         ],
     },
     {
-        id: 11,
+        id: "kL23mN_45oPqR6",
+        path: "/about/suk-daily-news",
         itemText: "Suk Daily News 2025",
         updates: [
             {
                 id: 1,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/suk-daily-news",
             },
             {
                 id: 2,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/suk-daily-news",
             },
             {
                 id: 3,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/suk-daily-news",
             },
             {
                 id: 4,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/suk-daily-news",
             },
             {
                 id: 5,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/suk-daily-news",
             },
         ],
     },
     {
-        id: 12,
+        id: "lM34nO_56pQrS7",
+        path: "/about/senate",
         itemText: "The Senate",
         updates: [
             {
                 id: 1,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/senate",
             },
             {
                 id: 2,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/senate",
             },
             {
                 id: 3,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/senate",
             },
             {
                 id: 4,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/senate",
             },
             {
                 id: 5,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/senate",
             },
         ],
     },
     {
-        id: 13,
+        id: "mN45oP_67qRsT8",
+        path: "/about/courses-glance",
         itemText: "Courses at a Glance",
         updates: [
             {
                 id: 1,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/courses-glance",
             },
             {
                 id: 2,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/courses-glance",
             },
             {
                 id: 3,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/courses-glance",
             },
             {
                 id: 4,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/courses-glance",
             },
             {
                 id: 5,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/courses-glance",
             },
         ],
     },
     {
-        id: 14,
+        id: "nO56pQ_78rStU9",
+        path: "/about/board-deans",
         itemText: "Board of Deans",
         updates: [
             {
                 id: 1,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/board-deans",
             },
             {
                 id: 2,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/board-deans",
             },
             {
                 id: 3,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/board-deans",
             },
             {
                 id: 4,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/board-deans",
             },
             {
                 id: 5,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/board-deans",
             },
         ],
     },
     {
-        id: 15,
+        id: "oP67qR_89sTuV0",
+        path: "/about/structure",
         itemText: "Organization Structure",
         updates: [
             {
                 id: 1,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/structure",
             },
             {
                 id: 2,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/structure",
             },
             {
                 id: 3,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/structure",
             },
             {
                 id: 4,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/structure",
             },
             {
                 id: 5,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/structure",
             },
         ],
     },
     {
-        id: 16,
+        id: "pQ78rS_90tUvW1",
+        path: "/about/contact",
         itemText: "Contact us",
         updates: [
             {
                 id: 1,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/contact",
             },
             {
                 id: 2,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/contact",
             },
             {
                 id: 3,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/contact",
             },
             {
                 id: 4,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/contact",
             },
             {
                 id: 5,
                 text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
-                path: "/about",
+                path: "/about/contact",
             },
         ],
     },
-];
-
-export const aboutUs = [
+    // New missing sidebar items
     {
-        title: "About University",
-        content_id: 1,
-        layout_type: "news-composite",
-        sections: [
+        id: "qR89sT_01uVwX2",
+        path: "/about/authorities",
+        itemText: "Authorities And Bodies",
+        updates: [
             {
-                heading: "",
-                type: "paragraph",
-                paragraphs: [
-                    `Shivaji University, established in 1962, is named after the Great Maratha Warrior and founder of the Maratha empire Chhatrapati Shivaji Maharaj. It was inaugurated on 18th November, 1962 by Dr. Radhakrishnan, the then President of India. One of the major objectives behind foundation of this University was to cater to the regional needs of South Maharashtra. The jurisdiction of the University is spread over three districts viz. Kolhapur, Sangli and Satara with strength of about 3,00,000 students studying in 280 affiliated colleges and recognised institutes. This region of Maharashtra boasts of rich and varied socio-cultural heritage. Under the innovative and socially reformist leadership of Chhatrapati Shahu Maharaj, the princely ruler of Kolhapur, the city had become at the beginning of this century, a focal point of educational opportunities for all classes and communities of South-Western Maharashtra, and northern parts of neighbouring Karnataka. This is also land of Karmaveer Bhaurao Patil, who struggled for taking education to the masses by his innovative 'Earn and Learn' scheme. When the University was founded by the Shivaji University Act of 1962, the objectives set before the University included making opportunities of higher education accessible to rural youth, conducting fundamental and applied research in the field of science and humanities to ensure regional growth and development.In 1962 the University started functioning with 34 affiliated colleges and about 14000 students with 5 Post-graduate Departments on the campus. Today the number of affiliated colleges has gone upto 280 and students strength upto 3,00,000 with 34 Postgraduate Departments on campus`,
-                    `The University imparts education in 10 major faculties of Arts, Social Science, Science, Commerce, Education, Fine Arts, Law, Medicine, Ayurvedic Medicine, Engineering and Technology.During initial two decades the efforts were concentrated on expansion of higher education and foundation of new colleges in different parts in the three districts under its jurisdiction. The University consolidated its base in this phase by 'taking education to the people'. The decade of 1980s saw a major expansion, especially the growth of professional faculties like Engineering, Education, Management and Medicine. The recent phase of the University can be termed as "a pursuit of academic excellence". Since last 4-5 years, several attempts are being made to overcome the image of University as a regional University. Several steps have been taken to raise the standards of teaching and research so as to measure upto global standards. This is being achieved by exploring new areas of higher learning and research in rapidly emerging fields like Industrial Chemistry, Space Science, Environmental Science, Bio-Chemistry, Sericulture, Polymer Chemistry and Computer Science, in addition to basic science disciplines. The University Department of Physics has been recently identified by UGC for its Special Assistance Programme and recognised as Department of Research Support. New research areas in these departments are Super conductors Energy, Bio-diversity and Bio-technology. The University has also established the University-Industry Interaction Cells in three districts`,
-                    `The faculties of Arts and Social Sciences are also gearing up to meet the demands of changing time. Establishment of Centre for Women's Studies and extension activities through Adult and Continuing Education and Shramik Vidyapeeth are indicators of this change. Department of Economics has been selected by UGC for its Special Assistance Programme. Departments of Sociology, Education, Geography, Physics and Economics are offering special courses in emerging areas like Environmental Science is also functioning actively`,
-                    `The University is encouraging merit by introducing an unique scheme called 'Shivaji University Merit Scholarship' offering 500 scholarships to meritorious students in affiliated colleges. It has also instituted research fellowships for Ph. D. students in the Post-Graduate Departments of the University. The University has made a budget provision of about Rs. 45 Lakhs for these scholarships out of its own funds. This University can proudly claim to be the first University in India to initiate such a scheme`,
-                    `The University's efforts towards excellence are being recognised by the substantial grants received from funding agencies like UGC, DST, DBT etc. The another indicator of recognition of University is collaborations with premier institutes in the country. Shivaji University has recently signed MOU with Bhabha Atomic Research Centre, Mumbai for research in Material Science. It has also joined hands with Indian Institute of Geo-Magnetism, Mumbai and industries like Phyto-Pharma. Prestigious institutes like Maharashtra Police Academy, Nashik and Centre for Social Studies, Surat have sought affiliation with the Shivaji University. Shivaji University has been re-accredited by National Assessment and Accreditation Council (NAAC) Bangalore, with "A" Grade (CGPA-3.16) (2014)`,
-                    `The University's efforts towards excellence are being recognised by the substantial grants received from funding agencies like UGC, DST, DBT etc. The another indicator of recognition of University is collaborations with premier institutes in the country. Shivaji University has recently signed MOU with Bhabha Atomic Research Centre, Mumbai for research in Material Science. It has also joined hands with Indian Institute of Geo-Magnetism, Mumbai and industries like Phyto-Pharma. Prestigious institutes like Maharashtra Police Academy, Nashik and Centre for Social Studies, Surat have sought affiliation with the Shivaji University. Shivaji University has been re-accredited by National Assessment and Accreditation Council (NAAC) Bangalore, with "A" Grade (CGPA-3.16) (2014)`,
-                    `The University's efforts towards excellence are being recognised by the substantial grants received from funding agencies like UGC, DST, DBT etc. The another indicator of recognition of University is collaborations with premier institutes in the country. Shivaji University has recently signed MOU with Bhabha Atomic Research Centre, Mumbai for research in Material Science. It has also joined hands with Indian Institute of Geo-Magnetism, Mumbai and industries like Phyto-Pharma. Prestigious institutes like Maharashtra Police Academy, Nashik and Centre for Social Studies, Surat have sought affiliation with the Shivaji University. Shivaji University has been re-accredited by National Assessment and Accreditation Council (NAAC) Bangalore, with "A" Grade (CGPA-3.16) (2014)`,
-                ],
-                images: {
-                    twoColumns: [aboutImg1, aboutImg2],
-                    threeColumns: [aboutImg3, aboutImg4, aboutImg5],
-                },
-            },
-        ],
-        important_notices: [
-            {
-                title: "Office Working Hours",
-                content:
-                    "The working hours of the various offices of the University are from 10.20 a.m. to 6.00 p.m. The offices are closed for lunch during 2.00 p.m. to 2.30 p.m. All the administrative offices are closed on 2nd and 4th Saturday in addition to other holidays",
+                id: 1,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/authorities",
             },
             {
-                title: "Post Office & Banking Hours",
-                content:
-                    "The working hours of the Post Office are from 10a.m. to 5p.m. and UCO Bank are from 11 a.m. to 3.00 p.m. on all working days. The post and bank is located in the Shivaji University campus.",
+                id: 2,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/authorities",
+            },
+            {
+                id: 3,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/authorities",
+            },
+            {
+                id: 4,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/authorities",
+            },
+            {
+                id: 5,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/authorities",
             },
         ],
     },
-];
-
-export const aboutUsKolhapurCity = [
     {
-        title: "About Kolhapur City",
-        content_id: 2,
-        layout_type: "city-composite",
-        sections: [
+        id: "rS90tU_12vWxY3",
+        path: "/about/google-map",
+        itemText: "SUK Google Map",
+        updates: [
             {
-                heading: "Vision",
-                type: "paragraph",
-                content: `Kolhapur is famous for being a centre of Art, education, industry and sports, particularly wrestling. Here the wrestling is called as "Kusti" and wrestlers are known as "Malla". This wrestling match is played in the square clay ground which is known as "Akhada".Similar to "The Operation Flood" project in Gujrat, in Kolhapur the "Warna Project" was started and till date is famous for huge amount of generation of milk and milk products which are transported to the all over of India.Kolhapur comes under sugarcane belt and because of this people are very rich and live prosperous life.Kolhapuri chappals are renowned for their durability and beauty of make.“Kolhapuri Saaj” is a special type of neckless which is very popular with Maharastrian Women. The 'saaj' is designed in all over Maharashtra but the Kolhapuri Saaj is very famous.It is an important centre of Marathi film industry. Kolhapur possesses historical as well as mythological importance. It is known as Dakshin kashi on account of its deity Mahalakshmi or Ambabai. The Ambabai temple was built by the Chalukya King Karnadeve in 634 AD.The Irwin Agricultural Museum of Kolhapur has some old Andhra coins. Bahubali, Jain Pilgrim centre, lies at a distance of 38 km from Kolhapur.`,
+                id: 1,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/google-map",
             },
             {
-                heading: "Reaching Kolhapur City",
-                type: "list",
-                contentList: [
-                    {
-                        Air: `It is a one-hour journey from Bombay to Kolhapur by air. The Ujalaiwadi airport is 10-km away from Kolhapur Main City. One can also travel from Kolhapur to the nearest Airport Pune , which is 238-Km away.`,
-                    },
-                    {
-                        Rail: `Kolhapur has a railway station and it's an 11-hour journey from Mumbai or Bangalore to Kolhapur.`,
-                    },
-                    {
-                        Road: `Kolhapur is about 450-km south of Mumbai and it's a ten to eleven hour journey from Mumbai or Banglore to Kolhapur by road. Maharashtra State Transport Corporation (MSTC) has regular service in this route with semi luxury and regular buses. Even private bus service is available to reach here from Mumbai, Pune, Goa, Solapur (also spelt as Sholapur) and Bangalore.`,
-                    },
-                    {
-                        "Local Transpor": [
-                            `Auto-rickshaws are the most common mode of transport along with the bus service run by the municipal corporation. Taxis are available.Places of Tourist Interest Maharaja's Palace The maharaja's 'new' palace, completed in 1881, houses the Shahaji Chhatrapati Museum, one of the most bizarre collections of memorabilia in India. The building was designed by 'Mad' Charles Mant, the British architect who fashioned the Indo-saracenic style of colonial architecture and is a cross between a Victorian railway station and the Addams Family mansion.`,
-
-                            `The palace contains a weird and wonderful array of the old maharaja's possessions including his clothes, old hunt photos, silver peocock-shaped elephant saddles and the memorial silver spade he used to 'turn the first sod of the Kolhapur State Railway' in 1888. But dominating every room in the palace are reminders of the maharaja's passion: killing wild animals to decorate his palace.`,
-
-                            `Skins cover floors and furniture, trophy heads stare blankly from the walls, ashtrays, and coffee tables are made from tiger and elephant feet, lamp stands from ostrich legs and zebra hoofs. The variety of stuffed animals includes a black bear, rhino, pangolin, panther and an entire pride of lions in a forest diorama! There is even a painting of the Maharani entitled 'The world's Greatest Woman Pig Sticker'. The gun and sword collection could easily outfit a small army: dozens of swords, axes, pistols, punt guns, and instruments, of torture fill the armaments room. The most unusual piece is a gold-plated, double barrelled shotgun. The palace is a few km north of the center.Panhala Hill Station It is a little-visited hill station 18km northwest of Kolhapur, and makes an interesting excursion from Kolhapur. The hilltop fort has a long and convoluted history. It was originally the stronghold of Raja Bhoj II in 1192, was captured by both the Mughals and the Marathas and was finally taken by the British in 1844. The Pawala Caves are nearby, as well as a couple of Buddhist cave temples`,
-                        ],
-                    },
-                ],
+                id: 2,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/google-map",
             },
             {
-                heading: "Prime Attractions",
-                type: "Images-list",
-                images: [
-                    { image: office, title: "Office Working Hours" },
-                    { image: town, title: "Town Hall" },
-                    { image: binkhambi, title: "Binkhambi Ganesh Temple" },
-                    { image: khasbag, title: "Khasbag Maidan / Akhada (Kushti Ground)" },
-                    { image: rankala, title: "Rankala Lake" },
-                    { image: kolhapuri, title: "Kolhapuri Saaj (jewelry)" },
-                    { image: jyotiba, title: "Jyotiba Temple" },
-                    { image: kolhapuriChappal, title: "Kolhapuri Chappal" },
-                    { image: tryamboli, title: "Tryamboli Temple" },
-                    { image: panhala, title: "Panhala Fort" },
-                    { image: bhavani, title: "Bhavani Mandap" },
-                    { image: newplace, title: "New Palace" },
-                    { image: shalini, title: "Shalini Palace" },
-                ],
+                id: 3,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/google-map",
+            },
+            {
+                id: 4,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/google-map",
+            },
+            {
+                id: 5,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/google-map",
             },
         ],
-        important_notices: [
+    },
+    {
+        id: "sT01uV_23wXyZ4",
+        path: "/about/how-to-reach",
+        itemText: "How to reach SUK",
+        updates: [
             {
-                title: "EXCURSIONS",
-                listItems: [
-                    "Panhala Fort",
-                    "Vishalgad",
-                    "Bhudargad",
-                    "Paargad",
-                    "Narasimha Wadi",
-                    "Bahubali Of Kumbhojgiri",
-                    "Khidrapur",
-                    "Dajipur Bison Sanctuary",
-                    "Amba",
-                    "Amboli",
-                    "Jotiba",
-                ],
+                id: 1,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/how-to-reach",
+            },
+            {
+                id: 2,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/how-to-reach",
+            },
+            {
+                id: 3,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/how-to-reach",
+            },
+            {
+                id: 4,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/how-to-reach",
+            },
+            {
+                id: 5,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/how-to-reach",
+            },
+        ],
+    },
+    {
+        id: "tU12vW_34xYzA5",
+        path: "/about/university",
+        itemText: "About University",
+        updates: [
+            {
+                id: 1,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/university",
+            },
+            {
+                id: 2,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/university",
+            },
+            {
+                id: 3,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/university",
+            },
+            {
+                id: 4,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/university",
+            },
+            {
+                id: 5,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/university",
+            },
+        ],
+    },
+    {
+        id: "uV23wX_45yZaB6",
+        path: "/about/student-council",
+        itemText: "Declaration of Student Council",
+        updates: [
+            {
+                id: 1,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/student-council",
+            },
+            {
+                id: 2,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/student-council",
+            },
+            {
+                id: 3,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/student-council",
+            },
+            {
+                id: 4,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/student-council",
+            },
+            {
+                id: 5,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/student-council",
+            },
+        ],
+    },
+    {
+        id: "vW34xY_56zAbC7",
+        path: "/about/faculties",
+        itemText: "Faculties",
+        updates: [
+            {
+                id: 1,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/faculties",
+            },
+            {
+                id: 2,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/faculties",
+            },
+            {
+                id: 3,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/faculties",
+            },
+            {
+                id: 4,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/faculties",
+            },
+            {
+                id: 5,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/faculties",
+            },
+        ],
+    },
+    {
+        id: "wX45yZ_67aBcD8",
+        path: "/about/bos",
+        itemText: "BOS",
+        updates: [
+            {
+                id: 1,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/bos",
+            },
+            {
+                id: 2,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/bos",
+            },
+            {
+                id: 3,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/bos",
+            },
+            {
+                id: 4,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/bos",
+            },
+            {
+                id: 5,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/bos",
+            },
+        ],
+    },
+    {
+        id: "xY56zA_78bCdE9",
+        path: "/about/ad-hoc-board",
+        itemText: "Ad-Hoc Board",
+        updates: [
+            {
+                id: 1,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/ad-hoc-board",
+            },
+            {
+                id: 2,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/ad-hoc-board",
+            },
+            {
+                id: 3,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/ad-hoc-board",
+            },
+            {
+                id: 4,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/ad-hoc-board",
+            },
+            {
+                id: 5,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/ad-hoc-board",
+            },
+        ],
+    },
+    {
+        id: "yZ67aB_89cDeF0",
+        path: "/about/university-departments",
+        itemText: "Board of University Department and Interdisciplinary studies",
+        updates: [
+            {
+                id: 1,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/university-departments",
+            },
+            {
+                id: 2,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/university-departments",
+            },
+            {
+                id: 3,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/university-departments",
+            },
+            {
+                id: 4,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/university-departments",
+            },
+            {
+                id: 5,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/university-departments",
+            },
+        ],
+    },
+    {
+        id: "zA78bC_90dEfG1",
+        path: "/about/fee-committee",
+        itemText: "Fee Fixation Committee",
+        updates: [
+            {
+                id: 1,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/fee-committee",
+            },
+            {
+                id: 2,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/fee-committee",
+            },
+            {
+                id: 3,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/fee-committee",
+            },
+            {
+                id: 4,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/fee-committee",
+            },
+            {
+                id: 5,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/fee-committee",
+            },
+        ],
+    },
+    {
+        id: "aB89cD_01eFgH2",
+        path: "/about/officers",
+        itemText: "University Officers",
+        updates: [
+            {
+                id: 1,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/officers",
+            },
+            {
+                id: 2,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/officers",
+            },
+            {
+                id: 3,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/officers",
+            },
+            {
+                id: 4,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/officers",
+            },
+            {
+                id: 5,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/officers",
+            },
+        ],
+    },
+    {
+        id: "bC90dE_12fGhI3",
+        path: "/about/working-hours",
+        itemText: "Office Working Hours",
+        updates: [
+            {
+                id: 1,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/working-hours",
+            },
+            {
+                id: 2,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/working-hours",
+            },
+            {
+                id: 3,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/working-hours",
+            },
+            {
+                id: 4,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/working-hours",
+            },
+            {
+                id: 5,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/working-hours",
+            },
+        ],
+    },
+    {
+        id: "cD01eF_23gHiJ4",
+        path: "/about/organogram",
+        itemText: "University Organogram",
+        updates: [
+            {
+                id: 1,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/organogram",
+            },
+            {
+                id: 2,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/organogram",
+            },
+            {
+                id: 3,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/organogram",
+            },
+            {
+                id: 4,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/organogram",
+            },
+            {
+                id: 5,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/organogram",
+            },
+        ],
+    },
+    {
+        id: "dE12fG_34hIjK5",
+        path: "/about/statistics",
+        itemText: "Statistical Information",
+        updates: [
+            {
+                id: 1,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/statistics",
+            },
+            {
+                id: 2,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/statistics",
+            },
+            {
+                id: 3,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/statistics",
+            },
+            {
+                id: 4,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/statistics",
+            },
+            {
+                id: 5,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/statistics",
+            },
+        ],
+    },
+    {
+        id: "eF23gH_45iJkL6",
+        path: "/about/holiday",
+        itemText: "Holidays in 2025",
+        updates: [
+            {
+                id: 1,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/holiday",
+            },
+            {
+                id: 2,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/holiday",
+            },
+            {
+                id: 3,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/holiday",
+            },
+            {
+                id: 4,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/holiday",
+            },
+            {
+                id: 5,
+                text: "Circular Reading Inter College Youth Festival Dynanynteerth 2025",
+                path: "/about/holiday",
             },
         ],
     },
@@ -630,8 +1011,9 @@ export const aboutUsKolhapurCity = [
 
 export const aboutUsContents = [
     {
+        id: "aB23cD_45eFgH6",
+        content_id: "aB23cD_45eFgH6",
         title: "About University",
-        content_id: 1,
         layout_type: "news-composite",
         sections: [
             {
@@ -655,25 +1037,24 @@ export const aboutUsContents = [
         important_notices: [
             {
                 title: "Office Working Hours",
-                content:
-                    "The working hours of the various offices of the University are from 10.20 a.m. to 6.00 p.m. The offices are closed for lunch during 2.00 p.m. to 2.30 p.m. All the administrative offices are closed on 2nd and 4th Saturday in addition to other holidays",
+                content: "The working hours of the various offices of the University are from 10.20 a.m. to 6.00 p.m. The offices are closed for lunch during 2.00 p.m. to 2.30 p.m. All the administrative offices are closed on 2nd and 4th Saturday in addition to other holidays",
             },
             {
                 title: "Post Office & Banking Hours",
-                content:
-                    "The working hours of the Post Office are from 10a.m. to 5p.m. and UCO Bank are from 11 a.m. to 3.00 p.m. on all working days. The post and bank is located in the Shivaji University campus.",
+                content: "The working hours of the Post Office are from 10a.m. to 5p.m. and UCO Bank are from 11 a.m. to 3.00 p.m. on all working days. The post and bank is located in the Shivaji University campus.",
             },
         ],
     },
     {
+        id: "bC34dE_56fGhI7",
+        content_id: "bC34dE_56fGhI7",
         title: "About Kolhapur City",
-        content_id: 2,
         layout_type: "city-composite",
         sections: [
             {
                 heading: "",
                 type: "paragraph",
-                content: `Kolhapur is famous for being a centre of Art, education, industry and sports, particularly wrestling. Here the wrestling is called as "Kusti" and wrestlers are known as "Malla". This wrestling match is played in the square clay ground which is known as "Akhada".Similar to "The Operation Flood" project in Gujrat, in Kolhapur the "Warna Project" was started and till date is famous for huge amount of generation of milk and milk products which are transported to the all over of India.Kolhapur comes under sugarcane belt and because of this people are very rich and live prosperous life.Kolhapuri chappals are renowned for their durability and beauty of make.“Kolhapuri Saaj” is a special type of neckless which is very popular with Maharastrian Women. The 'saaj' is designed in all over Maharashtra but the Kolhapuri Saaj is very famous.It is an important centre of Marathi film industry. Kolhapur possesses historical as well as mythological importance. It is known as Dakshin kashi on account of its deity Mahalakshmi or Ambabai. The Ambabai temple was built by the Chalukya King Karnadeve in 634 AD.The Irwin Agricultural Museum of Kolhapur has some old Andhra coins. Bahubali, Jain Pilgrim centre, lies at a distance of 38 km from Kolhapur.`,
+                content: `Kolhapur is famous for being a centre of Art, education, industry and sports, particularly wrestling. Here the wrestling is called as "Kusti" and wrestlers are known as "Malla". This wrestling match is played in the square clay ground which is known as "Akhada".Similar to "The Operation Flood" project in Gujrat, in Kolhapur the "Warna Project" was started and till date is famous for huge amount of generation of milk and milk products which are transported to the all over of India.Kolhapur comes under sugarcane belt and because of this people are very rich and live prosperous life.Kolhapuri chappals are renowned for their durability and beauty of make."Kolhapuri Saaj" is a special type of neckless which is very popular with Maharastrian Women. The 'saaj' is designed in all over Maharashtra but the Kolhapuri Saaj is very famous.It is an important centre of Marathi film industry. Kolhapur possesses historical as well as mythological importance. It is known as Dakshin kashi on account of its deity Mahalakshmi or Ambabai. The Ambabai temple was built by the Chalukya King Karnadeve in 634 AD.The Irwin Agricultural Museum of Kolhapur has some old Andhra coins. Bahubali, Jain Pilgrim centre, lies at a distance of 38 km from Kolhapur.`,
             },
             {
                 heading: "Reaching Kolhapur City",
@@ -723,22 +1104,10 @@ export const aboutUsContents = [
                 ],
             },
         ],
-
         important_notices: [
             {
                 title: "EXCURSIONS",
                 listItems: [
-                    "Panhala Fort",
-                    "Vishalgad",
-                    "Bhudargad",
-                    "Paargad",
-                    "Narasimha Wadi",
-                    "Bahubali Of Kumbhojgiri",
-                    "Khidrapur",
-                    "Dajipur Bison Sanctuary",
-                    "Amba",
-                    "Amboli",
-                    "Jotiba",
                     "Panhala Fort",
                     "Vishalgad",
                     "Bhudargad",
@@ -755,21 +1124,20 @@ export const aboutUsContents = [
         ],
     },
     {
+        id: "cD45eF_67gHiJ8",
+        content_id: "cD45eF_67gHiJ8",
         title: "Vision-Mission-Goals",
-        content_id: 3,
         layout_type: "formal-composite",
         sections: [
             {
                 heading: "Vision",
                 type: "paragraph",
-                content:
-                    "Shivaji University is committed to meet the Educational, Social, Cultural & Economic needs of the region and the nation to create a just and Humane Society.",
+                content: "Shivaji University is committed to meet the Educational, Social, Cultural & Economic needs of the region and the nation to create a just and Humane Society.",
             },
             {
                 heading: "Mission",
                 type: "paragraph",
-                content:
-                    "We are dedicated to promote and foster a culture of high quality teaching and learning and to serve societal needs by encouraging, generating and promotion excellence in research and extension activities.",
+                content: "We are dedicated to promote and foster a culture of high quality teaching and learning and to serve societal needs by encouraging, generating and promotion excellence in research and extension activities.",
             },
             {
                 heading: "Core Values",
@@ -809,14 +1177,14 @@ export const aboutUsContents = [
         important_notices: [
             {
                 title: "Quality Policy",
-                content:
-                    "Uncompromising adherence to values and implementation of high quality educational programmes and healthy practices with a view to creating and developing a large and rich pool of selfless young men and women, capable of ensuing for themselves a decent livelihood and meeting the growing needs of a developing society.",
+                content: "Uncompromising adherence to values and implementation of high quality educational programmes and healthy practices with a view to creating and developing a large and rich pool of selfless young men and women, capable of ensuing for themselves a decent livelihood and meeting the growing needs of a developing society.",
             },
         ],
     },
     {
+        id: "dE56fG_78hIjK9",
+        content_id: "dE56fG_78hIjK9",
         title: "Hon'ble Chancellor",
-        content_id: 4,
         layout_type: "personal-figured",
         sections: {
             profile_image: ChancelorImage,
@@ -829,8 +1197,30 @@ export const aboutUsContents = [
         },
     },
     {
+        id: "eF67gH_89iJkL0",
+        content_id: "eF67gH_89iJkL0",
+        title: "Honorable Vice Chancellor",
+        layout_type: "personal-figured",
+        sections: {},
+    },
+    {
+        id: "fG78hI_90jKlM1",
+        content_id: "fG78hI_90jKlM1",
+        title: "Honorable Pro Vice Chancellor",
+        layout_type: "personal-figured",
+        sections: {},
+    },
+    {
+        id: "gH89iJ_01kLmN2",
+        content_id: "gH89iJ_01kLmN2",
+        title: "Registrar Desk",
+        layout_type: "personal-figured",
+        sections: {},
+    },
+    {
+        id: "hI90jK_12lMnO3",
+        content_id: "hI90jK_12lMnO3",
         title: "Former Vice-Chancellors",
-        content_id: 8,
         layout_type: "image-grid",
         sections: [
             {
@@ -894,12 +1284,6 @@ export const aboutUsContents = [
                 img: NJPawar,
             },
             {
-                name: "Prof. D. N. Dhanagare",
-                qualification: "MA.(Norgpur), D.Pini.(Sussex)",
-                tenure: "01 / 11 / 1995 to 31 / 10 / 2000",
-                img: Dhanagare,
-            },
-            {
                 name: "Prof. Devanand B. Shinde",
                 qualification: "M.Sc.,Ph.D.",
                 tenure: "18 / 06 / 2015 to 17 / 06 / 2020",
@@ -908,8 +1292,93 @@ export const aboutUsContents = [
         ],
     },
     {
+        id: "iJ01kL_23mNoP4",
+        content_id: "iJ01kL_23mNoP4",
+        title: "Management Council",
+        layout_type: "simple-table",
+        sections: {},
+    },
+    {
+        id: "jK12lM_34nOpQ5",
+        content_id: "jK12lM_34nOpQ5",
+        title: "Academic Council",
+        layout_type: "simple-table",
+        sections: {},
+    },
+    {
+        id: "kL23mN_45oPqR6",
+        content_id: "kL23mN_45oPqR6",
+        title: "Suk Daily News 2025",
+        layout_type: "searchbar-table",
+        searchable: true,
+        downloadble: true,
+        viewable: false,
+        sections: {
+            columns: [
+                { heading: "Sr. No.", accessor: "serial_no" },
+                { heading: "Date", accessor: "date" },
+                { heading: "PDF", accessor: "file_title", linkable: true },
+            ],
+            rows: [
+                {
+                    serial_no: "238",
+                    date: "04-09-2025",
+                    file_title: "04092025.pdf",
+                    file: SamplePDF,
+                },
+                {
+                    serial_no: "237",
+                    date: "03-09-2025",
+                    file_title: "03092025.pdf",
+                    file: SamplePDF,
+                },
+                {
+                    serial_no: "236",
+                    date: "02-09-2025",
+                    file_title: "02092025.pdf",
+                    file: SamplePDF,
+                },
+                {
+                    serial_no: "235",
+                    date: "01-09-2025",
+                    file_title: "01092025.pdf",
+                    file: SamplePDF,
+                },
+            ],
+        },
+    },
+    {
+        id: "lM34nO_56pQrS7",
+        content_id: "lM34nO_56pQrS7",
+        title: "The Senate",
+        layout_type: "simple-table",
+        sections: {},
+    },
+    {
+        id: "mN45oP_67qRsT8",
+        content_id: "mN45oP_67qRsT8",
+        title: "Courses at a Glance",
+        layout_type: "bullet-list",
+        sections: {},
+    },
+    {
+        id: "nO56pQ_78rStU9",
+        content_id: "nO56pQ_78rStU9",
+        title: "Board of Deans",
+        layout_type: "simple-table",
+        sections: {},
+    },
+    {
+        id: "oP67qR_89sTuV0",
+        content_id: "oP67qR_89sTuV0",
+        title: "Organization Structure",
+        layout_type: "pdf_list",
+        sections: {},
+    },
+    {
+        id: "pQ78rS_90tUvW1",
+        content_id: "pQ78rS_90tUvW1",
         title: "University Contact Details",
-        content_id: 16,
         layout_type: "contact-composite",
         sections: [
             {
@@ -922,19 +1391,13 @@ export const aboutUsContents = [
                     },
                     {
                         image: telephone,
-                        contact:
-                            "Telephone (EPABX) No.:+ 91 - 0231- 2609000TOLL FREE NUMBER :-1800-233-4871",
+                        contact: "Telephone (EPABX) No.:+ 91 - 0231- 2609000TOLL FREE NUMBER :-1800-233-4871",
                     },
                 ],
                 tableData: {
                     columns: [
                         { heading: "Office", accessor: "Office" },
-                        {
-                            heading: "Phone No",
-                            accessor: "PhoneNo",
-                            type: "unorder-list",
-                            by: "none",
-                        },
+                        { heading: "Phone No", accessor: "PhoneNo", type: "unorder-list", by: "none" },
                         { heading: "Email", accessor: "Email" },
                         { heading: "Link", accessor: "Links", type: "link" },
                     ],
@@ -994,151 +1457,112 @@ export const aboutUsContents = [
         important_notices: [
             {
                 title: "Office Working Hours",
-                content:
-                    "The working hours of the various offices of the University are from 10.20 a.m.to 6.00 p.m.The offices are closed for lunch during 2.00 p.m.to 2.30 p.m.All the administrative offices are closed on 2nd and 4th Saturday in addition to other holidays.",
+                content: "The working hours of the various offices of the University are from 10.20 a.m.to 6.00 p.m.The offices are closed for lunch during 2.00 p.m.to 2.30 p.m.All the administrative offices are closed on 2nd and 4th Saturday in addition to other holidays.",
             },
             {
                 title: "Post Office & Banking Hours",
-                content:
-                    "The working hours of the Post Office are from 10a.m.to 5p.m.and UCO Bank are from 11 a.m.to 3.00 p.m.on all working days.The post and bank is located in the Shivaji University campus.",
+                content: "The working hours of the Post Office are from 10a.m.to 5p.m.and UCO Bank are from 11 a.m.to 3.00 p.m.on all working days.The post and bank is located in the Shivaji University campus.",
             },
         ],
     },
+    // New missing content items
     {
-        title: "Suk Daily News 2025",
-        content_id: 11,
-        layout_type: "searchbar-table",
-        searchable: true,
-        downloadble: true,
-        viewable: false,
-        sections: {
-            columns: [
-                { heading: "Sr. No.", accessor: "serial_no" },
-                { heading: "Date", accessor: "date" },
-                { heading: "PDF", accessor: "file_title",linkable:true},
-            ],
-            rows: [
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-                {
-                    serial_no: "238",
-                    date: "04-09-2025",
-                    file_title: "04092025.pdf",
-                    file: SamplePDF,
-                },
-            ],
-        },
+        id: "qR89sT_01uVwX2",
+        content_id: "qR89sT_01uVwX2",
+        title: "Authorities And Bodies",
+        layout_type: "simple-table",
+        sections: {},
+    },
+    {
+        id: "rS90tU_12vWxY3",
+        content_id: "rS90tU_12vWxY3",
+        title: "SUK Google Map",
+        layout_type: "map-composite",
+        sections: {},
+    },
+    {
+        id: "sT01uV_23wXyZ4",
+        content_id: "sT01uV_23wXyZ4",
+        title: "How to reach SUK",
+        layout_type: "directions-composite",
+        sections: {},
+    },
+    
+    {
+        id: "uV23wX_45yZaB6",
+        content_id: "uV23wX_45yZaB6",
+        title: "Declaration of Student Council",
+        layout_type: "simple-table",
+        sections: {},
+    },
+    {
+        id: "vW34xY_56zAbC7",
+        content_id: "vW34xY_56zAbC7",
+        title: "Faculties",
+        layout_type: "simple-table",
+        sections: {},
+    },
+    {
+        id: "wX45yZ_67aBcD8",
+        content_id: "wX45yZ_67aBcD8",
+        title: "BOS",
+        layout_type: "simple-table",
+        sections: {},
+    },
+    {
+        id: "xY56zA_78bCdE9",
+        content_id: "xY56zA_78bCdE9",
+        title: "Ad-Hoc Board",
+        layout_type: "simple-table",
+        sections: {},
+    },
+    {
+        id: "yZ67aB_89cDeF0",
+        content_id: "yZ67aB_89cDeF0",
+        title: "Board of University Department and Interdisciplinary studies",
+        layout_type: "simple-table",
+        sections: {},
+    },
+    {
+        id: "zA78bC_90dEfG1",
+        content_id: "zA78bC_90dEfG1",
+        title: "Fee Fixation Committee",
+        layout_type: "simple-table",
+        sections: {},
+    },
+    {
+        id: "aB89cD_01eFgH2",
+        content_id: "aB89cD_01eFgH2",
+        title: "University Officers",
+        layout_type: "simple-table",
+        sections: {},
+    },
+    {
+        id: "bC90dE_12fGhI3",
+        content_id: "bC90dE_12fGhI3",
+        title: "Office Working Hours",
+        layout_type: "info-composite",
+        sections: {},
+    },
+    {
+        id: "cD01eF_23gHiJ4",
+        content_id: "cD01eF_23gHiJ4",
+        title: "University Organogram",
+        layout_type: "pdf_list",
+        sections: {},
+    },
+    {
+        id: "dE12fG_34hIjK5",
+        content_id: "dE12fG_34hIjK5",
+        title: "Statistical Information",
+        layout_type: "stats-composite",
+        sections: {},
+    },
+    {
+        id: "eF23gH_45iJkL6",
+        content_id: "eF23gH_45iJkL6",
+        title: "Holidays in 2025",
+        layout_type: "calendar-composite",
+        sections: {},
     },
 ];
