@@ -1,11 +1,20 @@
 import { Link } from "react-router-dom";
 
-export const SimpleBreadCrumb = ({parent,current}) => {
-    return (
-        <div className="w-full flex items-center gap-2 text-[14px] 2xl:text-[16px] text-[#001F42] font-[500]">
-            <Link to='/'>Home {">>"}</Link>
-            <Link to={parent?.path??"#"} className="text-[#001F51] -ml-2">{parent?.title??""} {current&&":"}</Link>
-            <span className="text-[#001F51] font-[500]">{current??""}</span>
-        </div>
-    );
-}
+export const SimpleBreadCrumb = ({ parent, current }) => {
+  return (
+    <div className="w-full flex flex-wrap items-center gap-1 text-[14px] 2xl:text-[16px] text-[#001F42] font-[500] break-words">
+      <Link to="/" className="whitespace-nowrap">Home {">>"}</Link>
+      {parent && (
+        <Link 
+          to={parent?.path ?? "#"} 
+          className="text-[#001F51] whitespace-nowrap"
+        >
+          {parent?.title ?? ""} {current && ":"}
+        </Link>
+      )}
+      {current && (
+        <span className="text-[#001F51] font-[500] break-all">{current}</span>
+      )}
+    </div>
+  );
+};

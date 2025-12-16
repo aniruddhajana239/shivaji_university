@@ -3,7 +3,7 @@ export const PersonalFigure = ({ title, content }) => {
 
         <div className="w-full flex flex-col gap-6 bg-white rounded-[20px] p-6 2xl:p-8 shadow-sm">
             <h3 className="m-0 text-[#001F51] text-[20px] font-[600] 2xl:text-[24px]">{title}</h3>
-            <div className="flex items-start justify-between gap-6 ">
+            <div className="flex flex-col lg:flex-row items-start justify-between gap-6 ">
                 <div className=" w-full lg:w-[30%] flex flex-col items-center shadow-md relative rounded-[10px]">
                     <img src={content?.sections?.profile_image ?? ""} alt={content?.sections?.name ?? "img"} className="w-full aspect-4/4 object-contain rounded-t-[10px]" />
                     <div className="absolute bottom-0 left-0 flex justify-center items-center bg-[#ffffff] w-full py-2 px-1 2xl:px-3 2xl:py-4 rounded-b-[10px]">

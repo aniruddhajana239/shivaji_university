@@ -43,7 +43,7 @@ const layoutComponents = {
   "bullet-list": CommonBulletList,
   "paragraph-image": HistoryComposite,
   "mixed-composite": MixedComposite,
-  "CollapsableImageGrid": CollapsableImageGrid,
+  "collapsable-image-grid": CollapsableImageGrid,
   "governance-contact-composite": GovernanceContactComposite,
   "paragraph": NccComposite,
   "studentlogin": StudentLoginComposite,

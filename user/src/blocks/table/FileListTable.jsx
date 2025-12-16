@@ -147,14 +147,14 @@ export const FileListTable = ({ title, content, downloadble, viewable, searchabl
                                                                     )
                                                                 }
                                                                 disabled={!row["file"]}
-                                                                className={`cursor-pointer h-[30px] w-[30px] rounded-full flex items-center justify-center ${!row["file"]
+                                                                className={`cursor-pointer h-[20px] lg:h-[30px] w-[20px] lg:w-[30px] rounded-full flex items-center ml-4 justify-center ${!row["file"]
                                                                     ? "bg-gray-200 cursor-not-allowed"
                                                                     : "bg-[#C0F0FF] hover:bg-[#a0e0ff]"
                                                                     }`}
                                                             >
                                                                 <img
                                                                     src={ArrowDown}
-                                                                    className="h-[14px] w-[14px] object-cover"
+                                                                    className="h-[8px] lg:h-[14px] w-[8px] lg:w-[14px] object-cover"
                                                                     alt="Download"
                                                                 />
                                                             </button>

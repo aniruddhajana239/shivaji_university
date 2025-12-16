@@ -1178,7 +1178,7 @@ export const governanceContents = [
     id: "mF89dA_25fLhO8",
     content_id: "mF89dA_25fLhO8",
     title: "Photo Gallery",
-    layout_type: "CollapsableImageGrid",
+    layout_type: "collapsable-image-grid",
     sections: [
       {
         heading: "Conference",
