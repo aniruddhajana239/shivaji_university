@@ -1,0 +1,1 @@
+export const facultySelector = state => state?.faculties

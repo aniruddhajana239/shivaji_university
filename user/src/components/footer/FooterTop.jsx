@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { footerData } from "../../constants/FooterService";
  
 
-const FooterTop = () => {
+const FooterTop = ({data}) => {
   return (
     <div className="w-full bg-[#3B3B3B] text-[#FFFFFF] py-6 px-6 md:px-[48px]">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">

@@ -5,67 +5,113 @@ import linkedin_icon from "../../assets/icons/socialMedia/Linkedin.png";
 import xHandel_icon from "../../assets/icons/socialMedia/X_handel.png";
 import { Link } from "react-router-dom";
 
-export const Hero = () => {
+export const Hero = ({ externalData, banners, bannerLoading, externalLoading }) => {
+  const isLoading = bannerLoading || externalLoading;
+
   return (
     <div className="w-full relative">
-      <HeroCarousel />
+      {/* Hero Carousel with Skeleton */}
+      {isLoading ? (
+        <div className="w-full h-[45vh] lg:h-[70vh] bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse rounded-none">
+          {/* Social Media Sidebar Skeleton */}
+          <div className="absolute -bottom-[200px] right-0 flex flex-col items-end gap-[16px]">
+            {/* Social Icons Skeleton */}
+            <div className="">
+              <div className="bg-gray-300 rounded-l-[14px] p-3 lg:p-4 shadow-lg">
+                <ul className="flex flex-col gap-3 items-center justify-center">
+                  {[...Array(4)].map((_, i) => (
+                    <li key={i}>
+                      <div className="h-[20px] w-[20px] lg:h-[26px] lg:w-[26px] bg-gray-400 rounded-full"></div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
 
-      {/* Social Media Sidebar + Rotated Quick Links */}
-      <div className="absolute -bottom-[200px] right-0 flex flex-col items-end gap-[16px]">
-        {/* Social Icons */}
-        <div className="">
-          <div className="bg-[#001F51] rounded-l-[14px] p-3 lg:p-4 shadow-lg">
-            <ul className="flex flex-col gap-3 items-center justify-center">
-              <li>
-                <Link>
-                  <img
-                    src={xHandel_icon}
-                    alt="X"
-                    className="h-[20px] w-[20px] lg:h-[26px] lg:w-[26px] hover:scale-110 transition-transform duration-200"
-                  />
-                </Link>
-              </li>
-              <li>
-                <Link>
-                  <img
-                    src={linkedin_icon}
-                    alt="LinkedIn"
-                    className="h-[20px] w-[20px] lg:h-[26px] lg:w-[26px] hover:scale-110 transition-transform duration-200"
-                  />
-                </Link>
-              </li>
-              <li>
-                <Link>
-                  <img
-                    src={instagram_icon}
-                    alt="Instagram"
-                    className="h-[20px] w-[20px] lg:h-[26px] lg:w-[26px] hover:scale-110 transition-transform duration-200"
-                  />
-                </Link>
-              </li>
-              <li>
-                <Link>
-                  <img
-                    src={facebook_icon}
-                    alt="Facebook"
-                    className="h-[20px] w-[20px] lg:h-[26px] lg:w-[26px] hover:scale-110 transition-transform duration-200"
-                  />
-                </Link>
-              </li>
-            </ul>
+            {/* Rotated Quick Links Button Skeleton */}
+            <div className="">
+              <div className="bg-gray-400 text-white text-[14px] lg:text-[18px] font-[500] p-2 rounded-l-[10px] block writing-mode-vertical-lr text-center h-32 w-8"></div>
+            </div>
           </div>
         </div>
+      ) : (
+        <>
+          <HeroCarousel banners={banners ?? []} />
 
-        {/* Rotated Quick Links Button */}
-        <div className="">
-          <Link
-            to="/quick-links"
-            className="bg-[#ED3236] text-white text-[14px] lg:text-[18px] font-[500] p-2 rounded-l-[10px] hover:bg-[c0272c] transition-all block writing-mode-vertical-lr text-center "
-          >
-            Quick Links
-          </Link>
-        </div>
-      </div>
+          {/* Social Media Sidebar + Rotated Quick Links */}
+          <div className="absolute -bottom-[200px] right-0 flex flex-col items-end gap-[16px]">
+            {/* Social Icons */}
+            <div className="">
+              <div className="bg-[#001F51] rounded-l-[14px] p-3 lg:p-4 shadow-lg">
+                <ul className="flex flex-col gap-3 items-center justify-center">
+                  <li>
+                    <a
+                      href={externalData?.data?.twitter_link ?? ""}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src={xHandel_icon}
+                        alt="X"
+                        className="h-[20px] w-[20px] lg:h-[26px] lg:w-[26px] hover:scale-110 transition-transform duration-200"
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={externalData?.data?.linkedin_link ?? ""}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src={linkedin_icon}
+                        alt="LinkedIn"
+                        className="h-[20px] w-[20px] lg:h-[26px] lg:w-[26px] hover:scale-110 transition-transform duration-200"
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={externalData?.data?.instragram_link ?? ""}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src={instagram_icon}
+                        alt="Instagram"
+                        className="h-[20px] w-[20px] lg:h-[26px] lg:w-[26px] hover:scale-110 transition-transform duration-200"
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={externalData?.data?.facebook_link ?? ""}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src={facebook_icon}
+                        alt="Facebook"
+                        className="h-[20px] w-[20px] lg:h-[26px] lg:w-[26px] hover:scale-110 transition-transform duration-200"
+                      />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Rotated Quick Links Button */}
+            <div className="">
+              <Link
+                to="/quick-links"
+                className="bg-[#ED3236] text-white text-[14px] lg:text-[18px] font-[500] p-2 rounded-l-[10px] hover:bg-[c0272c] transition-all block writing-mode-vertical-lr text-center"
+              >
+                Quick Links
+              </Link>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

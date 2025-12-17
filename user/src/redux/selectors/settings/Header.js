@@ -1,0 +1,1 @@
+export const headerSelector = state => state?.header

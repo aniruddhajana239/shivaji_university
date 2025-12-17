@@ -1,11 +1,11 @@
 import React from 'react';
 import StatisticalInformationComponent from '../../components/statisticalInformation/StatisticalInformationComponent';
 
-const StatisticalInformation = () => {
+const StatisticalInformation = ({data}) => {
     return (
         <>
             <div className=''>
-                <StatisticalInformationComponent/>
+                <StatisticalInformationComponent data={data}/>
             </div>
         </>
     );

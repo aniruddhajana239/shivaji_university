@@ -1,5 +1,4 @@
 export const initialState = {
-    "isFetching" : false,
-    "status" : "",
-    "data" : {}|[],
+    "isFetching":false,
+    "data":{}
 }

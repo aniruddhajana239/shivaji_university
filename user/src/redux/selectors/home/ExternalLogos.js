@@ -1,0 +1,1 @@
+export const externalLogosSelector = state => state?.externalLogos

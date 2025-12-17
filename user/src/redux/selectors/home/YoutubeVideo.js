@@ -1,0 +1,1 @@
+export const youtubeVideoSelector = state => state?.youtubeVideo

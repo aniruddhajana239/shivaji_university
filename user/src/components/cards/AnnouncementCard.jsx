@@ -17,7 +17,7 @@ export const AnnouncementsCard = () => {
     return (
         <div className="w-full flex flex-col rounded-[10px] shadow-md relative">
             <div className="w-full p-4 bg-[#EDFAFE] rounded-t-[10px]">
-                <span className="text-[#001F51] font-[700] text-[20px]">Upcoming Events</span>
+                <span className="text-[#001F51] font-[700] text-[20px]">Announcements</span>
             </div>
             <div className="w-full p-4 flex flex-col gap-2 pb-8 h-[290px] overflow-y-auto">
                 {uniqueCategories?.map((category, index) => {
