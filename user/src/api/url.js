@@ -1,5 +1,6 @@
 export const URLS={
     getHeader:"/website-settings",
+    getMenuList:"/menu/list",
     getHeaderCourses:"/other/details?category=Courses",
     getBanners:"/content/details?menu_id=1&section_slug=home-banner&content_type=2",
     getFaculties:"/content/details?menu_id=1&section_slug=our-faculty&content_type=2",

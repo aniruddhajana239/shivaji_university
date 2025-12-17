@@ -1,0 +1,1 @@
+export const menusSelector = state => state?.menu
