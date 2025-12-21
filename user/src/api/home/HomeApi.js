@@ -17,5 +17,20 @@ export const HomeApi={
     getLatestNews(body) {
         return axiosClient.post(URLS?.getLatestNews, body);
     },
+    getUpcomingSports(body) {
+        return axiosClient.post(URLS?.getUpcomingSports, body);
+    },
+    getUpcomingAcademic(body) {
+        return axiosClient.post(URLS?.getUpcomingAcademic, body);
+    },
+    getUpcomingCultural(body) {
+        return axiosClient.post(URLS?.getUpcomingCultural, body);
+    },
+    getUpcomingWorkshop(body) {
+        return axiosClient.post(URLS?.getUpcomingWorkshop, body);
+    },
+    getUpcomingTestimonials(body) {
+        return axiosClient.post(URLS?.getUpcomingTestimonials, body);
+    },
     
 }
