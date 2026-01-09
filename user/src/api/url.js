@@ -13,5 +13,6 @@ export const URLS={
     getUpcomingCultural:"/content/details?menu_id=1&section_slug=uncoming-events-cultural&content_type=2",
     getUpcomingWorkshop:"/content/details?menu_id=1&section_slug=uncoming-events-workshop&content_type=2",
     getUpcomingExamination:"/content/details?menu_id=1&section_slug=uncoming-events-examination&content_type=2",
-    getUpcomingTestimonials:"/content/details?menu_id=1&section_slug=first-testimonials&content_type=2"
+    getUpcomingTestimonials:"/content/details?menu_id=1&section_slug=first-testimonials&content_type=2",
+    getContentByMenuId:"/menu-content/details",
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import ChevronDown from "../../../assets/icons/chevron_down_small.png";
 import ChevronDownDark from "../../../assets/icons/chevron_down.png";
 import MenuIcon from "../../../assets/icons/menu.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { headerSelector } from "../../../redux/selectors/settings/Header";
 import { headerActions } from "../../../redux/reducer/slice/settings/getHeaderCoursesSlice";
@@ -19,6 +19,7 @@ const courses = [
 
 export const QuickLinksBar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   
   // Selectors
@@ -92,28 +93,65 @@ export const QuickLinksBar = () => {
     setOpenChildMenus({});
   };
 
-  const handleSubmenuClick = (e, submenu) => {
+  // Function to add query parameters to URL
+  const getUrlWithParams = (basePath, parentId, subMenuId = null, childSubMenuId = null) => {
+    const params = new URLSearchParams();
+    
+    // Add parent menu ID
+    if (parentId) {
+      params.append('parent_menu_id', parentId);
+    }
+    
+    // Add submenu ID if available
+    if (subMenuId) {
+      params.append('sub_menu_id', subMenuId);
+    }
+    
+    // Add child submenu ID if available
+    if (childSubMenuId) {
+      params.append('child_sub_menu_id', childSubMenuId);
+    }
+    
+    // Construct the URL with query parameters
+    const queryString = params.toString();
+    return queryString ? `${basePath}?${queryString}` : basePath;
+  };
+
+  // Handle menu click with URL parameter addition
+  const handleMenuClick = (basePath, parentId, subMenuId = null, childSubMenuId = null) => {
+    const urlWithParams = getUrlWithParams(basePath, parentId, subMenuId, childSubMenuId);
+    
+    // Log for debugging
+    console.log("Navigating to:", urlWithParams, {
+      parent_menu_id: parentId,
+      sub_menu_id: subMenuId,
+      child_sub_menu_id: childSubMenuId
+    });
+    
+    return urlWithParams;
+  };
+
+  const handleSubmenuClick = (e, submenu, parentMenuId) => {
     // If submenu has children, prevent navigation and only toggle
     if (submenu.children && submenu.children.length > 0) {
       e.preventDefault();
       e.stopPropagation();
       toggleChildMenu(submenu.id);
     }
+    // Navigation will be handled by the Link component with the updated URL
   };
 
-  const handleMobileSubmenuClick = (e, submenu) => {
+  const handleMobileSubmenuClick = (e, submenu, parentMenuId) => {
     // If submenu has children, prevent navigation and only toggle
     if (submenu.children && submenu.children.length > 0) {
       e.preventDefault();
       e.stopPropagation();
       toggleChildMenu(`mobile-${submenu.id}`);
-    } else {
-      // If no children, close the mobile menu
-      closeMobileMenu();
     }
+    // Navigation will be handled by the Link component with the updated URL
   };
 
-  const handleChildSubmenuClick = () => {
+  const handleChildSubmenuClick = (childSubmenu, parentMenuId, subMenuId) => {
     // Close mobile menu when child submenu item is clicked
     closeMobileMenu();
   };
@@ -122,22 +160,29 @@ export const QuickLinksBar = () => {
     return index === items.length - 1;
   };
 
-  // Convert API menu data to our component format
+  // Convert API menu data to our component format - PRESERVE ORIGINAL IDs
   const convertApiMenuToNavItems = (apiMenus) => {
     if (!apiMenus || !Array.isArray(apiMenus)) return [];
     
     return apiMenus.map(menu => ({
       id: menu.id.toString(),
+      originalId: menu.id, // Keep original ID
       title: menu.name,
       path: getPathFromMenuName(menu.name),
+      // Store the original children structure to preserve IDs
+      originalChildren: menu.children,
       submenus: menu.children && menu.children.length > 0 ? 
         menu.children.map(child => ({
           id: child.id.toString(),
+          originalId: child.id, // Keep original ID
           title: child.name,
           path: getPathFromMenuName(child.name),
+          originalChildren: child.children,
+          children: child.children, // Keep children for checking
           childSubmenus: child.children && child.children.length > 0 ? 
             child.children.map(grandChild => ({
               id: grandChild.id.toString(),
+              originalId: grandChild.id, // Keep original ID
               title: grandChild.name,
               path: getPathFromMenuName(grandChild.name)
             })) : null
@@ -186,7 +231,7 @@ export const QuickLinksBar = () => {
               onMouseLeave={() => setHoveredItem(null)}
             >
               <Link
-                to={item?.path}
+                to={handleMenuClick(item?.path, item.originalId)}
                 className={`cursor-pointer flex items-center gap-2 text-[12px] font-[500] px-3 py-4 text-white ${
                   isActive(item?.path) ? "bg-[#07739445]" : "bg-transparent"
                 } hover:bg-[#07739445] transition-colors duration-200`}
@@ -217,9 +262,9 @@ export const QuickLinksBar = () => {
                     >
                       <div className="flex items-center justify-between hover:bg-gray-50 transition-colors">
                         <Link
-                          to={submenu.path}
+                          to={handleMenuClick(submenu.path, item.originalId, submenu.originalId)}
                           className="flex-1 px-4 py-3 text-gray-800 hover:text-blue-600 text-sm font-[400]"
-                          onClick={(e) => handleSubmenuClick(e, submenu)}
+                          onClick={(e) => handleSubmenuClick(e, submenu, item.originalId)}
                         >
                           {submenu.title}
                         </Link>
@@ -250,8 +295,9 @@ export const QuickLinksBar = () => {
                             {submenu.childSubmenus.map((childSubmenu) => (
                               <Link
                                 key={childSubmenu.id}
-                                to={childSubmenu.path}
+                                to={handleMenuClick(childSubmenu.path, item.originalId, submenu.originalId, childSubmenu.originalId)}
                                 className="block px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded text-sm transition-colors duration-200 mb-1 last:mb-0 border-b border-gray-100 last:border-b-0"
+                                onClick={() => handleChildSubmenuClick(childSubmenu, item.originalId, submenu.originalId)}
                               >
                                 {childSubmenu.title}
                               </Link>
@@ -332,7 +378,7 @@ export const QuickLinksBar = () => {
                   {/* Main Mobile Menu Item */}
                   <div className="flex items-center justify-between py-2">
                     <Link
-                      to={item.path}
+                      to={handleMenuClick(item.path, item.originalId)}
                       className={`flex-1 text-gray-800 text-base font-medium ${
                         isActive(item.path) ? "text-blue-600" : ""
                       }`}
@@ -368,9 +414,14 @@ export const QuickLinksBar = () => {
                           {/* Submenu Item */}
                           <div className="flex items-center justify-between py-2">
                             <Link
-                              to={submenu.path}
+                              to={handleMenuClick(submenu.path, item.originalId, submenu.originalId)}
                               className="flex-1 text-gray-700 text-sm"
-                              onClick={(e) => handleMobileSubmenuClick(e, submenu)}
+                              onClick={(e) => {
+                                handleMobileSubmenuClick(e, submenu, item.originalId);
+                                if (!submenu.children || submenu.children.length === 0) {
+                                  closeMobileMenu();
+                                }
+                              }}
                             >
                               {submenu.title}
                             </Link>
@@ -402,9 +453,9 @@ export const QuickLinksBar = () => {
                                 {submenu.childSubmenus.map((childSubmenu) => (
                                   <Link
                                     key={childSubmenu.id}
-                                    to={childSubmenu.path}
+                                    to={handleMenuClick(childSubmenu.path, item.originalId, submenu.originalId, childSubmenu.originalId)}
                                     className="block p-2 text-gray-600 text-[14px] border-b border-gray-100 last:border-b-0"
-                                    onClick={handleChildSubmenuClick}
+                                    onClick={() => handleChildSubmenuClick(childSubmenu, item.originalId, submenu.originalId)}
                                   >
                                     {childSubmenu.title}
                                   </Link>

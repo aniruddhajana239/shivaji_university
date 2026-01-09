@@ -1,110 +1,114 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const CityComposite = ({ content, title }) => {
-  if (!content || !content.sections) return null;
+const CityComposite = ({ content }) => {
+
+  useEffect(() => {
+    console?.log?.("🏙️ CityComposite - Received content:", content);
+    if (content) {
+      console?.log?.("🏙️ CityComposite - Content data keys:", Object?.keys(content));
+    }
+  }, [content]);
+
+  // Check if content exists and has data
+  if (!content || !content || Object?.keys(content)?.length === 0) return null;
+
+  // Extract data from content prop
+  const data = content;
+  const dataKeys = Object?.keys(data) || [];
 
   return (
     <div className="w-full flex flex-col gap-6 bg-white rounded-[20px] p-6 2xl:p-8 shadow-sm">
-      {/* Page Title */}
-      <h3 className="m-0 text-[#001F51] text-[24px] font-[600]">{title}</h3>
 
-      {/*  all sections */}
-      <div className="w-full flex flex-col gap-2 text-[14px] 2xl:text-[16px] text-justify text-[#000000] font-[400]">
-        {content?.sections?.map((section, index) => (
-          <div key={index} className="space-y-4">
-            {/* Section Heading */}
-            {section.heading && (
+      {/* Render all data sections */}
+      <div className="w-full flex flex-col gap-6 text-[14px] 2xl:text-[16px] text-justify text-[#000000] font-[400]">
+        {dataKeys?.map?.((sectionKey, index) => {
+          const sectionItems = data?.[sectionKey] || [];
+
+          return (
+            <div key={index} className="space-y-4">
+              {/* Section Heading */}
               <h3 className="text-[22px] font-[600] text-[#001F51] pt-[20px]">
-                {section.heading}
+                {sectionKey || ""}
               </h3>
-            )}
 
-            {/* Type: Paragraph */}
-            {section?.type === "paragraph" && section?.content && (
-              <p>{section?.content}</p>
-            )}
+              {sectionItems?.map?.((item, itemIndex) => (
+                <div key={itemIndex} className="space-y-4">
+                  {/* Item Title (if exists) */}
+                  {/* {item?.title?.trim?.() && (
+                    <h4 className="text-[20px] font-[600] text-[#077394]">
+                      {item?.title || ""}
+                    </h4>
+                  )} */}
 
-            {/* Type: List */}
-            {section?.type === "list" && section?.contentList && (
-              <div className=" space-y-6">
-                {section?.contentList?.map((item, i) => {
-                  {/* const [key, value] = Object.entries(item)[0]; */}
-                  return (
-                    <div key={i} className="">
-                      {/* <h4 className="text-[18px] font-[600] text-[#077394] mb-1">
-                        {item.boldText}
-                      </h4> */}
-
-                      {/* If value is a string */}
-                       
-                        <p className="text-[15px] text-[#555] leading-relaxed">
-                        <span className="text-[14px] 2xl:text-[18px] font-[600] text-[#000000] mb-1">{item.boldText}</span>
-                          {item.contentText}
-                        </p>
-                     
-
-                      {/* If value is an array */}
-                      {Array.isArray(item) && (
-                        <ul className="list-disc ml-6 space-y-2 text-[15px] text-[#555]">
-                          {item.map((li, liIndex) => (
-                            <li key={liIndex}>{li}</li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-
-            {/* Type: Image List */}
-            {section?.type === "Images-list" && section?.images && (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[26px] mt-6">
-                {section.images.map((item, i) => (
-                  <div
-                    key={i}
-                    className="w-full flex flex-col item-center  bg-white overflow-hidden rounded-[10px] shadow-sm border border-gray-100  ]"
-                  >
-                    {/* Image */}
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full aspect-6/3 object-cover rounded-[10px]"
+                  {/* Item Description (HTML content) */}
+                  {item?.description?.trim?.() && (
+                    <div
+                      className="text-[15px] text-[#555] leading-relaxed prose prose-p:my-2"
+                      dangerouslySetInnerHTML={{ __html: item?.description || "" }}
                     />
+                  )}
 
-                    {/* Title */}
 
-                    <div className="h-full flex items-center justify-center ">
-                    <p className="text-[12px] 2xl:text-[16px] text-[#000000] font-[500] text-center bg-white py-[10px] px-2 ">
-                      {item.title}
-                    </p>
-                    </div>
-                     
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
-
-        {/* Important Notices (if available) */}
-        {content?.important_notices &&
-          content?.important_notices?.length > 0 && (
-            <div className="w-full grid-col-3 gap-4 p-3 py-4 rounded-[15px] bg-[#FA8F21]/10 mt-4">
-              {content.important_notices?.map((notice, index) => (
-                <div key={index} className="space-y-3">
-                  <h4 className="text-[20px] font-[600] text-[#001F51]">
-                    {notice.title}
-                  </h4>
-                  <ul className={`list-disc ml-6 space-y-1 text-[12px] 2xl:text-[15px] text-[#555]  ${notice?.listItem?.length <=6 ? "columns-1" : (notice?.listItem?.length >6 && notice?.listItem?.length <=12)? "columns-2" : "columns-3"}`}>
-                    {notice.listItems.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
                 </div>
               ))}
+
+              {/* Grid layout for Prime Attractions */}
+              {sectionKey === "Prime Attractions" && sectionItems?.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                  {sectionItems?.map?.((item, itemIndex) => (
+
+
+                    <div
+                      key={itemIndex}
+                      className="w-full flex flex-col item-center  bg-white overflow-hidden rounded-[10px] shadow-sm border border-gray-100  ]"
+                    >
+                      {/* Image */}
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full aspect-6/3 object-cover rounded-[10px]" />
+                      <div className="h-full flex items-center justify-center ">
+                        <p className="text-[12px] 2xl:text-[16px] text-[#000000] font-[500] text-center bg-white py-[10px] px-2 ">
+                          {item.title}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
-          )}
+          );
+        })}
+
+        {/* Important Notices (if available in content) */}
+        {content?.important_notices?.length > 0 && (
+          <div className="w-full gap-4 p-6 rounded-[15px] bg-[#FA8F21]/10 mt-6">
+            <h3 className="text-[24px] font-[600] text-[#001F51] mb-4">
+              {content?.important_notices_title || "Important Notices" || ""}
+            </h3>
+            {content?.important_notices?.map?.((notice, index) => (
+              <div key={index} className="space-y-3 mb-6 last:mb-0">
+                {notice?.title && (
+                  <h4 className="text-[20px] font-[600] text-[#001F51]">
+                    {notice?.title || ""}
+                  </h4>
+                )}
+                {notice?.listItems?.length > 0 && (
+                  <ul className={`list-disc ml-6 space-y-2 text-[15px] text-[#555] ${notice?.listItems?.length <= 6
+                    ? "columns-1"
+                    : notice?.listItems?.length > 6 && notice?.listItems?.length <= 12
+                      ? "columns-2"
+                      : "columns-3"
+                    }`}>
+                    {notice?.listItems?.map?.((item, i) => (
+                      <li key={i} className="mb-1">{item || ""}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

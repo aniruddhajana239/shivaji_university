@@ -934,7 +934,7 @@ export const studentContents = [
     id: "sG78hI_90kLmN1",
     content_id: "sG78hI_90kLmN1",
     title: "Student Login",
-    layout_type: "studentlogin",
+    layout_type: "login",
     sections: [
       {
         text: "If you have an account with us, please log in."

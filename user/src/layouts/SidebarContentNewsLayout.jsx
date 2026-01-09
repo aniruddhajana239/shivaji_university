@@ -1,10 +1,14 @@
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { LeftSidebarNavigation } from "../components/navigation/LeftSidebarNavigation";
 import { RightSidebarNavigation } from "../components/navigation/RightSidebarNavigation";
 import { SimpleBreadCrumb } from "../components/breadcrumb/SimpleBreadCrumb";
+import { ContentApi } from "../api/content/ContentApi";
+import RippleLoader from "../components/loaders/RippleLoader";
+import { menusSelector } from "../redux/selectors/settings/MenuList";
 
-// Layout Components (your existing imports)
+// Layout Components
 import { FormalComposite } from "../blocks/composite/FormalComposite";
 import { PersonalFigure } from "../blocks/single/PersonalFigure";
 import { ImageGrid } from "../blocks/grid/ImageGrid";
@@ -46,195 +50,315 @@ const layoutComponents = {
   "collapsable-image-grid": CollapsableImageGrid,
   "governance-contact-composite": GovernanceContactComposite,
   "paragraph": NccComposite,
-  "studentlogin": StudentLoginComposite,
+  "login": StudentLoginComposite,
   "multiple-list-cards": MultipleListsCards,
   "form-composite": FormComposite
 };
 
-export const SidebarContentNewsLayout = ({ 
-  navItems, 
-  parentPath, 
-  title, 
-  contentList, 
-  contentId 
+// Helper function to flatten all menus into a single array
+const flattenAllMenus = (apiMenus) => {
+  if (!apiMenus || !Array.isArray(apiMenus)) return [];
+
+  const allItems = [];
+
+  apiMenus.forEach(menu => {
+    // Add parent menu
+    // allItems.push({
+    //   id: menu.id.toString(),
+    //   originalId: menu.id,
+    //   title: menu.name,
+    //   path: getPathFromMenuName(menu.name),
+    //   type: 'parent'
+    // });
+
+    // Add submenus
+    if (menu.children && menu.children.length > 0) {
+      menu.children.forEach(child => {
+        allItems.push({
+          id: child.id.toString(),
+          originalId: child.id,
+          title: child.name,
+          path: getPathFromMenuName(child.name),
+          parentId: menu.id,
+          type: 'submenu'
+        });
+
+        // Add child submenus
+        if (child.children && child.children.length > 0) {
+          child.children.forEach(grandChild => {
+            allItems.push({
+              id: grandChild.id.toString(),
+              originalId: grandChild.id,
+              title: grandChild.name,
+              path: getPathFromMenuName(grandChild.name),
+              parentId: child.id,
+              grandParentId: menu.id,
+              type: 'child'
+            });
+          });
+        }
+      });
+    }
+  });
+
+  return allItems;
+};
+
+// Helper function to generate path from menu name
+const getPathFromMenuName = (name) => {
+  if (name === "Home") return "/";
+  return `/${name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`;
+};
+
+export const SidebarContentNewsLayout = ({
+  navItems,
+  parentPath,
+  title,
+  contentId
 }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [activePath, setActivePath] = useState(location.pathname);
 
-  // Function to find contentId from current path
-  const findContentIdFromPath = useCallback((path) => {
-    console.log("🔍 Finding contentId for path:", path);
-    
-    // First, check if this path matches any sidebar item directly
-    const sidebarItem = navItems.find(item => item.path === path);
-    if (sidebarItem) {
-      console.log("✅ Found sidebar item with path:", sidebarItem.id);
-      return sidebarItem.id; // Use sidebar item ID as content_id
+  // Get menu data from Redux
+  const menuData = useSelector(menusSelector);
+
+  const [activePath, setActivePath] = useState(location.pathname);
+  const [content, setContent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Flatten all menus into single array for left sidebar
+  // const allMenuItems = useMemo(() => {
+  //   if (!menuData?.data?.menus) return [];
+  //   return flattenAllMenus(menuData.data.menus);
+  // }, [menuData?.data?.menus]);
+
+  // Get parent_menu_id from URL params
+  const getParentMenuIdFromUrl = useCallback(() => {
+    if (location.search) {
+      const params = new URLSearchParams(location.search);
+      const parentMenuId = params.get('parent_menu_id');
+      if (parentMenuId) {
+        console.log("🔍 Found parent_menu_id in URL:", parentMenuId);
+        return parseInt(parentMenuId);
+      }
     }
-    
-    // If not found in sidebar, check in navigation structure
-    for (const navItem of navItems) {
-      if (navItem.submenus) {
-        for (const submenu of navItem.submenus) {
-          if (submenu.path === path && submenu.content_id) {
-            console.log("✅ Found contentId in submenu:", submenu.content_id);
-            return submenu.content_id;
+    return null;
+  }, [location.search]);
+
+  // Get filtered menu items based on parent_menu_id
+  const filteredMenuItems = useMemo(() => {
+    const parentMenuId = getParentMenuIdFromUrl();
+
+    if (!menuData?.data?.menus) return [];
+
+    if (!parentMenuId) {
+      // If no parent_menu_id, return all items
+      return flattenAllMenus(menuData.data.menus);
+    }
+
+    // Find the specific parent menu
+    const parentMenu = menuData.data.menus.find(menu => menu.id === parentMenuId);
+    if (!parentMenu) return [];
+
+    // Only return items under this parent
+    return flattenAllMenus([parentMenu]);
+
+  }, [menuData?.data?.menus, getParentMenuIdFromUrl]);
+
+  // console.log("📋 Flattened menu items for sidebar:", allMenuItems.length);
+
+  // Function to get menu ID from URL or props
+  const getMenuId = useCallback(() => {
+
+    // Try to get from URL query parameters first
+    if (location.search) {
+      const params = new URLSearchParams(location.search);
+      const menuId = params.get('menu_id') ||
+        params.get('child_sub_menu_id') ||
+        params.get('sub_menu_id') ||
+        params.get('parent_menu_id');
+
+      if (menuId) {
+        console.log("✅ Found menu ID in URL:", menuId);
+        return parseInt(menuId);
+      }
+    }
+
+    // If no URL params, try to find from navItems by path
+    if (navItems && navItems.length > 0) {
+      const cleanPath = location.pathname.split('?')[0];
+      console.log("🔍 Looking for menu in navItems for path:", cleanPath);
+
+      // Check main items
+      const mainItem = navItems.find(item => item.path === cleanPath);
+      if (mainItem && mainItem.originalId) {
+        console.log("✅ Found menu ID in main navItems:", mainItem.originalId);
+        return mainItem.originalId;
+      }
+
+      // Check submenus
+      for (const item of navItems) {
+        if (item.submenus) {
+          const submenu = item.submenus.find(sub => sub.path === cleanPath);
+          if (submenu && submenu.originalId) {
+            console.log("✅ Found menu ID in submenu:", submenu.originalId);
+            return submenu.originalId;
           }
-          if (submenu.childSubmenus) {
-            for (const child of submenu.childSubmenus) {
-              if (child.path === path && child.content_id) {
-                console.log("✅ Found contentId in child submenu:", child.content_id);
-                return child.content_id;
+
+          // Check child submenus
+          for (const sub of item.submenus) {
+            if (sub.childSubmenus) {
+              const child = sub.childSubmenus.find(ch => ch.path === cleanPath);
+              if (child && child.originalId) {
+                console.log("✅ Found menu ID in child submenu:", child.originalId);
+                return child.originalId;
               }
             }
           }
         }
       }
     }
-    
-    console.log("❌ No contentId found for path:", path);
-    return null;
-  }, [navItems]);
 
-  // Function to find content by contentId
-  const findContentByContentId = useCallback((contentId) => {
-    if (!contentId) return null;
-    
-    const foundContent = contentList.find(item => 
-      item.id === contentId || item.content_id === contentId
-    );
-    
-    if (foundContent) {
-      console.log("📄 Found content:", foundContent.title);
-    } else {
-      console.log("❌ No content found for contentId:", contentId);
-    }
-    
-    return foundContent;
-  }, [contentList]);
-
-  // Find the correct content based on current path
-  const content = useMemo(() => {
-    console.log("🎯 Looking for content for path:", location.pathname);
-    
-    // Find contentId from current path
-    const pathBasedContentId = findContentIdFromPath(location.pathname);
-    
-    if (pathBasedContentId) {
-      const foundContent = findContentByContentId(pathBasedContentId);
-      if (foundContent) {
-        console.log("✅ Found content by path:", foundContent.title);
-        return foundContent;
-      }
-    }
-    
-    // Fallback: If contentId is provided via props, use it
+    // Last resort: use contentId from props
     if (contentId) {
-      const foundContent = findContentByContentId(contentId);
-      if (foundContent) {
-        console.log("✅ Found content by contentId prop:", foundContent.title);
-        return foundContent;
+      console.log("✅ Using contentId from props:", contentId);
+      return parseInt(contentId);
+    }
+
+    console.log("❌ Could not find any menu ID");
+    return null;
+  }, [location.pathname, location.search, navItems, contentId]);
+
+  // Fetch content
+  const fetchContent = useCallback(async () => {
+    const menuId = getMenuId();
+
+    console.log("📡 Fetching content for menuId:", menuId);
+
+    if (!menuId) {
+      console.log("❌ No menu ID, skipping fetch");
+      setError("No menu ID found");
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      console.log("🔄 Calling API with menu_id:", menuId);
+      const response = await ContentApi.getContentDetails({ menu_id: menuId });
+      console.log("✅ API Response:", response);
+
+      if (response && response.data) {
+        const { layout, ...restData } = response.data;
+
+        // Get title from first section
+        let pageTitle = response?.data?.data?.title || "Untitled Page";
+        // const firstKey = Object.keys(restData)[0];
+        // if (firstKey && restData[firstKey] && Array.isArray(restData[firstKey])) {
+        //   const firstItem = restData[firstKey][0];
+        //   if (firstItem?.title) {
+        //     pageTitle = firstItem.title;
+        //   }
+        // }
+
+        setContent({
+          layout_type: response?.data?.data?.layout, // Fixed: Changed from response?.data?.data?.layout
+          title: pageTitle,
+          data: response?.data?.data // Fixed: Changed from response?.data?.data
+        });
+      } else {
+        setError("No data received from API");
       }
+    } catch (err) {
+      console.error("❌ API Error:", err);
+      setError(err.message || "Failed to fetch content");
+    } finally {
+      setLoading(false);
     }
-    
-    // Final fallback: Use first content
-    const firstContent = contentList[0];
-    if (firstContent) {
-      console.log("🔄 Using first content as fallback:", firstContent.title);
-    } else {
-      console.log("❌ No content available");
-    }
-    return firstContent;
-  }, [contentList, contentId, location.pathname, findContentIdFromPath, findContentByContentId]);
+  }, [getMenuId, title]);
 
-  // Find active nav item based on current path
-  const activeNavItem = useMemo(() => {
-    // Find the sidebar item that matches the current path
-    const foundItem = navItems.find(item => item.path === activePath);
-    
-    if (foundItem) {
-      console.log("📊 Found active nav item by path:", foundItem.itemText);
-      return foundItem;
-    }
-    
-    console.log("📊 No matching nav item found for path:", activePath);
-    return navItems[0] || {};
-  }, [navItems, activePath]);
-
-  // Set active path when location changes
+  // Fetch content on mount and when dependencies change
   useEffect(() => {
-    console.log("📍 Location changed, setting active path:", location.pathname);
+    console.log("🔄 useEffect triggered");
+    fetchContent();
+  }, [fetchContent]);
+
+  // Update active path
+  useEffect(() => {
     setActivePath(location.pathname);
   }, [location.pathname]);
 
-  // Handle sidebar item click - DIRECT PATH NAVIGATION
-  const handleSidebarClick = useCallback((path) => {
-    console.log("🖱️ Sidebar clicked, navigating to path:", path);
-    
-    if (path) {
-      setActivePath(path);
-      navigate(path);
+  // Handle sidebar click
+  const handleSidebarClick = useCallback((path, menuId = null) => {
+    console.log("🖱️ Sidebar click:", path, menuId);
+
+    if (menuId) {
+      // Simple query parameter approach
+      navigate(`${path}?menu_id=${menuId}`);
     } else {
-      console.log("❌ No path provided for navigation");
+      navigate(path);
     }
   }, [navigate]);
 
-  // Debug useEffect to see what's happening
-  useEffect(() => {
-    console.log("=== 🐛 DEBUG INFO ===");
-    console.log("📍 Current location:", location.pathname);
-    console.log("🎯 Active Path:", activePath);
-    console.log("📄 Content:", content?.title);
-    console.log("📋 NavItems count:", navItems?.length);
-    console.log("📚 ContentList count:", contentList?.length);
-    console.log("====================");
-  }, [location.pathname, activePath, content, navItems, contentList]);
+  // Loading component
+  const renderLoading = () => (
+    <div className="flex justify-center items-center min-h-[400px]">
+      <RippleLoader />
+    </div>
+  );
 
-  const renderLayout = () => {
-    if (!content) {
-      return (
-        <div className="text-center py-8">
-          <p className="text-gray-500">No content available for this section.</p>
-        </div>
-      );
-    }
-    
+  // Error component
+  const renderError = () => (
+    <div className="text-center py-8">
+      <p className="text-red-500 font-semibold">Error loading content</p>
+      <p className="text-gray-500 mt-2">{error}</p>
+      <button
+        onClick={() => window.location.reload()}
+        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+      >
+        Retry
+      </button>
+    </div>
+  );
+
+
+  // Main content render
+  const renderContent = () => {
+    if (loading) return renderLoading();
+    // if (error) return renderError();
+    if (!content) return <div className="text-center py-8">No content available</div>;
+
     const Component = layoutComponents[content.layout_type];
-    
     if (!Component) {
       return (
         <div className="text-center py-8">
-          <p className="text-gray-500">Content type not supported: {content.layout_type}</p>
+          <p className="text-gray-500">! Content Available</p>
         </div>
       );
     }
 
-    const additionalProps = {};
-    if (content.layout_type === "simple-table") {
-      additionalProps.autoWidth = content?.isAutoWidth;
-      additionalProps.isWrappableHeader = content?.wrappable;
-    }
 
     return (
-      <Component 
-        title={content.title} 
-        content={content} 
-        viewable={content?.viewable ?? false}
-        downloadble={content?.downloadble ?? false}
-        searchable={content?.searchable ?? false}
-        {...additionalProps}
+      <Component
+        title={content.title}
+        content={(({ layout, ...rest }) => rest)(content?.data || {})}
+        data={content.data}
       />
     );
   };
 
   return (
     <div className="w-full bg-white px-6 lg:px-12 py-8 flex flex-col lg:flex-row gap-6">
-      {/* Left Sidebar */}
+
+
+      {/* Left Sidebar - Use flattened allMenuItems instead of navItems */}
       <div className="w-full lg:w-1/5">
         <LeftSidebarNavigation
           title="Related Pages"
-          navItems={navItems}
+          navItems={filteredMenuItems} // Use filtered items
           activePath={activePath}
           handleClick={handleSidebarClick}
         />
@@ -242,18 +366,18 @@ export const SidebarContentNewsLayout = ({
 
       {/* Main Content */}
       <div className="w-full lg:w-3/5 flex flex-col gap-4">
-        <SimpleBreadCrumb 
+        <SimpleBreadCrumb
           parent={{ title: title, path: parentPath }}
-          current={content?.title || ""}
+          current={content?.title || "Loading..."}
         />
-        {renderLayout()}
+        {renderContent()}
       </div>
 
       {/* Right Sidebar */}
       <div className="w-full lg:w-1/4">
         <RightSidebarNavigation
           title="Updates/News"
-          listItems={activeNavItem?.updates || []}
+          listItems={[]}
         />
       </div>
     </div>
