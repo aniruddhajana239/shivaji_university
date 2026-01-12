@@ -250,12 +250,14 @@ export const SidebarContentNewsLayout = ({
       console.log("🔄 Calling API with menu_id:", menuId);
       const response = await ContentApi.getContentDetails({ menu_id: menuId });
       console.log("✅ API Response:", response);
-
+     let data={}
       if (response && response.data) {
-        const { layout, ...restData } = response.data;
-
+        const { layout } = response.data;
+        data = response?.data?.data;
+        delete data.menu_title
+        delete data.layout_type
         // Get title from first section
-        let pageTitle = response?.data?.data?.title || "Untitled Page";
+        let pageTitle = response?.data?.data?.menu_title || "Untitled Page";
         // const firstKey = Object.keys(restData)[0];
         // if (firstKey && restData[firstKey] && Array.isArray(restData[firstKey])) {
         //   const firstItem = restData[firstKey][0];
@@ -263,11 +265,11 @@ export const SidebarContentNewsLayout = ({
         //     pageTitle = firstItem.title;
         //   }
         // }
-
+   
         setContent({
           layout_type: response?.data?.data?.layout, // Fixed: Changed from response?.data?.data?.layout
           title: pageTitle,
-          data: response?.data?.data // Fixed: Changed from response?.data?.data
+          data: data // Fixed: Changed from response?.data?.data
         });
       } else {
         setError("No data received from API");
