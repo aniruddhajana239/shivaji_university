@@ -53,6 +53,11 @@ export const QuickLinksBar = () => {
     return location.pathname.includes(path);
   };
 
+  // Condition: If parent menu ID === 1, do not show its submenus
+  const shouldShowSubmenus = (menuId) => {
+    return menuId !== 1;
+  };
+
   const toggleChildMenu = (submenuId) => {
     setOpenChildMenus((prev) => ({
       ...prev,
@@ -120,13 +125,7 @@ export const QuickLinksBar = () => {
   // Handle menu click with URL parameter addition
   const handleMenuClick = (basePath, parentId, subMenuId = null, childSubMenuId = null) => {
     const urlWithParams = getUrlWithParams(basePath, parentId, subMenuId, childSubMenuId);
-    
-    // Log for debugging
-    console.log("Navigating to:", urlWithParams, {
-      parent_menu_id: parentId,
-      sub_menu_id: subMenuId,
-      child_sub_menu_id: childSubMenuId
-    });
+
     
     return urlWithParams;
   };
@@ -237,7 +236,8 @@ export const QuickLinksBar = () => {
                 } hover:bg-[#07739445] transition-colors duration-200`}
               >
                 {item?.title ?? ""}
-                {item?.submenus && (
+                {/* Only show chevron if submenus exist AND parent menu ID is not 1 */}
+                {item?.submenus && shouldShowSubmenus(item.originalId) && (
                   <img
                     src={ChevronDown}
                     alt="chevron down"
@@ -246,8 +246,8 @@ export const QuickLinksBar = () => {
                 )}
               </Link>
 
-              {/* Desktop Submenus Dropdown */}
-              {item?.submenus && hoveredItem === item.id && (
+              {/* Desktop Submenus Dropdown - Only show if parent menu ID is not 1 */}
+              {item?.submenus && hoveredItem === item.id && shouldShowSubmenus(item.originalId) && (
                 <div
                   className={`absolute top-full bg-white shadow-xl min-w-[280px] z-50 rounded-b-md max-h-[500px] overflow-y-auto custom-scrollbar border-b-3 border-[#2F8AA5] ${
                     isLastNavItem(index, navItems) ? "right-0" : "left-0"
@@ -387,7 +387,8 @@ export const QuickLinksBar = () => {
                       {item?.title ?? ""}
                     </Link>
 
-                    {item?.submenus && (
+                    {/* Only show toggle button if submenus exist AND parent menu ID is not 1 */}
+                    {item?.submenus && shouldShowSubmenus(item.originalId) && (
                       <button
                         onClick={() => toggleMobileSubmenu(item.id)}
                         className="text-gray-500"
@@ -403,8 +404,8 @@ export const QuickLinksBar = () => {
                     )}
                   </div>
 
-                  {/* Mobile Submenus */}
-                  {item.submenus && mobileOpenSubmenus[item.id] && (
+                  {/* Mobile Submenus - Only show if parent menu ID is not 1 */}
+                  {item.submenus && mobileOpenSubmenus[item.id] && shouldShowSubmenus(item.originalId) && (
                     <div className="bg-white rounded-lg p-2 pt-0 mb-2">
                       {item.submenus.map((submenu) => (
                         <div

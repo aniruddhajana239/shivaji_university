@@ -2,6 +2,9 @@ import axiosClient from "../axiosClient";
 import { URLS } from "../url";
 
 export const HomeApi={
+    getAll(body) {
+        return axiosClient.post(URLS?.getHome, body);
+    },
     getBanners(body) {
         return axiosClient.post(URLS?.getBanners, body);
     },

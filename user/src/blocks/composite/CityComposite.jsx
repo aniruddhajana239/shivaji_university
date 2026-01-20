@@ -27,35 +27,37 @@ const CityComposite = ({ content }) => {
           return (
             <div key={index} className="space-y-4">
               {/* Section Heading */}
+              {/* <p>{sectionKey}</p> */}
               <h3 className="text-[22px] font-[600] text-[#001F51] pt-[20px]">
-                {sectionKey || ""}
+                {data?.[sectionKey]?.view_details?.view_type !== "background_color" ? sectionKey || "" : ""}
               </h3>
 
-              {sectionItems?.map?.((item, itemIndex) => (
-                <div key={itemIndex} className="space-y-4">
-                  {/* Item Title (if exists) */}
-                  {/* {item?.title?.trim?.() && (
+              {sectionItems?.content_details
+                ?.map?.((item, itemIndex) => (
+                  <div key={itemIndex} className="space-y-4">
+                    {/* Item Title (if exists) */}
+                    {/* {item?.title?.trim?.() && (
                     <h4 className="text-[20px] font-[600] text-[#077394]">
                       {item?.title || ""}
                     </h4>
                   )} */}
 
-                  {/* Item Description (HTML content) */}
-                  {item?.description?.trim?.() && (
-                    <div
-                      className="text-[15px] text-[#555] leading-relaxed prose prose-p:my-2"
-                      dangerouslySetInnerHTML={{ __html: item?.description || "" }}
-                    />
-                  )}
+                    {/* Item Description (HTML content) */}
+                    {item?.description?.trim?.() && (
+                      <div
+                        className="text-[15px] text-[#555] leading-relaxed prose prose-p:my-2"
+                        dangerouslySetInnerHTML={{ __html: item?.description || "" }}
+                      />
+                    )}
 
 
-                </div>
-              ))}
+                  </div>
+                ))}
 
               {/* Grid layout for Prime Attractions */}
-              {sectionKey === "Prime Attractions" && sectionItems?.length > 0 && (
+              {sectionKey === "Prime Attractions" && sectionItems?.content_details?.length > 0 && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-                  {sectionItems?.map?.((item, itemIndex) => (
+                  {sectionItems?.content_details?.map?.((item, itemIndex) => (
 
 
                     <div
@@ -76,39 +78,50 @@ const CityComposite = ({ content }) => {
                   ))}
                 </div>
               )}
+
+              {data?.[sectionKey]?.view_details?.view_type === "background_color" &&
+                data?.[sectionKey]?.content_details?.length > 0 && (
+                  <div
+                    className="w-full gap-4 p-6 rounded-[15px] mt-6"
+                    style={{
+                      backgroundColor: `${data?.[sectionKey]?.view_details?.color}1A`, // 10% opacity
+                    }}
+                  >
+                    <h3 className="text-[24px] font-[600] text-[#001F51] mb-4">
+                      {sectionKey || "Important Notices"}
+                    </h3>
+
+                    <div key={index} className="space-y-3 mb-6 last:mb-0">
+                      {/* {notice?.title && (
+                        <h4 className="text-[20px] font-[600] text-[#001F51]">
+                          {notice?.title || ""}
+                        </h4>
+                      )} */}
+                      {data?.[sectionKey]?.content_details && (
+
+                        <ul className={`list-disc ml-6 space-y-2 text-[15px] text-[#555] ${data?.[sectionKey]?.content_details?.length <= 6
+                          ? "columns-1"
+                          : data?.[sectionKey]?.content_details?.length > 6 && data?.[sectionKey]?.content_details?.length <= 12
+                            ? "columns-2"
+                            : "columns-3"
+                          }`}>
+                          {data?.[sectionKey]?.content_details?.map?.((item, i) => (
+                            <li key={i} className="mb-1">{item?.title || ""}</li>
+                          ))}
+                        </ul>
+
+                      )}
+
+                    </div>
+
+                  </div>
+                )}
             </div>
           );
         })}
 
         {/* Important Notices (if available in content) */}
-        {content?.important_notices?.length > 0 && (
-          <div className="w-full gap-4 p-6 rounded-[15px] bg-[#FA8F21]/10 mt-6">
-            <h3 className="text-[24px] font-[600] text-[#001F51] mb-4">
-              {content?.important_notices_title || "Important Notices" || ""}
-            </h3>
-            {content?.important_notices?.map?.((notice, index) => (
-              <div key={index} className="space-y-3 mb-6 last:mb-0">
-                {notice?.title && (
-                  <h4 className="text-[20px] font-[600] text-[#001F51]">
-                    {notice?.title || ""}
-                  </h4>
-                )}
-                {notice?.listItems?.length > 0 && (
-                  <ul className={`list-disc ml-6 space-y-2 text-[15px] text-[#555] ${notice?.listItems?.length <= 6
-                    ? "columns-1"
-                    : notice?.listItems?.length > 6 && notice?.listItems?.length <= 12
-                      ? "columns-2"
-                      : "columns-3"
-                    }`}>
-                    {notice?.listItems?.map?.((item, i) => (
-                      <li key={i} className="mb-1">{item || ""}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            ))}
-          </div>
-        )}
+
       </div>
     </div>
   );

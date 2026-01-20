@@ -1,8 +1,7 @@
-import { useEffect } from "react";
 import ArrowDown from "../../assets/icons/arrow_down_dark.png";
 import CommonTable from "../../components/tables/CommonTable";
 
-export const FileListTable = ({ title, content, downloadble, viewable, searchable, isHeader }) => {
+export const FileListTable = ({ title, content, data, downloadble, viewable, searchable, isHeader }) => {
     const handleDownload = (file, fileName) => {
         if (!file) return;
 
@@ -19,37 +18,75 @@ export const FileListTable = ({ title, content, downloadble, viewable, searchabl
         window.open(file, '_blank');
     };
 
-    // Get the table configuration based on content structure
-    const getTableConfig = () => {
-        if (content?.sections) {
-            // If content has sections property
+    // Get table data from content structure
+    const getTableData = () => {
+        if (!content) return null;
+
+        // Get the first key (since content is an object with dynamic keys)
+        const contentKey = Object.keys(content)?.[0];
+        const tableContent = content?.[contentKey];
+
+        if (!tableContent) return null;
+
+        // Transform table_heading to columns format
+        const columns = tableContent?.table_heading?.map((heading, index) => {
+            // Map heading titles to appropriate accessors
+            const headingTitle = heading?.title?.toLowerCase();
+            let accessor = '';
+
+            if (headingTitle?.includes('sr') || headingTitle?.includes('no')) {
+                accessor = 'srno';
+            } else if (headingTitle?.includes('date')) {
+                accessor = 'date';
+            } else if (headingTitle?.includes('pdf')) {
+                accessor = 'file_title';
+            } else {
+                accessor = headingTitle?.replace(/[^a-z0-9]/g, '_') || `col_${index}`;
+            }
+
             return {
-                isHeader: content?.sections?.isHeader ?? true,
-                title: content?.sections?.title,
-                shadow: content?.sections?.shadow,
-                columns: content?.sections?.columns,
-                rows: content?.sections?.rows
+                heading: heading?.title || `Column ${index + 1}`,
+                accessor: accessor
             };
-        } else {
-            // If content is directly the table object
-            return {
-                isHeader: content.isHeader ?? true,
-                title: content?.title,
-                shadow: content?.shadow,
-                columns: content?.columns,
-                rows: content?.rows
-            };
+        });
+
+        // Add file column for PDF links if PDF column exists
+        if (columns?.some(col => col?.accessor === 'file_title')) {
+            columns.push({
+                heading: '',
+                accessor: 'file'
+            });
         }
+
+        // Transform table_data to rows format
+        const rows = tableContent?.table_data?.map((item, index) => {
+            const pdfFile = item?.data?.pdf;
+            const hasPdf = pdfFile && pdfFile !== 'null' && pdfFile !== '';
+
+            const rowData = {
+                serial_no: item?.data?.srno || (index + 1).toString(),
+                srno: item?.data?.srno || (index + 1).toString(),
+                date: item?.data?.date || '',
+                file_title: hasPdf ? pdfFile : 'No PDF available',
+                file: hasPdf ? `${item?.image_path}${pdfFile}` : null
+            };
+            return rowData;
+        });
+
+        return {
+            columns: columns || [],
+            rows: rows || []
+        };
     };
 
-    const tableConfig = getTableConfig();
+    const tableData = getTableData();
 
-    // Transform columns to ensure proper format
-    const transformedColumns = tableConfig?.columns?.map(column => {
+    // Transform columns to ensure proper format for CommonTable
+    const transformedColumns = tableData?.columns?.map(column => {
         if (typeof column === 'object' && column.heading && column.accessor) {
             return column; // Already in correct format
         }
-        
+
         // If column is a string, create basic object structure
         if (typeof column === 'string') {
             return {
@@ -57,116 +94,95 @@ export const FileListTable = ({ title, content, downloadble, viewable, searchabl
                 accessor: column.toLowerCase().replace(/[^a-z0-9]/g, '_')
             };
         }
-        
+
         return column;
     });
 
-
     return (
-        <div className={`w-full flex flex-col gap-6 bg-white rounded-[20px] ${content?.rows?"":"p-6 2xl:p-8"} ${tableConfig.shadow===false ? "":"shadow-md "}`}>
-            {/* Use table title if available, otherwise use component title */}
-            {title&& (
+        <div className={`w-full flex flex-col gap-6 bg-white rounded-[20px] p-6 2xl:p-8 shadow-sm`}>
+            {/* Title */}
+            {title && (
                 <div>
                     <h3 className="m-0 text-[#001F51] text-[20px] font-[600] 2xl:text-[24px]">
-                        {title??""}
+                        {title}
                     </h3>
                 </div>
             )}
 
-            <div className={`rounded-[10px] overflow-x-auto ${tableConfig?.shadow===false ? "":"shadow-md"}`}>
+            {/* Table */}
+            <div className={`rounded-[10px] overflow-x-auto shadow-sm`}>
                 <CommonTable
-                    isHeader={tableConfig.isHeader??true}
+                    isHeader={isHeader ?? true}
                     columns={transformedColumns}
                     data={
-                        tableConfig?.rows?.map((row, rowIndex) => (
-                            <tr
-                                key={rowIndex}
-                                className={`${rowIndex !== tableConfig?.rows?.length - 1 && "border-b border-[#D8D8D8]"} text-[#000000] text-[16px]`}
-                            >
-                                {transformedColumns?.map((column, colIndex) => {
-                                    const accessor = column?.accessor;
-                                    const cellValue = row[accessor];
+                        tableData?.rows?.map((row, rowIndex) => {
+                            const hasFile = row?.file !== null && row?.file !== '' && (row?.file?.includes('.pdf') || row?.file?.includes('.docx'));
 
-                                    return accessor !== "file" ? (
-                                        <td
-                                            key={colIndex}
-                                            className={`py-2 px-[19px] ${isHeader===false&&"pl-0"} ${accessor === "serial_no" ? "first:w-[150px]" : "first:w-[300px]"}  ${accessor === "file_title"
-                                                ? "last:w-[400px] md:last:w-full"
-                                                : "w-[400px] md:w-[32%]"
-                                                }`}
-                                        >
-                                            {accessor !== "file_title" ? (
-                                                <span className="text-[14px] 2xl:text-[18px] text-nowrap">{cellValue ?? ""}</span>
-                                            ) : (
-                                                <div className="flex justify-between items-center w-full">
-                                                    {column?.linkable ? (
-                                                        <a
-                                                            href={row["file"] || "#"}
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-                                                                if (!row["file"]) return;
-                                                                handleOpenInNewTab(row["file"]);
-                                                            }}
-                                                            className={`cursor-pointer max-w-[85%] ${!row["file"]
-                                                                ? "text-gray-300 cursor-not-allowed"
-                                                                : "text-[#000000] underline"
-                                                                }`}
-                                                        >
-                                                            {cellValue ?? ""}
-                                                        </a>
-                                                    ) : (
+                            return (
+                                <tr
+                                    key={rowIndex}
+                                    className={`${rowIndex !== tableData?.rows?.length - 1 && "border-b border-[#D8D8D8]"} text-[#000000] text-[16px]`}
+                                >
+                                    {transformedColumns?.map((column, colIndex) => {
+                                        const accessor = column?.accessor;
+                                        const cellValue = row[accessor];
+
+                                        return accessor !== "file" ? (
+                                            <td
+                                                key={colIndex}
+                                                className={`py-2 px-[19px] ${isHeader === false && "pl-0"} ${accessor === "serial_no" || accessor === "srno" ? "first:w-[150px]" : "first:w-[300px]"}  ${accessor === "file_title"
+                                                    ? "last:w-[400px] md:last:w-full"
+                                                    : "w-[400px] md:w-[32%]"
+                                                    }`}
+                                            >
+                                                {accessor !== "file_title" ? (
+                                                    <span className="text-[14px] 2xl:text-[18px] text-nowrap">{cellValue ?? ""}</span>
+                                                ) : (
+                                                    <div className="flex justify-between items-center w-full">
                                                         <div className="flex flex-col max-w-[85%]">
-                                                            {row?.bold_heading&&<strong className="mb-2 flex-wrap pr-[50px]">{row?.bold_heading?? ""}</strong>}
-                                                        <p>{cellValue ?? ""}</p>
+                                                            <p className={`text-[#000000] underline`}>
+                                                                {cellValue ?? ""}
+                                                            </p>
                                                         </div>
-                                                    )}
-                                                    <div className="flex items-center gap-8">
-                                                        {viewable && (
-                                                            <a
-                                                                href={row["file"] || "#"}
-                                                                onClick={(e) => {
-                                                                    e.preventDefault();
-                                                                    if (!row["file"]) return;
-                                                                    handleOpenInNewTab(row["file"]);
-                                                                }}
-                                                                className={`cursor-pointer text-[14px] 2xl:text-[18px] ${!row["file"]
-                                                                    ? "text-gray-300 cursor-not-allowed"
-                                                                    : "text-[#2F8AA5] underline"
-                                                                    }`}
-                                                            >
-                                                                {"view"}
-                                                            </a>
-                                                        )}
+                                                        <div className="flex items-center gap-8">
+                                                            {viewable && (
+                                                                <button
+                                                                    onClick={() => hasFile && handleOpenInNewTab(row["file"])}
+                                                                    disabled={!hasFile}
+                                                                    className={`cursor-pointer text-[14px] 2xl:text-[18px] ${!hasFile
+                                                                        ? "text-gray-400 cursor-not-allowed no-underline"
+                                                                        : "text-[#2F8AA5] underline"
+                                                                        }`}
+                                                                >
+                                                                    {"view"}
+                                                                </button>
+                                                            )}
 
-                                                        {downloadble && (
-                                                            <button
-                                                                onClick={() =>
-                                                                    handleDownload(
-                                                                        row["file"],
-                                                                        row["file_title"]
-                                                                    )
-                                                                }
-                                                                disabled={!row["file"]}
-                                                                className={`cursor-pointer h-[20px] lg:h-[30px] w-[20px] lg:w-[30px] rounded-full flex items-center ml-4 justify-center ${!row["file"]
-                                                                    ? "bg-gray-200 cursor-not-allowed"
-                                                                    : "bg-[#C0F0FF] hover:bg-[#a0e0ff]"
-                                                                    }`}
-                                                            >
-                                                                <img
-                                                                    src={ArrowDown}
-                                                                    className="h-[8px] lg:h-[14px] w-[8px] lg:w-[14px] object-cover"
-                                                                    alt="Download"
-                                                                />
-                                                            </button>
-                                                        )}
+                                                            {downloadble && (
+                                                                <button
+                                                                    onClick={() => hasFile && handleDownload(row["file"], row["file_title"])}
+                                                                    disabled={!hasFile}
+                                                                    className={`cursor-pointer h-[20px] lg:h-[30px] w-[20px] lg:w-[30px] rounded-full flex items-center ml-4 justify-center ${!hasFile
+                                                                        ? "bg-gray-200 cursor-not-allowed"
+                                                                        : "bg-[#C0F0FF] hover:bg-[#a0e0ff]"
+                                                                        }`}
+                                                                >
+                                                                    <img
+                                                                        src={ArrowDown}
+                                                                        className={`h-[8px] lg:h-[14px] w-[8px] lg:w-[14px] object-cover ${!hasFile ? "opacity-50" : ""}`}
+                                                                        alt="Download"
+                                                                    />
+                                                                </button>
+                                                            )}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            )}
-                                        </td>
-                                    ) : null;
-                                })}
-                            </tr>
-                        ))
+                                                )}
+                                            </td>
+                                        ) : null;
+                                    })}
+                                </tr>
+                            );
+                        })
                     }
                 />
             </div>

@@ -7,6 +7,7 @@ import ExternalLogosSaga from "./home/ExternalLogos";
 import YoutubeVideoSaga from "./home/YoutubeVideo";
 import LatestNewsSaga from "./home/LatestNews";
 import MenusSaga from "./settings/MenuList";
+import HomeSaga from "./home/HomeSaga";
  
 export function* rootSaga() {
   yield all([
@@ -17,6 +18,7 @@ export function* rootSaga() {
      ExternalLogosSaga(),
      YoutubeVideoSaga(),
      LatestNewsSaga(),
-     MenusSaga()
+     MenusSaga(),
+     HomeSaga()
   ]);
 }

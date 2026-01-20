@@ -12,28 +12,41 @@ import { UniversityServices } from "../../sections/universityServices/University
 import { useDispatch, useSelector } from 'react-redux';
 import { heroSelector } from "../../redux/selectors/home/Hero";
 import { heroActions } from "../../redux/reducer/slice/home/heroSlice";
+import { HomeSelector } from "../../redux/selectors/home/HomeSelector";
+import { HomeActions } from "../../redux/reducer/slice/home/homeSlice";
 const HomePage = () => {
   const settingsData = useSelector(settingsSelector)
   const heroData = useSelector(heroSelector)
+  const homeData = useSelector(HomeSelector)
   const dispatch = useDispatch()
   useEffect(() => {
     if (Object?.keys(heroData?.data)?.length === 0) {
       dispatch(heroActions?.getBanners())
     }
   }, [])
+  useEffect(() => {
+    if (Object?.keys(homeData?.data)?.length === 0) {
+      dispatch(HomeActions?.getAll())
+    }
+  }, [])
+
+  useEffect(() => { console.log("Home data:", homeData) }, [homeData])
   return (
     <>
       <div className="w-full flex flex-col bg-white">
 
-        <Hero bannerLoading={heroData?.isFetching} externalLoading={settingsData?.isFetching} banners={heroData?.data?.content??[]} externalData={settingsData??{}}/>
-        <UniversityPortal />
-        <BoardMembers />
+        <Hero bannerLoading={homeData?.isFetching} externalLoading={settingsData?.isFetching} banners={homeData?.data?.Banner?.content_details ?? []} externalData={settingsData ?? {}} />
+        {homeData?.isFetching===false&&Array.isArray(homeData?.data?.home_university_portal)&&homeData?.data?.
+          home_university_portal?.length>0&& < UniversityPortal isloading={homeData?.isLoading} contents={homeData?.data?.
+            home_university_portal
+            ?? []} />}
+        <BoardMembers loading={homeData?.isFetching} data={homeData?.data?.Faculty?.content_details??[]} />
         <CampusUpdates />
         <UniversityServices />
         <AffiliatedCarousel />
         <FeaturedVideos />
         <Recognitions />
-        <StatisticalInformation data={settingsData?.data??{}}/>
+        <StatisticalInformation data={settingsData?.data ?? {}} />
       </div>
     </>
   );

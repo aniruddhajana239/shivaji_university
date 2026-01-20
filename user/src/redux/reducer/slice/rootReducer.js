@@ -7,6 +7,7 @@ import { externalLogosReducers } from "./home/externalLogosSlice";
 import { youtubeVideoReducers } from "./home/youtubeVideoSlice";
 import { latestNewsReducers } from "./home/latestNewsSlice";
 import { menuReducers } from "./settings/getMenuListSlice";
+import { HomeReducers } from "./home/homeSlice";
 
 
 export const rootReducers = combineReducers({
@@ -17,5 +18,6 @@ export const rootReducers = combineReducers({
   externalLogos:externalLogosReducers,
   youtubeVideo:youtubeVideoReducers,
   latestNews:latestNewsReducers,
-  menu:menuReducers
+  menu:menuReducers,
+  home:HomeReducers,
 });

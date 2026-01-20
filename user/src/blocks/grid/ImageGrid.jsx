@@ -7,7 +7,7 @@ export const ImageGrid = ({ content }) => {
 
     // Get the first key from content object
     const contentKey = Object?.keys?.(content)?.[0] || "";
-    const gridData = content?.[contentKey] || [];
+    const gridData = content?.[contentKey]?.content_details || [];
 
     return (
         <div className="w-full flex flex-col gap-6 bg-white rounded-[20px] p-6 2xl:p-8 shadow-sm">

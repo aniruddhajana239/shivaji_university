@@ -3,42 +3,42 @@ import ChevronRight from "../../assets/icons/chevron_right_dark.png";
 
 export const LeftSidebarNavigation = ({ activePath, handleClick, title, navItems }) => {
 
-  useEffect(() => {
-     console.log("📋 LeftSidebarNavigation props:", { 
-       activePath, 
-       title, 
-       navItemsCount: navItems?.length,
-       navItems: navItems
-     });
-  }, [activePath, title, navItems]);
+  // useEffect(() => {
+  //    console.log("📋 LeftSidebarNavigation props:", { 
+  //      activePath, 
+  //      title, 
+  //      navItemsCount: navItems?.length,
+  //      navItems: navItems
+  //    });
+  // }, [activePath, title, navItems]);
 
   // Debug: Check if any items have itemText property
   useEffect(() => {
     if (navItems && navItems.length > 0) {
       const firstItem = navItems[0];
-      console.log("🔍 First navItem properties:", {
-        id: firstItem?.id,
-        originalId: firstItem?.originalId,
-        itemText: firstItem?.itemText,
-        title: firstItem?.title,
-        path: firstItem?.path,
-        type: firstItem?.type,
-        parentId: firstItem?.parentId,
-        grandParentId: firstItem?.grandParentId
-      });
+      // console.log("🔍 First navItem properties:", {
+      //   id: firstItem?.id,
+      //   originalId: firstItem?.originalId,
+      //   itemText: firstItem?.itemText,
+      //   title: firstItem?.title,
+      //   path: firstItem?.path,
+      //   type: firstItem?.type,
+      //   parentId: firstItem?.parentId,
+      //   grandParentId: firstItem?.grandParentId
+      // });
     }
   }, [navItems]);
 
   // Handle item click - pass both path and menuId
   const handleItemClick = (item) => {
-    console.log("🖱️ LeftSidebar item clicked:", {
-      itemText: item?.itemText,
-      path: item?.path,
-      originalId: item?.originalId,
-      type: item?.type,
-      parentId: item?.parentId,
-      grandParentId: item?.grandParentId
-    });
+    // console.log("🖱️ LeftSidebar item clicked:", {
+    //   itemText: item?.itemText,
+    //   path: item?.path,
+    //   originalId: item?.originalId,
+    //   type: item?.type,
+    //   parentId: item?.parentId,
+    //   grandParentId: item?.grandParentId
+    // });
     
     // Pass path and build query parameters based on menu type
     if (item?.path && item?.originalId) {
@@ -62,8 +62,6 @@ export const LeftSidebarNavigation = ({ activePath, handleClick, title, navItems
       
       const queryString = params.toString();
       const fullPath = queryString ? `${item.path}?${queryString}` : item.path;
-      
-      console.log("🔗 Navigating to:", fullPath);
       handleClick(fullPath, item.originalId);
     } else if (item?.path) {
       // Fallback if no originalId

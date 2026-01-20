@@ -247,39 +247,39 @@ export const SidebarContentNewsLayout = ({
     setError(null);
 
     try {
-      console.log("🔄 Calling API with menu_id:", menuId);
-      const response = await ContentApi.getContentDetails({ menu_id: menuId });
-      console.log("✅ API Response:", response);
-     let data={}
-      if (response && response.data) {
-        const { layout } = response.data;
-        data = response?.data?.data;
-        delete data.menu_title
-        delete data.layout_type
-        // Get title from first section
-        let pageTitle = response?.data?.data?.menu_title || "Untitled Page";
-        // const firstKey = Object.keys(restData)[0];
-        // if (firstKey && restData[firstKey] && Array.isArray(restData[firstKey])) {
-        //   const firstItem = restData[firstKey][0];
-        //   if (firstItem?.title) {
-        //     pageTitle = firstItem.title;
-        //   }
-        // }
-   
-        setContent({
-          layout_type: response?.data?.data?.layout, // Fixed: Changed from response?.data?.data?.layout
-          title: pageTitle,
-          data: data // Fixed: Changed from response?.data?.data
-        });
-      } else {
-        setError("No data received from API");
-      }
-    } catch (err) {
-      console.error("❌ API Error:", err);
-      setError(err.message || "Failed to fetch content");
-    } finally {
-      setLoading(false);
-    }
+  const response = await ContentApi.getContentDetails({ menu_id: menuId });
+
+  console.log("✅ API Response title:", response?.data?.data?.menu_title);
+
+  if (response?.data?.data) {
+    const apiData = response.data.data;
+
+    // clone object safely
+    const clonedData = { ...apiData };
+
+    // extract values BEFORE deletion
+    const title = clonedData.menu_title;
+    const layoutType = clonedData.layout;
+
+    // remove unwanted keys
+    delete clonedData.menu_title;
+    delete clonedData.layout_type;
+
+    setContent({
+      layout_type: layoutType,
+      title: title,
+      data: clonedData,
+    });
+  } else {
+    setError("No data received from API");
+  }
+} catch (err) {
+  console.error("❌ API Error:", err);
+  setError(err.message || "Failed to fetch content");
+} finally {
+  setLoading(false);
+}
+
   }, [getMenuId, title]);
 
   // Fetch content on mount and when dependencies change
@@ -345,12 +345,17 @@ export const SidebarContentNewsLayout = ({
 
     return (
       <Component
-        title={content.title}
+        title={content?.title}
+        downloadble={content?.layout_type==="searchbar-table"}
         content={(({ layout, ...rest }) => rest)(content?.data || {})}
         data={content.data}
       />
     );
   };
+
+  useEffect(() => {
+    console?.log?.("📋 SidebarContentNewsLayout content:", content);
+  }, [content]);
 
   return (
     <div className="w-full bg-white px-6 lg:px-12 py-8 flex flex-col lg:flex-row gap-6">
@@ -368,10 +373,10 @@ export const SidebarContentNewsLayout = ({
 
       {/* Main Content */}
       <div className="w-full lg:w-3/5 flex flex-col gap-4">
-        <SimpleBreadCrumb
+      {content&& <SimpleBreadCrumb
           parent={{ title: title, path: parentPath }}
-          current={content?.title || "Loading..."}
-        />
+          current={content?.title || "Untitled Page"}
+        />}
         {renderContent()}
       </div>
 

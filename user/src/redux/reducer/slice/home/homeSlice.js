@@ -1,13 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "../../initialState"
 
-const hero = createSlice({
-    name: "hero",
+const Home = createSlice({
+    name: "home",
     initialState: initialState,
     reducers: {
-        getBanners: (state) => {
-            state.isFetching = true
-        },
         getAll: (state) => {
             state.isFetching = true
         },
@@ -48,5 +45,5 @@ const hero = createSlice({
         }
     }
 })
-export const heroActions = hero.actions;
-export const heroReducers = hero.reducer;
+export const HomeActions = Home.actions;
+export const HomeReducers = Home.reducer;

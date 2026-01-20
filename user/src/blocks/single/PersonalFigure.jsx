@@ -8,7 +8,7 @@ export const PersonalFigure = ({ content }) => {
 
     // Get the first key from content object
     const contentKey = Object?.keys?.(content)?.[0] || "";
-    const personData = content?.[contentKey]?.[0];
+    const personData = content?.[contentKey]?.content_details?.[0];
 
     if (!personData) {
         return null;
