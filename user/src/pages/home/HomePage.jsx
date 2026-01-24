@@ -42,7 +42,7 @@ const HomePage = () => {
             ?? []} />}
         <BoardMembers loading={homeData?.isFetching} data={homeData?.data?.Faculty?.content_details??[]} />
         <CampusUpdates />
-        <UniversityServices />
+        <UniversityServices services={homeData?.data?.home_box??[]}/>
         <AffiliatedCarousel />
         <FeaturedVideos />
         <Recognitions />

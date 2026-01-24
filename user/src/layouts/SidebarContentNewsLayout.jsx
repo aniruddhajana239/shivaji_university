@@ -40,7 +40,7 @@ const layoutComponents = {
   "contact-composite": ContactComposite,
   "searchbar-table": FileListTable,
   "comment": Comment,
-  "pdf_list": PDFList,
+  "pdf-list": PDFList,
   "simple-table": SimpleTable,
   "multiple-table": MultipleTable,
   "multiple-file-table": MultipleFileTable,

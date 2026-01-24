@@ -35,9 +35,6 @@ export const BoardMembers = ({ loading = false, data = [] }) => {
         );
     }
 
-    /* =======================
-       No Data → Render Nothing
-    ======================== */
     if (!Array.isArray(data) || data.length === 0) {
         return null;
     }
@@ -56,9 +53,8 @@ export const BoardMembers = ({ loading = false, data = [] }) => {
                         <div className="relative h-[130px] w-[100px] flex-shrink-0">
                             {/* Placeholder */}
                             <div
-                                className={`absolute inset-0 bg-gradient-to-br from-[#C0F0FF] to-[#A0E0FF] rounded-[7px] border-[2.5px] border-[#C0F0FF] transition-opacity duration-300 ${
-                                    loadedImages[index] ? "opacity-0" : "opacity-100"
-                                }`}
+                                className={`absolute inset-0 bg-gradient-to-br from-[#C0F0FF] to-[#A0E0FF] rounded-[7px] border-[2.5px] border-[#C0F0FF] transition-opacity duration-300 ${loadedImages[index] ? "opacity-0" : "opacity-100"
+                                    }`}
                             />
 
                             <img
@@ -66,9 +62,8 @@ export const BoardMembers = ({ loading = false, data = [] }) => {
                                 alt={member?.title || `Board Member ${index + 1}`}
                                 loading="lazy"
                                 onLoad={() => handleImageLoad(index)}
-                                className={`h-full w-full object-cover rounded-[7px] border-[2.5px] border-[#C0F0FF] transition-opacity duration-300 ${
-                                    loadedImages[index] ? "opacity-100" : "opacity-0"
-                                }`}
+                                className={`h-full w-full object-cover rounded-[7px] border-[2.5px] border-[#C0F0FF] transition-opacity duration-300 ${loadedImages[index] ? "opacity-100" : "opacity-0"
+                                    }`}
                                 width={100}
                                 height={130}
                             />
@@ -76,31 +71,31 @@ export const BoardMembers = ({ loading = false, data = [] }) => {
 
                         {/* Content */}
                         <div className="flex flex-col justify-between py-2 h-full flex-1">
-    <div className="flex flex-col gap-1 items-start">
-        <span className="text-[15px] font-[600] text-[#333333] line-clamp-2">
-            {member?.title}
-        </span>
+                            <div className="flex flex-col gap-1 items-start">
+                                <span className="text-[15px] font-[600] text-[#333333] line-clamp-2">
+                                    {member?.title}
+                                </span>
 
-        {member?.description && (
-            <div
-                className="text-[13px] font-[400] text-[#6B7280] italic line-clamp-2"
-                dangerouslySetInnerHTML={{ __html: member.description }}
-            />
-        )}
-    </div>
+                                {member?.description && (
+                                    <div
+                                        className="text-[13px] font-[400] text-[#6B7280] italic line-clamp-2"
+                                        dangerouslySetInnerHTML={{ __html: member.description }}
+                                    />
+                                )}
+                            </div>
 
-    {member?.redirect_to === "open_in_another_link" && (
-        <button className="mt-2 flex items-center gap-2 text-[14px] text-white bg-[#001F51] px-3 py-2 rounded-[5px] hover:bg-[#003080] transition-colors w-fit">
-            More Details
-            <img
-                src={ChevronRight}
-                alt="arrow"
-                className="h-[12px] w-[8px]"
-                loading="lazy"
-            />
-        </button>
-    )}
-</div>
+                            {member?.redirect_to === "open_in_another_link" && (
+                                <button className="mt-2 flex items-center gap-2 w-fit text-[14px] text-white bg-[#001F51] px-3 py-2 rounded-[5px] hover:bg-[#003080] transition-colors">
+                                    More Details
+                                    <img
+                                        src={ChevronRight}
+                                        alt="arrow"
+                                        className="h-[10px] w-[8px]"
+                                        loading="lazy"
+                                    />
+                                </button>
+                            )}
+                        </div>
 
                     </div>
                 ))}

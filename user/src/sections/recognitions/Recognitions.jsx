@@ -2,18 +2,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { externalLogosSelector } from "../../redux/selectors/home/ExternalLogos";
 import { externalLogosActions } from "../../redux/reducer/slice/home/externalLogosSlice";
 import { useEffect, useState } from "react";
+import { HomeSelector } from "../../redux/selectors/home/HomeSelector";
+import { HomeActions } from "../../redux/reducer/slice/home/homeSlice";
 
 export const Recognitions = () => {
     const logos = useSelector(externalLogosSelector);
     const dispatch = useDispatch();
+    const HomeData=useSelector(HomeSelector)
     const [loadedImages, setLoadedImages] = useState({});
 
     useEffect(() => {
         // Check if data exists and is empty
-        if (!logos?.data?.content || logos.data.content.length === 0) {
-            dispatch(externalLogosActions.getExternalLogos());
+        if (!HomeData?.data?.["second testimonial"]?.content_details || HomeData?.data?.["second testimonial"]?.content_details?.length === 0) {
+            dispatch(HomeActions.getAll());
         }
-    }, [dispatch, logos?.data?.content]);
+    }, [dispatch, HomeData]);
 
 
     // Handle image load
@@ -22,7 +25,7 @@ export const Recognitions = () => {
     };
 
     // Show loading skeleton while fetching
-    if (logos?.isFetching) {
+    if (HomeData?.isFetching) {
         return (
             <div className="w-full flex items-center justify-center gap-2 md:gap-4 xl:gap-4 px-6 lg:px-[48px] py-12">
                 {[...Array(6)].map((_, index) => (
@@ -35,12 +38,12 @@ export const Recognitions = () => {
     }
 
     // If no logos data, return null or fallback
-    if (!logos?.data?.content || logos.data.content.length === 0) {
+    if (!HomeData?.data?.["second testimonial"]?.content_details|| HomeData?.data?.["second testimonial"]?.content_details.length === 0) {
         return null;
     }
 
     // Use API data instead of hardcoded array
-    const recognitions = logos.data.content.map((item, index) => ({
+    const recognitions = HomeData?.data?.["second testimonial"]?.content_details?.map((item, index) => ({
         id: index,
         src: item?.image,
         alt: item?.title || `Recognition ${index + 1}`,

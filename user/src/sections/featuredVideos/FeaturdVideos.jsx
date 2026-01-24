@@ -5,35 +5,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { youtubeVideoSelector } from "../../redux/selectors/home/YoutubeVideo";
 import { youtubeVideoActions } from "../../redux/reducer/slice/home/youtubeVideoSlice";
 import { useEffect, useState } from "react";
-import { latestNewsSelector } from "../../redux/selectors/home/LatestNews";
 import { latestNewsActions } from "../../redux/reducer/slice/home/latestNewsSlice";
+import { HomeSelector } from "../../redux/selectors/home/HomeSelector";
 
 export const FeaturedVideos = () => {
-    const youtubeVideoData = useSelector(youtubeVideoSelector);
-    const latestNewsData = useSelector(latestNewsSelector);
+    const HomeData = useSelector(HomeSelector);
     const dispatch = useDispatch();
     const [youtubeEmbed, setYoutubeEmbed] = useState(null);
 
     // Dispatch actions for both YouTube video and Latest News
     useEffect(() => {
-        // Fetch YouTube video if not available
-        if (!youtubeVideoData?.data?.content?.description || youtubeVideoData.data.content.description.trim() === "") {
-            dispatch(youtubeVideoActions.getYoutubeVideo());
-        }
+
         
         // Fetch Latest News if not available
-        if (!latestNewsData?.data?.content || latestNewsData.data.content.length === 0) {
+        if (!HomeData?.data?.content || HomeData.data.content.length === 0) {
             dispatch(latestNewsActions.getLatestNews());
         }
-    }, [dispatch, youtubeVideoData?.data?.content?.description, latestNewsData?.data?.content]);
+    }, [dispatch, HomeData]);
 
     useEffect(() => {
-        console.log("youtube Video Data:", youtubeVideoData);
-        console.log("latestNewsData:", latestNewsData);
+        console.log("HomeData:", HomeData);
         
         // Extract YouTube embed information
-        if (youtubeVideoData?.data?.content?.description) {
-            const html = youtubeVideoData.data.content.description;
+        if (HomeData?.data?.["Youtube Video"]?.content_details?.description) {
+            const html = HomeData?.data?.["Youtube Video"]?.content_details?.description;
             
             // Parse the iframe from HTML
             const parser = new DOMParser();
@@ -56,7 +51,7 @@ export const FeaturedVideos = () => {
                 });
             }
         }
-    }, [youtubeVideoData]);
+    }, [HomeData]);
 
     const handleShare = () => {
         if (youtubeEmbed?.src) {
@@ -83,7 +78,7 @@ export const FeaturedVideos = () => {
         <div className="w-full bg-[#FFFFFF] grid grid-cols-1 lg:grid-cols-2 gap-4 py-8 px-6 lg:px-[48px]">
             {/* YouTube Video Section */}
             <div className="w-full rounded-[10px] h-full relative aspect-5/3">
-                {youtubeVideoData?.isFetching ? (
+                {HomeData?.isFetching ? (
                     // Loading skeleton matching your original aspect ratio
                     <div className="w-full h-full relative rounded-[10px] overflow-hidden">
                         {/* Main video skeleton */}
@@ -168,9 +163,8 @@ export const FeaturedVideos = () => {
                 )}
             </div>
 
-            {/* Latest News List - Replacing featuredVideos with latestNewsData */}
             <div className="w-full rounded-[10px] aspect-video flex flex-col gap-4">
-                {latestNewsData?.isFetching ? (
+                {HomeData?.isFetching ? (
                     // Loading skeleton for latest news matching your layout
                     [...Array(3)].map((_, index) => (
                         <div key={index} className="w-full flex items-center gap-4 px-0 lg:px-4 flex-shrink-0 animate-pulse">
@@ -181,9 +175,9 @@ export const FeaturedVideos = () => {
                             </div>
                         </div>
                     ))
-                ) : latestNewsData?.data?.content && latestNewsData.data.content.length > 0 ? (
+                ) : HomeData?.data?.["Side content of youtube video"]?.content_details && HomeData?.data?.["Side content of youtube video"]?.content_details?.length > 0 ? (
                     // Show latest news from API
-                    latestNewsData.data.content.map((news, index) => (
+                    HomeData?.data?.["Side content of youtube video"]?.content_details.map((news, index) => (
                         <div 
                             key={index} 
                             className="w-full flex items-center gap-4 px-0 lg:px-4 flex-shrink-0"

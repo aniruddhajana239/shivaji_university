@@ -15,11 +15,13 @@ import Logo5 from "../../../assets/images/affiliated/slide5.png";
 import Logo6 from "../../../assets/images/affiliated/slide6.png";
 import Logo7 from "../../../assets/images/affiliated/slide7.png";
 import Logo8 from "../../../assets/images/affiliated/slide8.png";
+import { useSelector } from "react-redux";
+import { HomeSelector } from "../../../redux/selectors/home/HomeSelector";
 
 const AffiliatedCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(9);
-
+  const HomeData=useSelector(HomeSelector)
   // Update slidesToShow based on window width
   useEffect(() => {
     const handleResize = () => {
@@ -160,6 +162,7 @@ const AffiliatedCarousel = () => {
 
   return (
     <div className="w-full flex flex-col items-center justify-center px-6 lg:px-[48px]">
+     {HomeData?.isfetching?null:
       <div className="w-full relative px-8 sm:px-8 md:px-8 lg:px-12 md:py-6 py-2 bg-[#EFFFFC] rounded-[10px]">
         <Slider
           {...settings}
@@ -167,24 +170,24 @@ const AffiliatedCarousel = () => {
             setCurrentSlide(index);
           }}
         >
-          {logos.map((logo, index) => {
+          {HomeData?.data?.["First Testimonial"]?.content_details?.map((logo, index) => {
             return (
               <div
-                key={logo.id}
+                key={logo.index}
                 className="flex justify-center items-center py-4" // Removed horizontal padding
               >
                 <div className="relative bg-white rounded-[8px] flex items-center justify-center w-24 h-24  md:w-26 md:h-26 lg:w-32 lg:h-32 xl:w-36 xl:h-36 overflow-hidden group transition-all duration-300"> {/* Removed margin */}
                   {/* Logo */}
                   <img
-                    src={logo.src}
-                    alt={logo.title}
+                    src={logo.image??""}
+                    alt={logo.title??""}
                     className="max-w-[70%] max-h-[70%] sm:max-w-[75%] sm:max-h-[75%] md:max-w-[80%] md:max-h-[80%] object-contain transition-transform duration-300 group-hover:scale-105"
                   />
 
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-[#007C9D]/90 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-center text-white p-2 sm:p-3 text-center">
                     <h4 className="text-xs sm:text-sm font-semibold mb-1 sm:mb-2 px-1">
-                      {logo.title}
+                      {logo.title??""}
                     </h4>
                     <button className="cursor-pointer text-white text-[12px] sm:text-[14px] px-2 sm:px-3 py-1 border border-white font-[500] rounded-[4px] sm:rounded-[5px] flex items-center gap-1 sm:gap-2 transition-all">
                       Details
@@ -200,7 +203,7 @@ const AffiliatedCarousel = () => {
             );
           })}
         </Slider>
-      </div>
+      </div>}
     </div>
   );
 };

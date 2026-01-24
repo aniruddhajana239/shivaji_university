@@ -1,24 +1,77 @@
 import CommonTable from "../../components/tables/CommonTable";
 
 export const MultipleTable = ({ title, content }) => {
-    const tables = content?.sections?.tables;
+    console.log("content in multiple table :", content);
+    
+    // Get all sections that have table_data
+    const extractTablesFromContent = () => {
+        if (!content || typeof content !== 'object') return [];
+        
+        const tables = [];
+        
+        Object.entries(content).forEach(([sectionKey, sectionData]) => {
+            // Check if this section has table data
+            if (sectionData?.table_data && Array.isArray(sectionData.table_data) && 
+                sectionData.table_heading && Array.isArray(sectionData.table_heading)) {
+                
+                tables.push({
+                    tableTitle: sectionKey, // Use section key as table title
+                    sections: {
+                        columns: sectionData.table_heading.map((heading, index) => ({
+                            heading: heading?.title || `Column ${index + 1}`,
+                            accessor: `col_${index}`
+                        })),
+                        rows: sectionData.table_data.map(item => {
+                            const rowData = {};
+                            const dataValues = Object.values(item?.data || {});
+                            
+                            // Map each value to its column
+                            sectionData.table_heading.forEach((heading, colIndex) => {
+                                rowData[`col_${colIndex}`] = dataValues[colIndex] || '';
+                            });
+                            
+                            return rowData;
+                        })
+                    },
+                    isWrappableHeader: false, // Default value
+                    autoWidth: false // Default value
+                });
+            }
+        });
+        
+        return tables;
+    };
+
+    const tables = extractTablesFromContent();
+    
+    // Helper function to handle \n in text
+    const handleNewLines = (text) => {
+        if (!text || typeof text !== 'string') return text;
+        
+        return text.split('\\n').map((line, index, array) => (
+            <span key={index}>
+                {line}
+                {index < array.length - 1 && <br />}
+            </span>
+        ));
+    };
 
     return (
         <div className="w-full flex flex-col gap-6 bg-white rounded-[20px] p-6 2xl:p-8 shadow-sm">
             {/* Main Title */}
             <h3 className="m-0 text-[#001F51] text-[20px] font-[600] 2xl:text-[24px]">
-                {title??""}
+                {title ?? ""}
             </h3>
 
             {/* Multiple Tables */}
-            {tables && Array.isArray(tables) && tables.length > 0 ? (
+            {tables.length > 0 ? (
                 <div className="w-full flex flex-col items-center">
                     {tables.map((table, index) => (
                         <div key={index} className="w-full flex flex-col bg-[#8C3AAA1A] rounded-[10px] shadow-md items-center mb-6 last:mb-0">
                             {/* Individual Table Title */}
                             {table?.tableTitle && (
                                 <h4 className="m-0 text-[#001F51] text-[16px] font-[600] 2xl:text-[20px] py-[12px]">
-                                    {table?.tableTitle ?? ""}
+                                    {table.tableTitle}
                                 </h4>
                             )}
 
@@ -26,7 +79,10 @@ export const MultipleTable = ({ title, content }) => {
                             {table?.sections?.columns && table?.sections?.rows && (
                                 <CommonTable
                                     isWrappableHeader={table.isWrappableHeader}
-                                    columns={table.sections.columns}
+                                    columns={table.sections.columns.map(col => ({
+                                        ...col,
+                                        heading: handleNewLines(col.heading) // Handle \n in headings
+                                    }))}
                                     data={table.sections.rows.map((row, rowIndex) => {
                                         const isLastRow = rowIndex === table.sections.rows.length - 1;
 
@@ -59,7 +115,7 @@ export const MultipleTable = ({ title, content }) => {
                                                                 }`}
                                                         >
                                                             <span className="text-[14px] 2xl:text-[18px] align-top">
-                                                                {cellValue ?? ""}
+                                                                {handleNewLines(cellValue ?? "")}
                                                             </span>
                                                         </td>
                                                     );

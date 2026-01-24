@@ -11,7 +11,7 @@ const CommonTable = ({ columns, data, isWrappableHeader, isHeader }) => {
                 <th
                   key={index}
                   className={`text-left ${isWrappableHeader ? "text-wrap" : "text-nowrap"} py-[16px] px-[19px] first:rounded-tl-[10px]
-                    last:rounded-tr-[10px] ${isWrappableHeader ? "" : " last:w-[400px] md:last:w-full"}  text-[14px]`}
+                    last:rounded-tr-[10px] ${isWrappableHeader? "" : " last:w-[400px] md:last:w-full"}  text-[12px]`}
                 >
                   {col?.heading ?? ""}
                 </th>
@@ -19,12 +19,12 @@ const CommonTable = ({ columns, data, isWrappableHeader, isHeader }) => {
             </tr>
           </thead>
         )}
-        <tbody className="bg-white">
+        <tbody className="bg-white !text-[10px]">
           {data ? (
             data
           ) : (
             <tr>
-              <td colSpan={columns.length} className="text-center py-4">
+              <td colSpan={columns.length} className="text-center text-[10px] py-4">
                 No Data Found
               </td>
             </tr>

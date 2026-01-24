@@ -6,21 +6,24 @@ import PublicRoutes from "./publicRoutes/PublicRoutes";
 import { useDispatch, useSelector } from "react-redux";
 import { settingsSelector } from "../redux/selectors/settings/Settings";
 import { settingsActions } from "../redux/reducer/slice/settings/settingsSlice";
+import { HomeSelector } from "../redux/selectors/home/HomeSelector";
  
 
 const BaseRouting = () => {
+  const HomeData=useSelector(HomeSelector)
+  useEffect(()=>{console.log("Home Data In Base Routing:",HomeData)})
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   
   return (
     <Router basename="/">
-      <Layout />
+      <Layout HomeData={HomeData}/>
     </Router>
   );
 };
 
-const Layout = () => {
+const Layout = ({HomeData}) => {
   const settingsData = useSelector(settingsSelector)
     const dispatch = useDispatch()
     useEffect(() => {
@@ -34,7 +37,7 @@ const Layout = () => {
       <div className="flex-grow">
         <PublicRoutes />
       </div>
-      <Footer data={settingsData?.data??{}}/>
+      <Footer HomeData={HomeData??{}}/>
     </div>
   );
 };

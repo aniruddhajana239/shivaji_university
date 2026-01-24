@@ -3,107 +3,131 @@ import chevron_right_arrow from "../../assets/icons/chevron_right_dark.png";
 import CommonTable from "../../components/tables/CommonTable";
 
 const ContactComposite = ({ content, title }) => {
-  if (!content || !content.sections) return null;
+  console.log("content in contact composite:", content);
+  
+  if (!content || typeof content !== "object") return null;
+
+  // Function to parse HTML description safely
+  const parseHtmlDescription = (htmlString) => {
+    if (!htmlString) return null;
+    return <div dangerouslySetInnerHTML={{ __html: htmlString }} />;
+  };
+
+  // Extract sections from content
+  const sections = Object.entries(content || {}).map(([key, value]) => ({
+    key,
+    ...value
+  }));
+
+  // Find the table section (looking for table_data property)
+  const tableSectionIndex = sections.findIndex(section => 
+    section?.table_data || section?.table_heading
+  );
+  
+  const tableSection = tableSectionIndex >= 0 ? sections[tableSectionIndex] : null;
+  
+  // Filter out table section from other sections
+  const otherSections = sections.filter((_, index) => index !== tableSectionIndex);
 
   // Helper function to render table rows for CommonTable
-  const renderTableRows = (tableData) => {
-    if (!tableData?.columns || !tableData?.rows) return null;
+  const renderTableRows = (sectionData) => {
+    if (!sectionData?.table_data || !Array.isArray(sectionData?.table_data)) return null;
 
-    return tableData.rows.map((row, rowIndex) => (
-      <tr
-        key={rowIndex}
-        className={`${
-          rowIndex !== tableData.rows.length - 1 && "border-b border-[#D8D8D8]"
-        } text-[#000000] text-[16px] mx-2 hover:bg-[#f5f5f5]`}
-      >
-        {tableData.columns.map((column, colIndex) => {
-          const accessor = column.accessor;
-          const cellValue = row[accessor];
+    return sectionData.table_data.map((row, rowIndex) => {
+      const data = row?.data || {};
+      
+      return (
+        <tr
+          key={rowIndex}
+          className={`${
+            rowIndex !== sectionData.table_data.length - 1 && "border-b border-[#D8D8D8]"
+          } text-[#000000] text-[16px] mx-2`}
+        >
+          {/* Office Column */}
+          <td className="py-3 px-4 align-top">
+            <span className="text-[14px] 2xl:text-[18px] align-top">
+              {data?.office ?? ""}
+            </span>
+          </td>
 
-          // Render cell content based on column type
-          const renderCellContent = () => {
-            // Phone numbers as unordered list
-            if (accessor === "PhoneNo" && Array.isArray(cellValue)) {
-              return (
-                <ul
-                  className="text-[14px] 2xl:text-[18px] align-top"
-                  style={{ listStyleType: "none" }}
-                >
-                  {cellValue.map((phone, idx) => (
-                    <li key={idx}>{phone}</li>
-                  ))}
-                </ul>
-              );
-            }
+          {/* Phone No Column */}
+          <td className="py-3 px-4 align-top">
+            {data?.["phone-no"] && (
+              <ul
+                className="text-[14px] 2xl:text-[18px] align-top"
+                style={{ listStyleType: "none" }}
+              >
+                {data["phone-no"].split('\\n').map((phone, idx) => (
+                  <li key={idx}>{phone.trim()}</li>
+                ))}
+              </ul>
+            )}
+          </td>
 
-            // Links as clickable links
-            if (accessor === "Links" && cellValue) {
-              return (
-                <a
-                  href={cellValue}
-                  className="text-blue-600 underline whitespace-nowrap"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Click here
-                </a>
-              );
-            }
+          {/* Email Column */}
+          <td className="py-3 px-4 align-top">
+            <span className="text-[14px] 2xl:text-[18px] align-top">
+              {data?.email ?? ""}
+            </span>
+          </td>
 
-            // Default text rendering
-            return (
+          {/* Link for contact Column */}
+          <td className="py-3 px-4 align-top">
+            {data?.["link-for-contact"] ? (
+              <a
+                href={data["link-for-contact"]}
+                className="text-[#2F8AA5] underline whitespace-nowrap"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Click here
+              </a>
+            ) : (
               <span className="text-[14px] 2xl:text-[18px] align-top">
-                {cellValue ?? ""}
+                {data?.["link-for-contact"] ?? ""}
               </span>
-            );
-          };
+            )}
+          </td>
+        </tr>
+      );
+    });
+  };
 
-          // Determine width classes based on column accessor
-          const getWidthClass = () => {
-            switch (accessor) {
-              case "Office":
-                return "w-[30%] max-w-[360px]"; // First column - Office
-              case "PhoneNo":
-                return "w-[25%]"; // Second column - Phone No
-              case "Email":
-                return "w-[25%]"; // Third column - Email
-              case "Links":
-                return "w-[20%]"; // Fourth column - Links
-              default:
-                return "";
-            }
-          };
+  // Check if section has images
+  const hasImages = (section) => {
+    return section?.content_details?.some(item => item?.image);
+  };
 
-          return (
-            <td
-              key={colIndex}
-              className={`py-3 px-4 align-top ${getWidthClass()}`}
-            >
-              {renderCellContent()}
+  // Determine if section has background color style
+  const hasBackgroundStyle = (section) => {
+    return section?.view_details?.view_type === "background_color" || 
+           section?.view_details?.color;
+  };
 
-              {/* Show description with title and list items if available */}
-              {accessor === "Office" && row.Description && (
-                <div className="mt-2">
-                  {row.Description.title && (
-                    <p className="text-[10px] 2xl:text-[14px]  text-[#333333] mb-1">
-                      {row.Description.title}
-                    </p>
-                  )}
-                  {row.Description.listItems &&
-                    Array.isArray(row.Description.listItems) && (
-                      <ul className="text-[10px] 2xl:text-[14px] text-wrap text-[#333333] list-none list-inside space-y-1">
-                        {row.Description.listItems.map((item, index) => (
-                          <li key={index}>{item}</li>
-                        ))}
-                      </ul>
-                    )}
-                </div>
-              )}
-            </td>
-          );
-        })}
-      </tr>
-    ));
+  // Determine if section is an external cards section
+  const isExternalCardsSection = (section) => {
+    return section?.content_details?.some(item => 
+      item?.redirect_to === "open_file" || item?.redirect_to === "open_in_another_link"
+    );
+  };
+   const prepareTableColumns = (tableSection) => {
+    if (!tableSection?.table_heading) return [];
+    
+    // Map width classes based on column index
+    const widthClasses = [
+      "w-[30%] max-w-[360px]",  // First column
+      "w-[25%]",               // Second column
+      "w-[25%]",               // Third column
+      "w-[20%]"                // Fourth column
+    ];
+    
+    return tableSection.table_heading.map((heading, index) => ({
+      ...heading,
+      // Convert title to heading for CommonTable component
+      heading: heading?.title || "",
+      // Add width class based on index
+      className: widthClasses[index] || ""
+    }));
   };
 
   return (
@@ -111,121 +135,170 @@ const ContactComposite = ({ content, title }) => {
       {/* Title */}
       <h3 className="m-0 text-[#001F51] text-[24px] font-[600]">{title}</h3>
 
-      {/* Sections Loop */}
-      {content?.sections?.map((section, index) => (
-        <div key={index} className="mb-10">
-          {/* Section Heading */}
-          {section?.heading && (
-            <h4 className="text-[18px] font-[600] text-[#001F51] mb-3">
-              {section.heading}
-            </h4>
-          )}
-
-          {/* Address & Contact List */}
-          {section?.addressContact && (
-            <div className="flex flex-col md:flex-row mb-4 2xl:pr-[150px]">
-              {section.addressContact.map((item, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-3 flex-1 min-w-0 px-2"
-                >
-                  <div className="flex-shrink-0 bg-[#2F8AA5] p-3 rounded-full flex items-center justify-center">
-                    <img
-                      src={item.image}
-                      alt="icon"
-                      className="w-4 h-4 object-contain"
-                    />
+      {/* Render first non-table section if exists */}
+      {otherSections?.length > 0 && (
+        <div className="">
+          {hasImages(otherSections[0]) ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {otherSections[0]?.content_details?.map((item, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  {item?.image && (
+                    <div className="flex-shrink-0 bg-[#2F8AA5] p-3 rounded-full flex items-center justify-center mt-1">
+                      <img
+                        src={item.image}
+                        alt="icon"
+                        className="w-4 h-4 object-contain"
+                      />
+                    </div>
+                  )}
+                  <div className="flex-1">
+                    {item?.title && (
+                      <p className="text-[16px] font-[600] text-black mb-1">
+                        {item.title}
+                      </p>
+                    )}
+                    {item?.description && (
+                      <div className="text-[14px] text-black">
+                        {parseHtmlDescription(item.description)}
+                      </div>
+                    )}
                   </div>
-                  <p className="text-[14px] text-black   flex-1">
-                    {item.contact}
-                  </p>
                 </div>
               ))}
             </div>
+          ) : (
+            otherSections[0]?.content_details?.map((item, index) => (
+              <div key={index} className="mb-4">
+                {item?.title && (
+                  <p className="text-[16px] font-[600] text-black mb-2">
+                    {item.title}
+                  </p>
+                )}
+                {item?.description && (
+                  <div className="text-[14px] text-black">
+                    {parseHtmlDescription(item.description)}
+                  </div>
+                )}
+              </div>
+            ))
           )}
+        </div>
+      )}
 
+      {/* Always render table section in second position if it exists */}
+      {tableSection && (
+        <div className="">
           {/* Contacts Details Table using Custom CommonTable */}
-          {section?.tableData && (
+          {tableSection?.table_heading && (
             <CommonTable
-              columns={section.tableData.columns}
-              data={renderTableRows(section.tableData)}
+              columns={prepareTableColumns(tableSection)}
+              data={renderTableRows(tableSection)}
               isWrappableHeader={false}
             />
           )}
+        </div>
+      )}
 
-          {/* Registrar Section */}
-          {section?.registrarOffice && (
-            <div className="mt-4 flex flex-col gap-2">
-              {section.registrarOffice.map((item, i) => (
-                <p key={i} className="text-[14px] text-black flex flex-col">
-                  <span className="text-[16px] font-[700] flex items-center gap-2">
-                    <span className="inline-block w-[6px] h-[6px] bg-black rounded-full"></span>
-                    {item.boldText}
-                  </span>
-                  {item.contact}
-                </p>
-              ))}
-            </div>
-          )}
+      {/* Render remaining sections after table */}
+      {otherSections?.slice(1).map((section, index) => {
+        if (!section?.content_details) return null;
+
+        // Skip if it's an external cards section (will be rendered separately at the end)
+        if (isExternalCardsSection(section)) return null;
+
+        return (
+          <div key={index} className="mb-0">
+            {/* Content Details */}
+            {hasImages(section) ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {section?.content_details?.map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    {item?.image && (
+                      <div className="flex-shrink-0 bg-[#2F8AA5] p-3 rounded-full flex items-center justify-center mt-1">
+                        <img
+                          src={item.image}
+                          alt="icon"
+                          className="w-4 h-4 object-contain"
+                        />
+                      </div>
+                    )}
+                    <div className="flex-1">
+                      {item?.title && !hasBackgroundStyle(section) && (
+                        <p className="text-[16px] font-[600] text-black mb-1">
+                          {item.title}
+                        </p>
+                      )}
+                      {item?.description && (
+                        <div className="text-[14px] text-black">
+                          {parseHtmlDescription(item.description)}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : null}
+
+            {/* Sections with background color */}
+            {hasBackgroundStyle(section) && section?.content_details && (
+              <div 
+                className="w-full flex flex-col gap-4 p-3 py-4 rounded-[15px] mt-4"
+                style={{ 
+                  backgroundColor: section?.view_details?.view_type!=="" 
+                    ? `${section.view_details.color}1A` 
+                    : undefined 
+                }}
+              >
+                {section.content_details.map((notice, idx) => (
+                  <div
+                    key={idx}
+                    className="text-[14px] 2xl:text-[18px] text-justify text-[#000000] font-[400] flex flex-col gap-2 items-start"
+                  >
+                    {section?.view_details?.view_type!=="" &&notice?.title && (
+                      <span className={`font-[600] ${idx===0?"text-[#001F51]":"text-[#000000]"} py-2`}>
+                        {notice.title}
+                      </span>
+                    )}
+                    {notice?.description && (
+                      <div className="text-[14px] 2xl:text-[18px] text-justify">
+                        {parseHtmlDescription(notice.description)}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })}
+
+      {/* External Cards Sections (always at the end) */}
+      {sections.filter(isExternalCardsSection).map((section, index) => (
+        <div key={index} className="w-full">
+          <ul className="flex flex-col gap-2 text-[16px] text-[400]">
+            {section?.content_details?.map((card, cardIndex) => (
+              <li 
+                key={cardIndex}
+                className="border border-[#C0F0FF] rounded-[12px] p-[15px] flex justify-between items-center cursor-pointer hover:bg-[#f5f5f5]"
+                onClick={() => {
+                  if (card?.link) {
+                    window.open(card.link, '_blank', 'noopener,noreferrer');
+                  }
+                }}
+              >
+                <p>{parseHtmlDescription(card?.description)}</p>
+                <div className="p-2 bg-[#EDFAFE] rounded-full">
+                  <img
+                    src={chevron_right_arrow}
+                    alt="chevron_right_arrow"
+                    className="h-[10px] w-[10px]"
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       ))}
-
-      {/* Important Notices */}
-      {content?.important_notices &&
-        Array.isArray(content.important_notices) &&
-        content.important_notices.length > 0 && (
-          <div className="w-full flex flex-col gap-4 p-3 py-4 rounded-[15px] bg-[#FA8F21]/10 mt-4">
-            <ul className="w-full flex flex-col gap-2">
-              {content.important_notices.map((notice, idx) => (
-                <li
-                  key={idx}
-                  className="text-[14px] 2xl:text-[18px] text-justify text-[#000000] font-[400] flex flex-col gap-2 items-start"
-                >
-                  {notice?.title && (
-                    <span
-                      className={`font-[600] text-[#000000] py-2 ${
-                        idx === 0 ? "text-[#001F51]" : ""
-                      }`}
-                    >
-                      {notice.title}
-                    </span>
-                  )}
-                  {notice?.content && (
-                    <span className="text-[14px] 2xl:text-[18px] text-justify">
-                      {notice.content}
-                    </span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-      {/* Additional Links */}
-      <div className="w-full">
-        <ul className="flex flex-col gap-2 text-[16px] text-[400]">
-          <li className="border border-[#C0F0FF] rounded-[12px] p-[15px] flex justify-between items-center">
-            <p>Holidays in 2025</p>
-            <div className="p-2 bg-[#EDFAFE] rounded-full">
-              <img
-                src={chevron_right_arrow}
-                alt="chevron_right_arrow"
-                className="h-[10px] w-[10px]"
-              />
-            </div>
-          </li>
-          <li className="border border-[#C0F0FF] rounded-[12px] p-[15px] flex justify-between items-center">
-            <p>Google Maps</p>
-            <div className="p-2 bg-[#EDFAFE] rounded-full">
-              <img
-                src={chevron_right_arrow}
-                alt="chevron_right_arrow"
-                className="h-[10px] w-[10px]"
-              />
-            </div>
-          </li>
-        </ul>
-      </div>
     </div>
   );
 };
