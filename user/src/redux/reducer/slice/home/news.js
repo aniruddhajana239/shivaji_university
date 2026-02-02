@@ -1,13 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "../../initialState"
 
-const latestNews = createSlice({
-    name: "latestNews",
+const News = createSlice({
+    name: "news",
     initialState: initialState,
     reducers: {
-        getLatestNews: (state) => {
+        getAll: (state) => {
             state.isFetching = true
         },
+       
         success: (state, action) => {
             if (action?.payload?.data) {
                 state.data = action?.payload?.data;
@@ -44,5 +45,5 @@ const latestNews = createSlice({
         }
     }
 })
-export const latestNewsActions = latestNews.actions;
-export const latestNewsReducers = latestNews.reducer;
+export const NewsActions = News.actions;
+export const NewsReducers = News.reducer;

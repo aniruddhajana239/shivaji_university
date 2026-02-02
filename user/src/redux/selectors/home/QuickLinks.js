@@ -1,0 +1,1 @@
+export const QuickLinksSelector = state => state?.quickLinks    

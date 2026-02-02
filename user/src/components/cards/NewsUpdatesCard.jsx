@@ -70,12 +70,12 @@ export const NewsUpdatesCard = () => {
                     );
                 })}
             </div>
-            <button className="absolute -bottom-5 left-1/2 cursor-pointer w-fit bg-white text-[#000000]  text-[14px] font-[400] p-2 gap-3 flex items-center justify-center border border-2 border-[#C0F0FF] rounded-full shadow-md transform -translate-x-1/2">
+            {/* <button className="absolute -bottom-5 left-1/2 cursor-pointer w-fit bg-white text-[#000000]  text-[14px] font-[400] p-2 gap-3 flex items-center justify-center border border-2 border-[#C0F0FF] rounded-full shadow-md transform -translate-x-1/2">
                 show more
                 <div className="h-[25px] w-[25px] rounded-full bg-[#EDFAFE] flex justify-center items-center">
                     <img src={ChevronDown} className="h-3 w-3 object-contain" />
                 </div>
-            </button>
+            </button> */}
         </div>
     );
 };

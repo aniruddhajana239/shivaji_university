@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ChevronDown from "../../assets/icons/chevron_down.png";
 import { UpcomingEvents } from "../../constants/CampusUpdates";
-
-export const AnnouncementsCard = () => {
+import { useDispatch, useSelector } from "react-redux";
+import { AnnouncementSelector } from "../../redux/selectors/home/Announcement"
+import { AnnouncementActions } from "../../redux/reducer/slice/home/announcement"
+export const AnnouncementsCard = ({ data }) => {
+    const announcementData = useSelector(AnnouncementSelector)
+    const dispatch=useDispatch()
+    console.log("data in announcement card:",data)
     // Get unique categories
     const uniqueCategories = [...new Set(UpcomingEvents.map(event => event.category))];
 
@@ -13,6 +18,12 @@ export const AnnouncementsCard = () => {
     const toggleCategory = (category) => {
         setExpandedCategory(expandedCategory === category ? null : category);
     };
+
+    useEffect(()=>{dispatch(AnnouncementActions?.getAll({menu_id:data[0]?.id}))},[])
+
+    useEffect(() => {
+        console.log("AnnouncementSelector::", AnnouncementSelector, data[0]?.id)
+    }, [AnnouncementSelector])
 
     return (
         <div className="w-full flex flex-col rounded-[10px] shadow-md relative">
@@ -60,7 +71,7 @@ export const AnnouncementsCard = () => {
                                                 <span className="text-[#000000] text-[16px] font-[400] text-left">
                                                     {event.description}
                                                 </span>
-                                               
+
                                             </div>
                                         </div>
                                     ))}
@@ -70,12 +81,12 @@ export const AnnouncementsCard = () => {
                     );
                 })}
             </div>
-            <button className="absolute -bottom-5 left-1/2 cursor-pointer w-fit bg-white text-[#000000]  text-[14px] font-[400] p-2 gap-3 flex items-center justify-center border border-2 border-[#C0F0FF] rounded-full shadow-md transform -translate-x-1/2">
+            {/* <button className="absolute -bottom-5 left-1/2 cursor-pointer w-fit bg-white text-[#000000]  text-[14px] font-[400] p-2 gap-3 flex items-center justify-center border border-2 border-[#C0F0FF] rounded-full shadow-md transform -translate-x-1/2">
                 show more
                 <div className="h-[25px] w-[25px] rounded-full bg-[#EDFAFE] flex justify-center items-center">
                     <img src={ChevronDown} className="h-3 w-3 object-contain" />
                 </div>
-            </button>
+            </button> */}
         </div>
     );
 };

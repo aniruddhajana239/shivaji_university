@@ -50,7 +50,7 @@ const CollapsableImageGrid = ({ content, title }) => {
                             <div className="before:content-[''] before:absolute before:left-4 before:top-1/2 before:-translate-y-1/2 before:w-[40%] before:h-[1px] before:bg-[#D8D8D8]" />
 
                             {/* Center button */}
-                            <div className="flex gap-[12px] justify-center items-center py-[9px] px-[14px] border border-[#C0F0FF] rounded-[38px] bg-white relative z-10">
+                            {/* <div className="flex gap-[12px] justify-center items-center py-[9px] px-[14px] border border-[#C0F0FF] rounded-[38px] bg-white relative z-10">
                                 <p>Show More</p>
                                 <div className="h-[20px] w-[20px] bg-[#EDFAFE] rounded-full flex justify-center items-center">
                                     <img
@@ -59,7 +59,7 @@ const CollapsableImageGrid = ({ content, title }) => {
                                         className="h-[6px] w-[10px] object-cover"
                                     />
                                 </div>
-                            </div>
+                            </div> */}
 
                             {/* Right line */}
                             <div className="after:content-[''] after:absolute after:right-4 after:top-1/2 after:-translate-y-1/2 after:w-[40%] after:h-[1px] after:bg-[#D8D8D8] " />

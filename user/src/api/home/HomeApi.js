@@ -1,12 +1,15 @@
 import axiosClient from "../axiosClient";
 import { URLS } from "../url";
 
-export const HomeApi={
+export const HomeApi = {
     getAll(body) {
         return axiosClient.post(URLS?.getHome, body);
     },
     getBanners(body) {
         return axiosClient.post(URLS?.getBanners, body);
+    },
+    search(body) {
+        return axiosClient.post(URLS?.getSearchData, body);
     },
     getFaculties(body) {
         return axiosClient.post(URLS?.getFaculties, body);
@@ -35,5 +38,5 @@ export const HomeApi={
     getUpcomingTestimonials(body) {
         return axiosClient.post(URLS?.getUpcomingTestimonials, body);
     },
-    
+
 }

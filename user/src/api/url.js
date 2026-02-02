@@ -16,4 +16,7 @@ export const URLS={
     getUpcomingExamination:"/content/details?menu_id=1&section_slug=uncoming-events-examination&content_type=2",
     getUpcomingTestimonials:"/content/details?menu_id=1&section_slug=first-testimonials&content_type=2",
     getContentByMenuId:"/menu-content/details",
+    getQuickLinks:"/quick-links",
+    getSearchData:"/search",
+    getNoticeBoard:"/notice-board",
 }

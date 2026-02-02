@@ -52,6 +52,11 @@ export const UpcomingEventsCard = () => {
         }
     ];
 
+    // Filter categories to only show those with data
+    const categoriesWithData = categories.filter(category => {
+        return !category.loading && category.data && category.data.length > 0;
+    });
+
     // Fetch data from all APIs
     useEffect(() => {
         const fetchAllEvents = async () => {
@@ -173,40 +178,25 @@ export const UpcomingEventsCard = () => {
                             </div>
                         </div>
                     ))
-                ) : categories.map((category, index) => {
-                    const isExpanded = expandedCategory === category.id;
-                    const hasData = category.data && category.data.length > 0;
+                ) : categoriesWithData.length > 0 ? (
+                    categoriesWithData.map((category, index) => {
+                        const isExpanded = expandedCategory === category.id;
+                        const hasData = category.data && category.data.length > 0;
 
-                    return (
-                        <div key={category.id} className="flex flex-col">
-                            {/* Category Header */}
-                            <button
-                                onClick={() => toggleCategory(category.id)}
-                                className={`cursor-pointer w-full flex items-center justify-between gap-2 p-2 ${
-                                    (index !== categories.length - 1 && !isExpanded) && "border-b-[2px] border-[#D8D8D8]"
-                                } ${hasData ? '' : 'opacity-60 cursor-not-allowed'}`}
-                                disabled={!hasData}
-                            >
-                                <div className="flex items-center gap-2">
-                                    <span className="text-[#001F51] text-[16px] font-[600]">
-                                        {category.name}
-                                    </span>
-                                    {category.loading && (
-                                        <span className="text-xs text-gray-500">(Loading...)</span>
-                                    )}
-                                    {/* {category.error && (
-                                        <span className="text-xs text-red-500">(Error)</span>
-                                    )} */}
-                                    {/* {!category.loading && !hasData && (
-                                        <span className="text-xs text-gray-500">(No events)</span>
-                                    )} */}
-                                    {/* {hasData && (
-                                        <span className="text-xs text-gray-500">
-                                            ({category.data.length} events)
+                        return (
+                            <div key={category.id} className="flex flex-col">
+                                {/* Category Header */}
+                                <button
+                                    onClick={() => toggleCategory(category.id)}
+                                    className={`cursor-pointer w-full flex items-center justify-between gap-2 p-2 ${
+                                        (index !== categoriesWithData.length - 1 && !isExpanded) && "border-b-[2px] border-[#D8D8D8]"
+                                    }`}
+                                >
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-[#001F51] text-[16px] font-[600]">
+                                            {category.name}
                                         </span>
-                                    )} */}
-                                </div>
-                                {hasData && (
+                                    </div>
                                     <img
                                         src={ChevronDown}
                                         className={`h-[15px] w-[15px] object-contain transition-transform ${
@@ -214,52 +204,67 @@ export const UpcomingEventsCard = () => {
                                         }`}
                                         alt="toggle"
                                     />
-                                )}
-                            </button>
+                                </button>
 
-                            {/* Category Events - Collapsible Content */}
-                            {isExpanded && hasData && (
-                                <div className="mt-2 flex flex-col gap-2">
-                                    {category.data.map((event, eventIndex) => (
-                                        <div
-                                            key={eventIndex}
-                                            className="p-3 rounded-lg border-b-2 border-[#2F8AA5] bg-white grid grid-cols-5 hover:bg-blue-50 transition-colors duration-200"
-                                        >
-                                            <div className="col-span-1 flex flex-col items-start">
-                                                {event.date_formate2 ? (
-                                                    <>
-                                                        <span className="text-[#001F51] text-[16px] font-[600]">
-                                                            {formatEventDate(event.date_formate2).split(',')[0]},
-                                                        </span>
+                                {/* Category Events - Collapsible Content */}
+                                {isExpanded && hasData && (
+                                    <div className="mt-2 flex flex-col gap-2">
+                                        {category.data.map((event, eventIndex) => (
+                                            <div
+                                                key={eventIndex}
+                                                className="p-3 rounded-lg border-b-2 border-[#2F8AA5] bg-white grid grid-cols-5 hover:bg-blue-50 transition-colors duration-200"
+                                            >
+                                                <div className="col-span-1 flex flex-col items-start">
+                                                    {event.date_formate2 ? (
+                                                        <>
+                                                            <span className="text-[#001F51] text-[16px] font-[600]">
+                                                                {formatEventDate(event.date_formate2).split(',')[0]},
+                                                            </span>
+                                                            <span className="text-[#001F51] text-[14px] font-[600]">
+                                                                {formatEventDate(event.date_formate2).split(',')[1]?.trim()}
+                                                            </span>
+                                                        </>
+                                                    ) : event.date_formate1 ? (
                                                         <span className="text-[#001F51] text-[14px] font-[600]">
-                                                            {formatEventDate(event.date_formate2).split(',')[1]?.trim()}
+                                                            {formatEventDate(event.date_formate1)}
                                                         </span>
-                                                    </>
-                                                ) : event.date_formate1 ? (
-                                                    <span className="text-[#001F51] text-[14px] font-[600]">
-                                                        {formatEventDate(event.date_formate1)}
+                                                    ) : (
+                                                        <span className="text-[#001F51] text-[14px] font-[600]">
+                                                            Date TBD
+                                                        </span>
+                                                    )}
+                                                </div>
+                                                <div className="col-span-4">
+                                                    <span className="text-[#000000] text-[16px] font-[400] text-left">
+                                                        {event.title || event.description || "No description available"}
                                                     </span>
-                                                ) : (
-                                                    <span className="text-[#001F51] text-[14px] font-[600]">
-                                                        Date TBD
-                                                    </span>
-                                                )}
+                                                </div>
                                             </div>
-                                            <div className="col-span-4">
-                                                <span className="text-[#000000] text-[16px] font-[400] text-left">
-                                                    {event.title || event.description || "No description available"}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })
+                ) : (
+                    // Show "No data found" message when no categories have data
+                    <div className="flex flex-col items-center justify-center h-full py-10">
+                        <div className="text-center">
+                            <div className="text-gray-400 text-4xl mb-4">
+                                📅
+                            </div>
+                            <h3 className="text-[18px] font-[600] text-gray-500 mb-2">
+                                No Upcoming Events
+                            </h3>
+                            <p className="text-[14px] text-gray-400 max-w-xs">
+                                There are no upcoming events scheduled at the moment.
+                            </p>
                         </div>
-                    );
-                })}
+                    </div>
+                )}
             </div>
             
-            <button 
+            {/* <button 
                 className="absolute -bottom-5 left-1/2 cursor-pointer w-fit bg-white text-[#000000] text-[14px] font-[400] p-2 gap-3 flex items-center justify-center border-2 border-[#C0F0FF] rounded-full shadow-md transform -translate-x-1/2 hover:bg-blue-50 transition-colors duration-200"
                 onClick={() => {
                     // You can implement "Show more" functionality here
@@ -270,7 +275,7 @@ export const UpcomingEventsCard = () => {
                 <div className="h-[25px] w-[25px] rounded-full bg-[#EDFAFE] flex justify-center items-center">
                     <img src={ChevronDown} className="h-3 w-3 object-contain" alt="down arrow" />
                 </div>
-            </button>
+            </button> */}
         </div>
     );
 };

@@ -8,6 +8,11 @@ import { youtubeVideoReducers } from "./home/youtubeVideoSlice";
 import { latestNewsReducers } from "./home/latestNewsSlice";
 import { menuReducers } from "./settings/getMenuListSlice";
 import { HomeReducers } from "./home/homeSlice";
+import { AnnouncementReducers } from "./home/announcement";
+import { NewsReducers } from "./home/news";
+import { EventsReducers } from "./home/events";
+import { QuickLinksReducers } from "./home/quickLinks";
+import { NoticeBoardReducers } from "./home/NoticeBoard";
 
 
 export const rootReducers = combineReducers({
@@ -20,4 +25,9 @@ export const rootReducers = combineReducers({
   latestNews:latestNewsReducers,
   menu:menuReducers,
   home:HomeReducers,
+  announcements:AnnouncementReducers,
+  news:NewsReducers,
+  events:EventsReducers,
+  quickLinks:QuickLinksReducers,
+  noticeBoard:NoticeBoardReducers,
 });

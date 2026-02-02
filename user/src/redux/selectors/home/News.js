@@ -1,0 +1,1 @@
+export const NewsSelector = state => state?.news

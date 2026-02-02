@@ -41,7 +41,7 @@ const HomePage = () => {
             home_university_portal
             ?? []} />}
         <BoardMembers loading={homeData?.isFetching} data={homeData?.data?.Faculty?.content_details??[]} />
-        <CampusUpdates />
+        <CampusUpdates loading={homeData?.isFetching} data={homeData?.data?.home_card_box??[]}/>
         <UniversityServices services={homeData?.data?.home_box??[]}/>
         <AffiliatedCarousel />
         <FeaturedVideos />

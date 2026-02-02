@@ -1,0 +1,1 @@
+export const AnnouncementSelector = state => state?.announcements

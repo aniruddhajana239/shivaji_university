@@ -8,7 +8,11 @@ import YoutubeVideoSaga from "./home/YoutubeVideo";
 import LatestNewsSaga from "./home/LatestNews";
 import MenusSaga from "./settings/MenuList";
 import HomeSaga from "./home/HomeSaga";
- 
+import NewsSaga from "./home/News";
+import AnnouncementSaga from "./home/Announcement";
+import EventsSaga from "./home/Events";
+import QuickLinksSaga from "./home/QuickLinks"; 
+import NoticeBoardSaga from "./home/NoticeBoard";
 export function* rootSaga() {
   yield all([
      SettingsSaga(),
@@ -19,6 +23,11 @@ export function* rootSaga() {
      YoutubeVideoSaga(),
      LatestNewsSaga(),
      MenusSaga(),
-     HomeSaga()
+     HomeSaga(),
+     NewsSaga(),
+     AnnouncementSaga(),
+     EventsSaga(),
+     QuickLinksSaga(),
+     NoticeBoardSaga(),
   ]);
 }
