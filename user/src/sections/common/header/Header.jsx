@@ -19,6 +19,10 @@ export const Header = ({data,loading}) => {
         <UtilityBar data={data}  loading={loading}/>
         <MainNavigationBar loading={loading} data={data} coursesLoading={headerData?.isFeching} courses={headerData?.data?.others??[]}/>
         <QuickLinksBar/>
+        {/* Add an anchor for navigation */}
+        <div id="quick-links-anchor" className="absolute -top-20"></div>
+        {/* Add an anchor for content */}
+        <div id="content-anchor" className="absolute -top-20"></div>
        </div>
     );
 }

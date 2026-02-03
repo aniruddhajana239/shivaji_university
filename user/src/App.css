@@ -41,3 +41,25 @@ html[data-font-size] canvas,
 html[data-font-size] video {
     font-size: initial !important;
 }
+
+/* Add to your global CSS file (App.css, index.css, or tailwind.css) */
+
+/* Enable smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 180px; /* Adjust based on your header height */
+}
+
+/* Alternative: Add scroll-margin to specific elements */
+.quick-links-bar {
+  scroll-margin-top: 180px;
+}
+
+main, .main-content, #main-content {
+  scroll-margin-top: 200px;
+}
+
+/* Or use anchor links approach */
+:target {
+  scroll-margin-top: 180px;
+}

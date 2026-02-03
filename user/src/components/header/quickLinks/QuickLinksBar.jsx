@@ -208,7 +208,7 @@ export const QuickLinksBar = () => {
   const isLoading = menuData?.isFetching || headerData?.isFetching;
 
   return (
-    <div className="w-full bg-[#001F51] px-4 lg:px-[48px] relative">
+    <div className="w-full bg-[#001F51] px-4 lg:px-[48px] relative quick-links-bar">
       {/* Desktop Menu */}
       <div className="hidden lg:flex w-full items-center justify-center">
         {isLoading ? (

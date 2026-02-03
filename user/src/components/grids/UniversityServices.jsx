@@ -10,7 +10,8 @@ export const UniversityServicesGrid = ({ services }) => {
                 return (
                     item?.external_link !== "" ?
                         <Link
-                            to={item?.link}
+                            // to={item?.link}
+                             to={"/details"}
                             key={index}
                             className="w-full grid cursor-pointer grid-cols-8 gap-2 items-center border-2 border-[#C0F0FF] bg-white p-4 py-2 rounded-[8px] duration-300 ease-in-out h-full"
                         >

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SearchIcon from '../../../assets/icons/search.png';
 import { HomeApi } from '../../../api/home/HomeApi';
 
@@ -132,7 +132,7 @@ export const MainNavigationBar = ({ data, courses, loading, coursesLoading }) =>
     }, []);
 
     return (
-        <div className="w-full py-3 bg-white shadow-md flex items-center justify-between px-[14px] lg:px-[48px] relative">
+        <div className="w-full py-3 bg-white shadow-md flex items-center justify-between px-[14px] lg:px-[48px] relative main-navigation-bar">
             {isLoading ? (
                 // Skeleton loading state
                 <>
@@ -176,13 +176,13 @@ export const MainNavigationBar = ({ data, courses, loading, coursesLoading }) =>
                     <div className='hidden lg:flex gap-2 items-center z-90'>
                         {/* courses */}
                         {topCourses && Array.isArray(topCourses) && topCourses?.length > 0 && coursesWithColors.map((course, index) => (
-                            <button 
+                            <Link to={"/details"}
                                 key={index} 
                                 className='cursor-pointer text-white h-fit text-[12px] font-[500] px-4 py-2 rounded-full' 
                                 style={{ backgroundColor: course.bgColor }}
                             >
-                                {course.name}
-                            </button>
+                                {course?.name??""}
+                            </Link>
                         ))}
                         
                         {/* search bar */}

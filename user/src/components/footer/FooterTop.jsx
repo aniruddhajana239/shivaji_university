@@ -12,7 +12,7 @@ const FooterTop = ({HomeData}) => {
 
   useEffect(()=>{console.log("HomeData in Footer:",HomeData)},[HomeData])
   return (
-    HomeData&&HomeData?.data&&HomeData?.data?
+    HomeData&&HomeData?.data&&HomeData?.data&&HomeData&&HomeData?.data&&HomeData?.data?.["home_menus_above_footers"]&&HomeData&&HomeData?.data&&HomeData?.data?.["home_menus_above_footers"]?.length>0?
     <div className="w-full bg-[#3B3B3B] text-[#FFFFFF] py-6 px-6 md:px-[48px]">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
         {HomeData&&HomeData?.data&&HomeData?.data?.["home_menus_above_footers"]&&GroupFooterData(HomeData?.data?.["home_menus_above_footers"]??[])?.map((column, colIndex) => (

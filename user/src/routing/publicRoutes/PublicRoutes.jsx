@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { menusSelector } from '../../redux/selectors/settings/MenuList';
 import RippleLoader from '../../components/loaders/RippleLoader';
 import SearchResultsPage from '../../pages/search/Search';
+import { CommonDetails } from '../../pages/common/CommonDetails';
 
 // Helper function to convert API menu data to routing format
 const convertApiMenusToNavItems = (apiMenus) => {
@@ -82,6 +83,7 @@ const PublicRoutes = () => {
         {/* Quick Links Route */}
         <Route path="/quick-links" element={<QuickLinks />} />
          <Route path="/search" element={<SearchResultsPage />} />
+         <Route path="/details" element={<CommonDetails />} />
         
         {/* Dynamic Routes for all navigation items */}
         {dynamicNavItems.map((item) => {
