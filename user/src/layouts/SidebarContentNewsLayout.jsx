@@ -1,12 +1,14 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { LeftSidebarNavigation } from "../components/navigation/LeftSidebarNavigation";
-import { RightSidebarNavigation } from "../components/navigation/RightSidebarNavigation";
 import { SimpleBreadCrumb } from "../components/breadcrumb/SimpleBreadCrumb";
+import { NewsUpdatesCard } from "../components/cards/NewsUpdatesCard";
 import { ContentApi } from "../api/content/ContentApi";
 import RippleLoader from "../components/loaders/RippleLoader";
 import { menusSelector } from "../redux/selectors/settings/MenuList";
+import { HomeSelector } from "../redux/selectors/home/HomeSelector";
+import { HomeActions } from "../redux/reducer/slice/home/homeSlice";
 
 // Layout Components
 import { FormalComposite } from "../blocks/composite/FormalComposite";
@@ -119,8 +121,31 @@ export const SidebarContentNewsLayout = ({
   const location = useLocation();
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
   // Get menu data from Redux
   const menuData = useSelector(menusSelector);
+  const homeData = useSelector(HomeSelector);
+  const homeHeaderCourses = homeData?.data?.home_header ?? [];
+  const homeBoxItems = homeData?.data?.home_box ?? [];
+  const homePortalItems = homeData?.data?.home_university_portal ?? [];
+
+  // Ensure home data is fetched (in case user lands directly on inner page)
+  useEffect(() => {
+    if (Object.keys(homeData?.data ?? {}).length === 0) {
+      dispatch(HomeActions.getAll());
+    }
+  }, []);
+
+  // Detect navigation source from URL menu_id
+  const currentMenuIdInUrl = (() => {
+    const params = new URLSearchParams(location.search);
+    const id = params.get('menu_id');
+    return id && id !== 'undefined' ? id : null;
+  })();
+  const isCoursePage = !!currentMenuIdInUrl && homeHeaderCourses.some(c => String(c.id) === currentMenuIdInUrl);
+  const isServicePage = !!currentMenuIdInUrl && homeBoxItems.some(s => String(s.id) === currentMenuIdInUrl);
+  const isPortalPage = !!currentMenuIdInUrl && homePortalItems.some(p => String(p.id) === currentMenuIdInUrl);
 
   const [activePath, setActivePath] = useState(location.pathname);
   const [content, setContent] = useState(null);
@@ -247,38 +272,38 @@ export const SidebarContentNewsLayout = ({
     setError(null);
 
     try {
-  const response = await ContentApi.getContentDetails({ menu_id: menuId });
+      const response = await ContentApi.getContentDetails({ menu_id: menuId });
 
-  console.log("✅ API Response title:", response?.data?.data?.menu_title);
+      console.log("✅ API Response title:", response?.data?.data?.menu_title);
 
-  if (response?.data?.data) {
-    const apiData = response.data.data;
+      if (response?.data?.data) {
+        const apiData = response.data.data;
 
-    // clone object safely
-    const clonedData = { ...apiData };
+        // clone object safely
+        const clonedData = { ...apiData };
 
-    // extract values BEFORE deletion
-    const title = clonedData.menu_title;
-    const layoutType = clonedData.layout;
+        // extract values BEFORE deletion
+        const title = clonedData.menu_title;
+        const layoutType = clonedData.layout;
 
-    // remove unwanted keys
-    delete clonedData.menu_title;
-    delete clonedData.layout_type;
+        // remove unwanted keys
+        delete clonedData.menu_title;
+        delete clonedData.layout_type;
 
-    setContent({
-      layout_type: layoutType,
-      title: title,
-      data: clonedData,
-    });
-  } else {
-    setError("No data received from API");
-  }
-} catch (err) {
-  console.error("❌ API Error:", err);
-  setError(err.message || "Failed to fetch content");
-} finally {
-  setLoading(false);
-}
+        setContent({
+          layout_type: layoutType,
+          title: title,
+          data: clonedData,
+        });
+      } else {
+        setError("No data received from API");
+      }
+    } catch (err) {
+      console.error("❌ API Error:", err);
+      setError(err.message || "Failed to fetch content");
+    } finally {
+      setLoading(false);
+    }
 
   }, [getMenuId, title]);
 
@@ -346,7 +371,7 @@ export const SidebarContentNewsLayout = ({
     return (
       <Component
         title={content?.title}
-        downloadble={content?.layout_type==="searchbar-table"}
+        downloadble={content?.layout_type === "searchbar-table"}
         content={(({ layout, ...rest }) => rest)(content?.data || {})}
         data={content.data}
       />
@@ -365,15 +390,18 @@ export const SidebarContentNewsLayout = ({
       <div className="w-full lg:w-1/5">
         <LeftSidebarNavigation
           title="Related Pages"
-          navItems={filteredMenuItems} // Use filtered items
+          navItems={isCoursePage || isServicePage || isPortalPage ? [] : filteredMenuItems}
           activePath={activePath}
           handleClick={handleSidebarClick}
+          courses={isCoursePage ? homeHeaderCourses : []}
+          serviceItems={isServicePage ? homeBoxItems : []}
+          portalItems={isPortalPage ? homePortalItems : []}
         />
       </div>
 
       {/* Main Content */}
       <div className="w-full lg:w-3/5 flex flex-col gap-4">
-      {content&& <SimpleBreadCrumb
+        {content && <SimpleBreadCrumb
           parent={{ title: title, path: parentPath }}
           current={content?.title || "Untitled Page"}
         />}
@@ -382,10 +410,7 @@ export const SidebarContentNewsLayout = ({
 
       {/* Right Sidebar */}
       <div className="w-full lg:w-1/4">
-        <RightSidebarNavigation
-          title="Updates/News"
-          listItems={[]}
-        />
+        <NewsUpdatesCard data={homeData?.data?.home_card_box ?? []} />
       </div>
     </div>
   );

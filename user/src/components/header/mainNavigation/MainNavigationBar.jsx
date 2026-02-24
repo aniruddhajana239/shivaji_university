@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import SearchIcon from '../../../assets/icons/search.png';
 import { HomeApi } from '../../../api/home/HomeApi';
 
@@ -16,22 +16,31 @@ export const MainNavigationBar = ({ data, courses, loading, coursesLoading }) =>
     const searchRef = useRef(null);
 
     const isLoading = loading || coursesLoading;
-    
-    // Take only top 5 courses from the API response
-    const topCourses = courses ? courses.slice(0, 5) : [];
-    
-    // Map courses to colors - if there are fewer than 5 courses, use available colors
-    const coursesWithColors = topCourses.map((course, index) => ({
-        name: course.title,
-        bgColor: courseColors[index] || courseColors[courseColors.length - 1]
-    }));
+
+    // Generate URL path from name — same logic as QuickLinksBar
+    const getPathFromName = (name) => {
+        if (!name) return '/';
+        return `/${name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`;
+    };
+
+    // Smart navigation handler for each home_header course item
+    const handleCourseClick = (course) => {
+        if (course?.extend_to === true) {
+            const path = getPathFromName(course?.name);
+            navigate(`${path}?menu_id=${course?.id}`);
+        } else if (course?.external_link && course.external_link !== "") {
+            window.open(course.external_link, '_blank', 'noopener,noreferrer');
+        } else if (course?.file && course.file !== "") {
+            window.open(course.file, '_blank', 'noopener,noreferrer');
+        }
+    };
 
     // Handle search input change with debounce
     const handleSearchChange = (e) => {
         const value = e?.target?.value ?? '';
-        console.log("value",value);
+        console.log("value", value);
         setSearchQuery(value);
-        
+
         // Clear previous timeout
         if (searchTimeoutRef.current) {
             clearTimeout(searchTimeoutRef.current);
@@ -54,10 +63,10 @@ export const MainNavigationBar = ({ data, courses, loading, coursesLoading }) =>
     const performSearch = async (query) => {
         console.log("Performing search for query:", query);
         if (!query) return;
-        
+
         setIsSearching(true);
         setShowResults(true);
-        
+
         try {
             const response = await HomeApi?.search?.({ search_details: query });
             console.log("Search response:", response);
@@ -76,7 +85,7 @@ export const MainNavigationBar = ({ data, courses, loading, coursesLoading }) =>
         setSearchQuery('');
         setSearchResults(null);
         setShowResults(false);
-        
+
         if (searchTimeoutRef.current) {
             clearTimeout(searchTimeoutRef.current);
         }
@@ -85,7 +94,7 @@ export const MainNavigationBar = ({ data, courses, loading, coursesLoading }) =>
     // Handle search submit
     const handleSearchSubmit = async () => {
         if (!searchQuery?.trim()) return;
-        
+
         await performSearch(searchQuery.trim());
     };
 
@@ -141,25 +150,25 @@ export const MainNavigationBar = ({ data, courses, loading, coursesLoading }) =>
                         <div className="h-[40px] lg:h-[65px] w-[120px] lg:w-[180px] bg-gray-200 rounded"></div>
                         <div className="h-[40px] lg:h-[65px] w-[120px] lg:w-[180px] bg-gray-200 rounded"></div>
                     </div>
-                    
+
                     {/* Middle courses and search bar skeleton */}
                     <div className='hidden lg:flex gap-2 items-center z-90'>
                         {/* Courses skeleton */}
                         {[...Array(5)].map((_, index) => (
-                            <div 
-                                key={index} 
+                            <div
+                                key={index}
                                 className='h-10 w-16 bg-gray-200 rounded-full animate-pulse'
                                 style={{ animationDelay: `${index * 100}ms` }}
                             ></div>
                         ))}
-                        
+
                         {/* Search bar skeleton */}
                         <div className='flex items-center w-[270px] relative ml-2 rounded-[5px] animate-pulse'>
                             <div className='h-[50px] w-full bg-gray-200 rounded-[5px]'></div>
                             <div className='absolute h-[50px] top-0 right-0 w-12 bg-gray-300 rounded-[5px]'></div>
                         </div>
                     </div>
-                    
+
                     {/* Right university image skeleton */}
                     <div className='absolute h-full w-48 lg:w-64 bottom-0 right-[48px] animate-pulse'>
                         <div className='h-full w-full bg-gray-200'></div>
@@ -172,42 +181,43 @@ export const MainNavigationBar = ({ data, courses, loading, coursesLoading }) =>
                         <img src={data?.logo ?? ""} alt="logo" className="h-[40px] lg:h-[65px] w-auto" />
                         <img src={data?.image_two ?? ""} alt="associated_logo" className="h-[40px] lg:h-[65px] w-auto" />
                     </div>
-                    
+
                     <div className='hidden lg:flex gap-2 items-center z-90'>
                         {/* courses */}
-                        {topCourses && Array.isArray(topCourses) && topCourses?.length > 0 && coursesWithColors.map((course, index) => (
-                            <Link to={"/details"}
-                                key={index} 
-                                className='cursor-pointer text-white h-fit text-[12px] font-[500] px-4 py-2 rounded-full' 
-                                style={{ backgroundColor: course.bgColor }}
+                        {courses && Array.isArray(courses) && courses.length > 0 && courses.map((course, index) => (
+                            <button
+                                key={course?.id ?? index}
+                                onClick={() => handleCourseClick(course)}
+                                className='cursor-pointer text-white h-fit text-[12px] font-[500] px-4 py-2 rounded-full'
+                                style={{ backgroundColor: courseColors[index % courseColors.length] }}
                             >
-                                {course?.name??""}
-                            </Link>
+                                {course?.name ?? ""}
+                            </button>
                         ))}
-                        
+
                         {/* search bar */}
                         <div className='flex items-center w-[270px] bg-white relative ml-2 rounded-[5px]' ref={searchRef}>
-                            <input 
-                                type="text" 
-                                placeholder='Search here...' 
+                            <input
+                                type="text"
+                                placeholder='Search here...'
                                 value={searchQuery}
                                 onChange={handleSearchChange}
                                 onKeyDown={(e) => e?.key === 'Enter' && handleSearchSubmit()}
-                                className='h-[50px] w-full outline-none text-[12px] font-[400] px-[8px] py-4 pr-[68px] text-[#6B7280] rounded-[5px] border-2 border-[rgba(7,115,148,0.27)]' 
+                                className='h-[50px] w-full outline-none text-[12px] font-[400] px-[8px] py-4 pr-[68px] text-[#6B7280] rounded-[5px] border-2 border-[rgba(7,115,148,0.27)]'
                             />
-                            
+
                             {/* Clear button */}
                             {searchQuery && (
-                                <button 
+                                <button
                                     onClick={handleClearSearch}
                                     className='cursor-pointer absolute h-[50px] top-0 right-12 h-full aspect-2/2 flex items-center justify-center'
                                 >
-                                   X
+                                    X
                                 </button>
                             )}
-                            
+
                             {/* Search button */}
-                            <button 
+                            <button
                                 onClick={handleSearchSubmit}
                                 className='cursor-pointer absolute h-[50px] top-0 right-0 h-full aspect-2/2 bg-[#077394] flex items-center justify-center rounded-[5px]'
                                 disabled={isSearching}
@@ -238,8 +248,8 @@ export const MainNavigationBar = ({ data, courses, loading, coursesLoading }) =>
                                             </div>
                                             <div className="max-h-64 overflow-y-auto">
                                                 {searchResults?.slice(0, 5)?.map((result, index) => (
-                                                    <div 
-                                                        key={index} 
+                                                    <div
+                                                        key={index}
                                                         className="p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 cursor-pointer"
                                                         onClick={() => {
                                                             navigate('/search', {
@@ -263,12 +273,12 @@ export const MainNavigationBar = ({ data, courses, loading, coursesLoading }) =>
                                                             </h4>
                                                         )}
                                                         {result?.description && (
-                                                            <p 
+                                                            <p
                                                                 className="text-xs text-gray-600 line-clamp-2"
-                                                                dangerouslySetInnerHTML={{ 
-                                                                    __html: result?.description?.length > 100 
-                                                                        ? result.description.substring(0, 100) + '...' 
-                                                                        : result.description 
+                                                                dangerouslySetInnerHTML={{
+                                                                    __html: result?.description?.length > 100
+                                                                        ? result.description.substring(0, 100) + '...'
+                                                                        : result.description
                                                                 }}
                                                             />
                                                         )}
@@ -276,7 +286,7 @@ export const MainNavigationBar = ({ data, courses, loading, coursesLoading }) =>
                                                 ))}
                                             </div>
                                             <div className="p-3 border-t border-gray-100 bg-gray-50">
-                                                <button 
+                                                <button
                                                     onClick={handleResultClick}
                                                     className="w-full text-center text-sm text-[#077394] font-medium hover:text-[#065b7a]"
                                                 >
@@ -296,7 +306,7 @@ export const MainNavigationBar = ({ data, courses, loading, coursesLoading }) =>
                             )}
                         </div>
                     </div>
-                    
+
                     <div className='absolute h-full w-fit bottom-0 right-[48px]'>
                         <div className='h-full w-fit relative'>
                             <img src={data?.image_three ?? ""} alt="university_image" className='h-full w-fit relative z-0' />

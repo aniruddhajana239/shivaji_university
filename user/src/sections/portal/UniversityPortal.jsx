@@ -11,14 +11,21 @@ export const UniversityPortal = ({
     return Array.isArray(contents) ? contents : [];
   }, [contents]);
 
+  // Generate URL path from name — same logic as QuickLinksBar / header courses
+  const getPathFromName = (name) => {
+    if (!name) return '/';
+    return `/${name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`;
+  };
+
   const handleCardClick = useCallback(
     (item) => {
-      if (!item?.external_link) return;
-
-      if (item.extend_to === false) {
+      if (item?.extend_to === true) {
+        const path = getPathFromName(item?.name);
+        navigate(`${path}?menu_id=${item?.id}`);
+      } else if (item?.external_link && item.external_link !== "") {
         window.open(item.external_link, "_blank", "noopener,noreferrer");
-      } else {
-        navigate(item.external_link);
+      } else if (item?.file && item.file !== "") {
+        window.open(item.file, "_blank", "noopener,noreferrer");
       }
     },
     [navigate]
