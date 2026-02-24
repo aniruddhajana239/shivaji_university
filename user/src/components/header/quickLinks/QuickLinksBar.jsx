@@ -4,28 +4,23 @@ import ChevronDownDark from "../../../assets/icons/chevron_down.png";
 import MenuIcon from "../../../assets/icons/menu.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { headerSelector } from "../../../redux/selectors/settings/Header";
-import { headerActions } from "../../../redux/reducer/slice/settings/getHeaderCoursesSlice";
 import { menuActions } from "../../../redux/reducer/slice/settings/getMenuListSlice";
 import { menusSelector } from "../../../redux/selectors/settings/MenuList";
+import { HomeSelector } from "../../../redux/selectors/home/HomeSelector";
 
-const courses = [
-  { name: "UG", bgColor: "#5F52B7" },
-  { name: "PG", bgColor: "#138ED2" },
-  { name: "P.H.D", bgColor: "#002147" },
-  { name: "Online", bgColor: "#093D81" },
-  { name: "Distance", bgColor: "#000000" }
-];
+const courseColors = ["#5F52B7", "#138ED2", "#002147", "#093D81", "#000000"];
+
 
 export const QuickLinksBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   // Selectors
-  const headerData = useSelector(headerSelector);
   const menuData = useSelector(menusSelector);
-  
+  const homeData = useSelector(HomeSelector);
+  const homeHeader = homeData?.data?.home_header ?? [];
+
   // State
   const [hoveredItem, setHoveredItem] = useState(null);
   const [openChildMenus, setOpenChildMenus] = useState({});
@@ -34,16 +29,11 @@ export const QuickLinksBar = () => {
 
   // Fetch data on component mount
   useEffect(() => {
-    // Fetch header courses if not available
-    if (!headerData?.data?.others || headerData.data.others.length === 0) {
-      dispatch(headerActions.getHeaderCouses());
-    }
-    
     // Fetch menu data if not available
     if (!menuData?.data?.menus || menuData.data.menus.length === 0) {
       dispatch(menuActions.getMenus());
     }
-  }, [dispatch, headerData?.data?.others, menuData?.data?.menus]);
+  }, [dispatch, menuData?.data?.menus]);
 
   // Helper functions
   const isActive = (path) => {
@@ -101,32 +91,52 @@ export const QuickLinksBar = () => {
   // Function to add query parameters to URL
   const getUrlWithParams = (basePath, parentId, subMenuId = null, childSubMenuId = null) => {
     const params = new URLSearchParams();
-    
+
     // Add parent menu ID
     if (parentId) {
       params.append('parent_menu_id', parentId);
     }
-    
+
     // Add submenu ID if available
     if (subMenuId) {
       params.append('sub_menu_id', subMenuId);
     }
-    
+
     // Add child submenu ID if available
     if (childSubMenuId) {
       params.append('child_sub_menu_id', childSubMenuId);
     }
-    
     // Construct the URL with query parameters
     const queryString = params.toString();
     return queryString ? `${basePath}?${queryString}` : basePath;
+  };
+
+  // Generate URL path from name — same logic as QuickLinksBar
+  const getPathFromName = (name) => {
+    if (!name) return '/';
+    return `/${name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`;
+  };
+
+  // Smart navigation handler for each home_header course item
+  const handleCourseClick = (course) => {
+    if (course?.extend_to === true) {
+      const path = getPathFromName(course?.name);
+      navigate(`${path}?menu_id=${course?.id}`);
+      closeMobileMenu();
+    } else if (course?.external_link && course.external_link !== "") {
+      window.open(course.external_link, '_blank', 'noopener,noreferrer');
+      closeMobileMenu();
+    } else if (course?.file && course.file !== "") {
+      window.open(course.file, '_blank', 'noopener,noreferrer');
+      closeMobileMenu();
+    }
   };
 
   // Handle menu click with URL parameter addition
   const handleMenuClick = (basePath, parentId, subMenuId = null, childSubMenuId = null) => {
     const urlWithParams = getUrlWithParams(basePath, parentId, subMenuId, childSubMenuId);
 
-    
+
     return urlWithParams;
   };
 
@@ -162,7 +172,7 @@ export const QuickLinksBar = () => {
   // Convert API menu data to our component format - PRESERVE ORIGINAL IDs
   const convertApiMenuToNavItems = (apiMenus) => {
     if (!apiMenus || !Array.isArray(apiMenus)) return [];
-    
+
     return apiMenus.map(menu => ({
       id: menu.id.toString(),
       originalId: menu.id, // Keep original ID
@@ -170,7 +180,7 @@ export const QuickLinksBar = () => {
       path: getPathFromMenuName(menu.name),
       // Store the original children structure to preserve IDs
       originalChildren: menu.children,
-      submenus: menu.children && menu.children.length > 0 ? 
+      submenus: menu.children && menu.children.length > 0 ?
         menu.children.map(child => ({
           id: child.id.toString(),
           originalId: child.id, // Keep original ID
@@ -178,7 +188,7 @@ export const QuickLinksBar = () => {
           path: getPathFromMenuName(child.name),
           originalChildren: child.children,
           children: child.children, // Keep children for checking
-          childSubmenus: child.children && child.children.length > 0 ? 
+          childSubmenus: child.children && child.children.length > 0 ?
             child.children.map(grandChild => ({
               id: grandChild.id.toString(),
               originalId: grandChild.id, // Keep original ID
@@ -197,15 +207,15 @@ export const QuickLinksBar = () => {
   };
 
   // Use API menu data if available, otherwise use static data (fallback)
-  const navItems = menuData?.data?.menus ? 
-    convertApiMenuToNavItems(menuData.data.menus) : 
+  const navItems = menuData?.data?.menus ?
+    convertApiMenuToNavItems(menuData.data.menus) :
     []; // You can keep your static data as fallback if needed
 
   // Use header courses for the mobile menu
-  const mobileCourses = headerData?.data?.others?.slice(0, 5) || courses;
+  const mobileCourses = homeHeader;
 
   // Loading state
-  const isLoading = menuData?.isFetching || headerData?.isFetching;
+  const isLoading = menuData?.isFetching || homeData?.isFetching;
 
   return (
     <div className="w-full bg-[#001F51] px-4 lg:px-[48px] relative quick-links-bar">
@@ -231,9 +241,8 @@ export const QuickLinksBar = () => {
             >
               <Link
                 to={handleMenuClick(item?.path, item.originalId)}
-                className={`cursor-pointer flex items-center gap-2 text-[12px] font-[500] px-3 py-4 text-white ${
-                  isActive(item?.path) ? "bg-[#07739445]" : "bg-transparent"
-                } hover:bg-[#07739445] transition-colors duration-200`}
+                className={`cursor-pointer flex items-center gap-2 text-[12px] font-[500] px-3 py-4 text-white ${isActive(item?.path) ? "bg-[#07739445]" : "bg-transparent"
+                  } hover:bg-[#07739445] transition-colors duration-200`}
               >
                 {item?.title ?? ""}
                 {/* Only show chevron if submenus exist AND parent menu ID is not 1 */}
@@ -249,9 +258,8 @@ export const QuickLinksBar = () => {
               {/* Desktop Submenus Dropdown - Only show if parent menu ID is not 1 */}
               {item?.submenus && hoveredItem === item.id && shouldShowSubmenus(item.originalId) && (
                 <div
-                  className={`absolute top-full bg-white shadow-xl min-w-[280px] z-50 rounded-b-md max-h-[500px] overflow-y-auto custom-scrollbar border-b-3 border-[#2F8AA5] ${
-                    isLastNavItem(index, navItems) ? "right-0" : "left-0"
-                  }`}
+                  className={`absolute top-full bg-white shadow-xl min-w-[280px] z-50 rounded-b-md max-h-[500px] overflow-y-auto custom-scrollbar border-b-3 border-[#2F8AA5] ${isLastNavItem(index, navItems) ? "right-0" : "left-0"
+                    }`}
                   onMouseEnter={() => setHoveredItem(item.id)}
                   onMouseLeave={() => setHoveredItem(null)}
                 >
@@ -281,9 +289,8 @@ export const QuickLinksBar = () => {
                             <img
                               src={ChevronDownDark}
                               alt="toggle child menu"
-                              className={`h-[12px] w-[12px] object-contain transform ${
-                                openChildMenus[submenu.id] ? "rotate-180" : ""
-                              } transition-transform duration-200`}
+                              className={`h-[12px] w-[12px] object-contain transform ${openChildMenus[submenu.id] ? "rotate-180" : ""
+                                } transition-transform duration-200`}
                             />
                           </button>
                         )}
@@ -343,13 +350,11 @@ export const QuickLinksBar = () => {
               <div className="flex gap-2 items-center z-90 mb-2">
                 {mobileCourses.map((course, index) => (
                   <button
-                    key={index}
+                    key={course.id || index}
+                    onClick={() => handleCourseClick(course)}
                     className="cursor-pointer text-white h-fit text-[12px] font-[500] px-4 py-2 rounded-full"
-                    style={{ 
-                      backgroundColor: course.bgColor || 
-                      (headerData?.data?.others?.[index] ? 
-                        ["#5F52B7", "#138ED2", "#002147", "#093D81", "#000000"][index] || "#5F52B7" 
-                        : "#5F52B7") 
+                    style={{
+                      backgroundColor: courseColors[index % courseColors.length]
                     }}
                   >
                     {course.name || course.title || `Course ${index + 1}`}
@@ -379,9 +384,8 @@ export const QuickLinksBar = () => {
                   <div className="flex items-center justify-between py-2">
                     <Link
                       to={handleMenuClick(item.path, item.originalId)}
-                      className={`flex-1 text-gray-800 text-base font-medium ${
-                        isActive(item.path) ? "text-blue-600" : ""
-                      }`}
+                      className={`flex-1 text-gray-800 text-base font-medium ${isActive(item.path) ? "text-blue-600" : ""
+                        }`}
                       onClick={closeMobileMenu}
                     >
                       {item?.title ?? ""}
@@ -396,9 +400,8 @@ export const QuickLinksBar = () => {
                         <img
                           src={ChevronDownDark}
                           alt="toggle menu"
-                          className={`h-4 w-4 object-contain transform ${
-                            mobileOpenSubmenus[item.id] ? "rotate-180" : ""
-                          } transition-transform duration-200`}
+                          className={`h-4 w-4 object-contain transform ${mobileOpenSubmenus[item.id] ? "rotate-180" : ""
+                            } transition-transform duration-200`}
                         />
                       </button>
                     )}
@@ -437,11 +440,10 @@ export const QuickLinksBar = () => {
                                 <img
                                   src={ChevronDownDark}
                                   alt="toggle submenu"
-                                  className={`h-3 w-3 object-contain transform ${
-                                    openChildMenus[`mobile-${submenu.id}`]
-                                      ? "rotate-180"
-                                      : ""
-                                  } transition-transform duration-200`}
+                                  className={`h-3 w-3 object-contain transform ${openChildMenus[`mobile-${submenu.id}`]
+                                    ? "rotate-180"
+                                    : ""
+                                    } transition-transform duration-200`}
                                 />
                               </button>
                             )}

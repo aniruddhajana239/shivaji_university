@@ -1,7 +1,7 @@
 import ChevronRight from "../../assets/icons/chevron_right_dark.png";
 import { useNavigate, useLocation } from "react-router-dom";
 
-export const LeftSidebarNavigation = ({ activePath, handleClick, title, navItems, courses, serviceItems }) => {
+export const LeftSidebarNavigation = ({ activePath, handleClick, title, navItems, courses, serviceItems, portalItems }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
