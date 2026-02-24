@@ -8,6 +8,7 @@ import { headerActions } from "../../../redux/reducer/slice/settings/getHeaderCo
 
 export const Header = ({data,loading}) => {
     const headerData = useSelector(headerSelector)
+    console.log("header data:",data)
     const dispatch = useDispatch()
     useEffect(() => {
       if (Object?.keys(headerData?.data)?.length===0) {
