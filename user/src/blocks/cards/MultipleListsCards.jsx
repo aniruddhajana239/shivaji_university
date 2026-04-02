@@ -131,12 +131,12 @@ export const MultipleListsCards = ({ title, content }) => {
                                             href={desc.link} 
                                             target="_blank" 
                                             rel="noopener noreferrer" 
-                                            className="text-[14px] 2xl:text-[18px] text-[#000000] hover:text-blue-600"
+                                            className="text-[14px] 2xl:text-[18px] text-[#000000] hover:text-blue-600 break-all"
                                         >
                                             {desc.link}
                                         </a>
                                     ) : (
-                                        <div className="text-[14px] 2xl:text-[18px] text-[#000000]">
+                                        <div className="text-[14px] 2xl:text-[18px] text-[#000000] break-words">
                                             {parseHtmlDescription(desc.desc_text)}
                                         </div>
                                     )}

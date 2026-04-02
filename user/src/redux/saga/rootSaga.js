@@ -13,7 +13,9 @@ import AnnouncementSaga from "./home/Announcement";
 import EventsSaga from "./home/Events";
 import QuickLinksSaga from "./home/QuickLinks"; 
 import NoticeBoardSaga from "./home/NoticeBoard";
+import DynamicCardsSaga from "./home/dynamicCardsSaga";
 export function* rootSaga() {
+
   yield all([
      SettingsSaga(),
      HeaderSaga(),
@@ -29,5 +31,6 @@ export function* rootSaga() {
      EventsSaga(),
      QuickLinksSaga(),
      NoticeBoardSaga(),
+     DynamicCardsSaga(),
   ]);
-}
+}

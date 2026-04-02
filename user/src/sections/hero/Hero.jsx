@@ -12,9 +12,9 @@ export const Hero = ({ externalData, banners, bannerLoading, externalLoading }) 
     <div className="w-full relative">
       {/* Hero Carousel with Skeleton */}
       {isLoading ? (
-        <div className="w-full h-[45vh] lg:h-[70vh] bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse rounded-none">
+        <div className="w-full h-auto aspect-[16/6] lg:aspect-[16/5] lg:h-fit bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse rounded-none">
           {/* Social Media Sidebar Skeleton */}
-          <div className="absolute -bottom-[200px] right-0 flex flex-col items-end gap-[16px]">
+          <div className="fixed top-1/2 -translate-y-1/2 right-0 flex flex-col items-end gap-[16px] z-50">
             {/* Social Icons Skeleton */}
             <div className="">
               <div className="bg-gray-300 rounded-l-[14px] p-3 lg:p-4 shadow-lg">
@@ -29,8 +29,8 @@ export const Hero = ({ externalData, banners, bannerLoading, externalLoading }) 
             </div>
 
             {/* Rotated Quick Links Button Skeleton */}
-            <div className="">
-              <div className="bg-gray-400 text-white text-[14px] lg:text-[18px] font-[500] p-2 rounded-l-[10px] block writing-mode-vertical-lr text-center h-32 w-8"></div>
+            <div className="flex justify-end w-full">
+              <div className="bg-gray-400 text-white text-[14px] lg:text-[18px] font-[500] p-2 rounded-l-[10px] flex items-center justify-center writing-mode-vertical-lr text-center h-32 w-[32px] lg:w-[40px]"></div>
             </div>
           </div>
         </div>
@@ -39,7 +39,7 @@ export const Hero = ({ externalData, banners, bannerLoading, externalLoading }) 
           <HeroCarousel banners={banners ?? []} />
 
           {/* Social Media Sidebar + Rotated Quick Links */}
-          <div className="absolute -bottom-[200px] right-0 flex flex-col items-end gap-[16px]">
+          <div className="fixed top-1/2 -translate-y-1/2 right-0 flex flex-col items-end gap-[16px] z-50">
             {/* Social Icons */}
             <div className="">
               <div className="bg-[#001F51] rounded-l-[14px] p-3 lg:p-4 shadow-lg">
@@ -101,10 +101,10 @@ export const Hero = ({ externalData, banners, bannerLoading, externalLoading }) 
             </div>
 
             {/* Rotated Quick Links Button */}
-            <div className="">
+            <div className="flex justify-end w-full">
               <Link
                 to="/quick-links"
-                className="bg-[#ED3236] text-white text-[14px] lg:text-[18px] font-[500] p-2 rounded-l-[10px] hover:bg-[c0272c] transition-all block writing-mode-vertical-lr text-center"
+                className="bg-[#ED3236] text-white text-[14px] lg:text-[18px] font-[500] p-2 rounded-l-[10px] hover:bg-[#c0272c] transition-all flex items-center justify-center writing-mode-vertical-lr text-center min-h-[120px] w-[32px] lg:w-[40px]"
               >
                 Quick Links
               </Link>

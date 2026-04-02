@@ -7,7 +7,7 @@ import RightArrow from '../../../assets/icons/right_circle.png';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const HeroCarouselComponent = ({banners}) => {
+const HeroCarouselComponent = ({ banners }) => {
   // Custom Next Arrow Component
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -24,9 +24,9 @@ const HeroCarouselComponent = ({banners}) => {
         }}
         onClick={onClick}
       >
-        <img 
-          src={RightArrow} 
-          alt="next" 
+        <img
+          src={RightArrow}
+          alt="next"
           className="w-full h-full object-contain"
         />
       </div>
@@ -49,9 +49,9 @@ const HeroCarouselComponent = ({banners}) => {
         }}
         onClick={onClick}
       >
-        <img 
-          src={LeftArrow} 
-          alt="previous" 
+        <img
+          src={LeftArrow}
+          alt="previous"
           className="w-full h-full object-contain"
         />
       </div>
@@ -82,16 +82,16 @@ const HeroCarouselComponent = ({banners}) => {
   };
 
   // Use banners from props if available, otherwise show empty state
-  const slides = banners && banners.length > 0 
+  const slides = banners && banners.length > 0
     ? banners.map((banner, index) => ({
-        id: index,
-        image: banner.image,
-        alt: banner.title || `Slide ${index + 1}`,
-        title: banner.title,
-        description: banner.description,
-        link: banner.link,
-        redirect_to: banner.redirect_to
-      }))
+      id: index,
+      image: banner.image,
+      alt: banner.title || `Slide ${index + 1}`,
+      title: banner.title,
+      description: banner.description,
+      link: banner.link,
+      redirect_to: banner.redirect_to
+    }))
     : [];
 
   return (
@@ -102,30 +102,30 @@ const HeroCarouselComponent = ({banners}) => {
             <div key={slide.id} className="carousel-slide">
               {/* If there's a valid link and redirect is enabled, make the image clickable */}
               {slide.link && slide.redirect_to !== 'no_redirect' ? (
-                <a 
-                  href={slide.link} 
-                  target="_blank" 
+                <a
+                  href={slide.link}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="block"
                 >
-                  <img 
-                    src={slide.image} 
+                  <img
+                    src={slide.image}
                     alt={slide.alt}
-                    className="w-full h-[45vh] lg:h-fit object-cover"
+                    className="w-full h-auto aspect-[16/6] lg:aspect-[16/9] lg:h-fit object-cover"
                   />
                 </a>
               ) : (
-                <img 
-                  src={slide.image} 
+                <img
+                  src={slide.image}
                   alt={slide.alt}
-                  className="w-full h-[45vh] lg:h-fit object-cover"
+                  className="w-full h-auto aspect-[16/6] lg:aspect-[16/5] lg:h-fit object-cover"
                 />
               )}
             </div>
           ))}
         </Slider>
       ) : (
-        <div className="w-full h-[45vh] lg:h-fit bg-gray-200 flex items-center justify-center">
+        <div className="w-full h-auto aspect-[16/9] lg:aspect-auto lg:h-fit bg-gray-200 flex items-center justify-center">
           <p className="text-gray-500">No banners available</p>
         </div>
       )}

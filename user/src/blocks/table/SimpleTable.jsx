@@ -23,17 +23,26 @@ export const SimpleTable = ({ title, content, isWrappableHeader, autoWidth }) =>
         };
     });
     
-    // Transform table_data to rows format - map data object values to array
+    // Transform table_data to rows format
     const rows = tableData?.map((item, index) => {
-        const rowData = {};
+        const rowData = {
+            srno: (index + 1).toString()
+        };
         
-        // Get the data object
+        // New format: array of arrays of objects
+        if (Array.isArray(item)) {
+            item.forEach((cell, cellIndex) => {
+                const accessor = `col_${cellIndex}`;
+                rowData[accessor] = cell?.data ?? '';
+                rowData[`${accessor}_type`] = cell?.data_type ?? '';
+            });
+            return rowData;
+        }
+
+        // Legacy format: object with data property
         const dataObj = item?.data || {};
-        
-        // Convert data object to array of values
         const dataValues = Object.values(dataObj);
         
-        // Map each value to its column
         columns?.forEach((column, colIndex) => {
             rowData[column.accessor] = dataValues[colIndex] || '';
         });
@@ -56,25 +65,30 @@ export const SimpleTable = ({ title, content, isWrappableHeader, autoWidth }) =>
     };
 
     // Helper render function for special types
-    const renderCellValue = (column, value) => {
-        const { type, by, prevTexts, isLinkColumn } = column;
+    const renderCellValue = (column, value, row) => {
+        const { type, by, prevTexts, isLinkColumn, accessor } = column;
+        const cellType = row[`${accessor}_type`];
 
-        // --- Special case: Link column ---
-        if (isLinkColumn && value) {
+        // Specific button labels based on data_type
+        const isUrl = typeof value === 'string' && (value.startsWith('http://') || value.startsWith('https://'));
+        
+        // Priority to cellType if it exists
+        const isSpecialType = cellType 
+            ? (cellType === "file" || cellType === "link") 
+            : (isLinkColumn || isUrl);
+
+        if (isSpecialType && value) {
+            let buttonLabel = "View";
+            if (cellType === "link") buttonLabel = "Click Here";
+
             return (
                 <a
                     href={value}
-                    className="text-blue-600 w-full flex items-center justify-end underline whitespace-nowrap text-[12px] 2xl:text-[16px]"
+                    className="text-[#2F8AA5] w-full flex items-center justify-end underline whitespace-nowrap text-[12px] 2xl:text-[16px]"
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={(e) => {
-                        if (!value) {
-                            e.preventDefault();
-                            return;
-                        }
-                    }}
                 >
-                    View
+                    {buttonLabel}
                 </a>
             );
         }
@@ -187,7 +201,7 @@ export const SimpleTable = ({ title, content, isWrappableHeader, autoWidth }) =>
                                                             : autoWidth ? "w-[600px] md:w-[35%]" : "w-[600px] md:w-[45%]"
                                                     } ${isLinkColumn ? 'text-center' : ''}`}
                                             >
-                                                {renderCellValue(column, cellValue)}
+                                                {renderCellValue(column, cellValue, row)}
                                             </td>
                                         );
                                     })}

@@ -2,8 +2,65 @@
 
 :root {
   font-family: "Poppins", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* Global Reset & Normalization */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Standardized Scrollbar for all browsers */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2F8AA5 #f1f1f1;
+}
+
+/* Webkit Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2F8AA5;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #25677b;
+}
+
 .writing-mode-vertical-lr {
-  writing-mode:vertical-rl;
-  /* text-orientation: mixed; */
+  writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
+}
+
+/* Header refinements for very small screens (< 400px) */
+@media (max-width: 400px) {
+  .utility-bar,
+  .main-navigation-bar,
+  .quick-links-bar {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+  
+  .logo-container {
+    gap: 8px !important;
+  }
+
+  .logo-container img {
+    height: 32px !important;
+  }
 }

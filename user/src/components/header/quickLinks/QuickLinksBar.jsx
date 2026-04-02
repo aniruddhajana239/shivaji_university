@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { menuActions } from "../../../redux/reducer/slice/settings/getMenuListSlice";
 import { menusSelector } from "../../../redux/selectors/settings/MenuList";
 import { HomeSelector } from "../../../redux/selectors/home/HomeSelector";
+import { SearchBar } from "../SearchBar";
+
 
 const courseColors = ["#5F52B7", "#138ED2", "#002147", "#093D81", "#000000"];
 
@@ -218,9 +220,11 @@ export const QuickLinksBar = () => {
   const isLoading = menuData?.isFetching || homeData?.isFetching;
 
   return (
-    <div className="w-full bg-[#001F51] px-4 lg:px-[48px] relative quick-links-bar">
+    <div className="w-full bg-[#001F51] px-4 xl:px-[48px] relative quick-links-bar">
+
       {/* Desktop Menu */}
-      <div className="hidden lg:flex w-full items-center justify-center">
+      <div className="hidden xl:flex w-full items-center justify-center">
+
         {isLoading ? (
           // Desktop menu skeleton
           [...Array(8)].map((_, index) => (
@@ -325,7 +329,8 @@ export const QuickLinksBar = () => {
       </div>
 
       {/* Mobile Menu Header */}
-      <div className="lg:hidden flex items-center justify-start gap-3 py-2">
+      <div className="xl:hidden flex items-center justify-start gap-3 py-2">
+
         <button onClick={toggleMobileMenu} className="">
           <img src={MenuIcon} alt="menu" className="h-4 w-4 object-contain" />
         </button>
@@ -334,9 +339,13 @@ export const QuickLinksBar = () => {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-lg z-50 max-h-[80vh] overflow-y-auto custom-scrollbar border-t border-[#2F8AA5]">
+        <div className="xl:hidden absolute top-full left-0 right-0 bg-white shadow-lg z-50 max-h-[80dvh] overflow-y-auto custom-scrollbar border-t border-[#2F8AA5]">
           <div className="p-4 w-full flex flex-col items-start">
+            {/* Search Bar in mobile menu */}
+            <SearchBar containerClassName="w-full mb-4" />
+
             {/* Courses in mobile menu */}
+
             {isLoading ? (
               <div className="flex gap-2 items-center z-90 mb-2 animate-pulse">
                 {[...Array(5)].map((_, index) => (
@@ -477,27 +486,6 @@ export const QuickLinksBar = () => {
           </div>
         </div>
       )}
-
-      {/* Custom Scrollbar Styles */}
-      <style jsx>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: #f1f1f1;
-          border-bottom-right-radius: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: #2F8AA5;
-          border-radius: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: #25677bff;
-        }
-        .custom-scrollbar::-webkit-scrollbar-button {
-          display: none;
-        }
-      `}</style>
     </div>
   );
 };

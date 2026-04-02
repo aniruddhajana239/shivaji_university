@@ -8,7 +8,7 @@ export const ListCard = ({ title, lists }) => {
             {lists&&Array.isArray(lists)&&lists?.length>0&&
             <ul className="list-type-none m-3">
                 {lists?.map((item,index)=>(
-                    <li key={index} className="p-2 text-[#000000] border-b-1 border-[#D8D8D8] last:border-none">{item}</li>
+                    <li key={index} className="p-2 text-[#000000] border-b-1 border-[#D8D8D8] last:border-none break-words">{item}</li>
                 ))}
             </ul>
             }

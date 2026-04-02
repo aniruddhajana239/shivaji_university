@@ -21,11 +21,23 @@ export const MultipleTable = ({ title, content }) => {
                             heading: heading?.title || `Column ${index + 1}`,
                             accessor: `col_${index}`
                         })),
-                        rows: sectionData.table_data.map(item => {
-                            const rowData = {};
+                        rows: sectionData.table_data.map((item, index) => {
+                            const rowData = {
+                                srno: (index + 1).toString()
+                            };
+
+                            // New format: array of arrays of objects
+                            if (Array.isArray(item)) {
+                                item.forEach((cell, cellIndex) => {
+                                    const accessor = `col_${cellIndex}`;
+                                    rowData[accessor] = cell?.data ?? '';
+                                    rowData[`${accessor}_type`] = cell?.data_type ?? '';
+                                });
+                                return rowData;
+                            }
+
+                            // Legacy format: object with data property
                             const dataValues = Object.values(item?.data || {});
-                            
-                            // Map each value to its column
                             sectionData.table_heading.forEach((heading, colIndex) => {
                                 rowData[`col_${colIndex}`] = dataValues[colIndex] || '';
                             });
@@ -33,8 +45,8 @@ export const MultipleTable = ({ title, content }) => {
                             return rowData;
                         })
                     },
-                    isWrappableHeader: false, // Default value
-                    autoWidth: false // Default value
+                    isWrappableHeader: false,
+                    autoWidth: false
                 });
             }
         });
@@ -44,6 +56,11 @@ export const MultipleTable = ({ title, content }) => {
 
     const tables = extractTablesFromContent();
     
+    const handleOpenInNewTab = (file) => {
+        if (!file) return;
+        window.open(file, '_blank');
+    };
+
     // Helper function to handle \n in text
     const handleNewLines = (text) => {
         if (!text || typeof text !== 'string') return text;
@@ -78,10 +95,10 @@ export const MultipleTable = ({ title, content }) => {
                             {/* CommonTable Component */}
                             {table?.sections?.columns && table?.sections?.rows && (
                                 <CommonTable
-                                    isWrappableHeader={table.isWrappableHeader}
+                                    isHeader={table.isHeader ?? true}
                                     columns={table.sections.columns.map(col => ({
                                         ...col,
-                                        heading: handleNewLines(col.heading) // Handle \n in headings
+                                        heading: handleNewLines(col.heading)
                                     }))}
                                     data={table.sections.rows.map((row, rowIndex) => {
                                         const isLastRow = rowIndex === table.sections.rows.length - 1;
@@ -95,17 +112,29 @@ export const MultipleTable = ({ title, content }) => {
                                                 {table.sections.columns.map((column, colIndex) => {
                                                     const accessor = column.accessor;
                                                     const cellValue = row[accessor];
+                                                    const cellType = row[`${accessor}_type`];
+                                                    
                                                     if (accessor === "file") return null;
 
                                                     const isFirstColumn = colIndex === 0;
                                                     const isLastColumn = colIndex === table.sections.columns.length - 1;
+
+                                                    const isUrl = typeof cellValue === 'string' && (cellValue.startsWith('http://') || cellValue.startsWith('https://'));
+                                                    
+                                                    // Priority to cellType if it exists
+                                                    const isSpecialType = cellType 
+                                                        ? (cellType === "file" || cellType === "link") 
+                                                        : (accessor === "file_name" || isUrl);
+                                                    
+                                                    let buttonLabel = "View";
+                                                    if (cellType === "link") buttonLabel = "Click Here";
 
                                                     return (
                                                         <td
                                                             key={colIndex}
                                                             className={`py-2 px-[19px] first:w-[150px] align-top ${isLastRow && isFirstColumn ? "rounded-bl-[10px]" : ""
                                                                 } ${isLastRow && isLastColumn ? "rounded-br-[10px]" : ""
-                                                                } ${accessor === "file_name"
+                                                                } ${accessor === "file_name" || isSpecialType
                                                                     ? table.isWrappableHeader
                                                                         ? "w-auto"
                                                                         : "last:w-[400px] md:last:w-full"
@@ -114,9 +143,23 @@ export const MultipleTable = ({ title, content }) => {
                                                                         : table.autoWidth ? "w-[600px] md:w-[35%]" : "w-[600px] md:w-[45%]"
                                                                 }`}
                                                         >
-                                                            <span className="text-[14px] 2xl:text-[18px] align-top">
-                                                                {handleNewLines(cellValue ?? "")}
-                                                            </span>
+                                                            {!isSpecialType ? (
+                                                                <span className="text-[14px] 2xl:text-[18px] align-top">
+                                                                    {handleNewLines(cellValue ?? "")}
+                                                                </span>
+                                                            ) : (
+                                                                <div className="flex justify-between items-center w-full">
+                                                                    <div className="flex flex-col max-w-[85%]">
+                                                                        {/* No text to show if it's just a button */}
+                                                                    </div>
+                                                                    <button
+                                                                        onClick={() => handleOpenInNewTab(cellValue)}
+                                                                        className="cursor-pointer text-[#2F8AA5] underline text-[14px] 2xl:text-[18px]"
+                                                                    >
+                                                                        {buttonLabel}
+                                                                    </button>
+                                                                </div>
+                                                            )}
                                                         </td>
                                                     );
                                                 })}

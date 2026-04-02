@@ -3,8 +3,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LeftSidebarNavigation } from "../components/navigation/LeftSidebarNavigation";
 import { SimpleBreadCrumb } from "../components/breadcrumb/SimpleBreadCrumb";
-import { NewsUpdatesCard } from "../components/cards/NewsUpdatesCard";
+import { HomeCard } from "../components/cards/HomeCard";
 import { ContentApi } from "../api/content/ContentApi";
+
 import RippleLoader from "../components/loaders/RippleLoader";
 import { menusSelector } from "../redux/selectors/settings/MenuList";
 import { HomeSelector } from "../redux/selectors/home/HomeSelector";
@@ -173,6 +174,12 @@ export const SidebarContentNewsLayout = ({
 
   // Get filtered menu items based on parent_menu_id
   const filteredMenuItems = useMemo(() => {
+    // If we are on a specialized page (Course, Service, Portal), 
+    // we don't want to show the generic "Related Pages" menu fallback.
+    if (isCoursePage || isServicePage || isPortalPage) {
+      return [];
+    }
+
     const parentMenuId = getParentMenuIdFromUrl();
 
     if (!menuData?.data?.menus) return [];
@@ -189,7 +196,7 @@ export const SidebarContentNewsLayout = ({
     // Only return items under this parent
     return flattenAllMenus([parentMenu]);
 
-  }, [menuData?.data?.menus, getParentMenuIdFromUrl]);
+  }, [menuData?.data?.menus, getParentMenuIdFromUrl, isCoursePage, isServicePage, isPortalPage]);
 
   // console.log("📋 Flattened menu items for sidebar:", allMenuItems.length);
 
@@ -367,16 +374,20 @@ export const SidebarContentNewsLayout = ({
       );
     }
 
+    const isTableLayout = content?.layout_type === "searchbar-table" || content?.layout_type === "multiple-file-table";
 
     return (
       <Component
         title={content?.title}
-        downloadble={content?.layout_type === "searchbar-table"}
+        downloadble={isTableLayout}
+        viewable={isTableLayout}
+        searchable={content?.layout_type === "searchbar-table"}
         content={(({ layout, ...rest }) => rest)(content?.data || {})}
         data={content.data}
       />
     );
   };
+
 
   useEffect(() => {
     console?.log?.("📋 SidebarContentNewsLayout content:", content);
@@ -390,9 +401,10 @@ export const SidebarContentNewsLayout = ({
       <div className="w-full lg:w-1/5">
         <LeftSidebarNavigation
           title="Related Pages"
-          navItems={isCoursePage || isServicePage || isPortalPage ? [] : filteredMenuItems}
+          navItems={filteredMenuItems}
           activePath={activePath}
           handleClick={handleSidebarClick}
+
           courses={isCoursePage ? homeHeaderCourses : []}
           serviceItems={isServicePage ? homeBoxItems : []}
           portalItems={isPortalPage ? homePortalItems : []}
@@ -409,9 +421,18 @@ export const SidebarContentNewsLayout = ({
       </div>
 
       {/* Right Sidebar */}
-      <div className="w-full lg:w-1/4">
-        <NewsUpdatesCard data={homeData?.data?.home_card_box ?? []} />
+      <div className="w-full lg:w-1/4 flex flex-col gap-6">
+        {(homeData?.data?.home_card_box ?? [])
+          .filter(item => 
+            item.name.toLowerCase().includes("news") || 
+            item.name.toLowerCase().includes("update")
+          )
+          .map((item, index) => (
+            <HomeCard key={item.id || index} menuId={item.id} title={item.name} />
+          ))
+        }
       </div>
+
     </div>
   );
 };

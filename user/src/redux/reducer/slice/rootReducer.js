@@ -13,6 +13,8 @@ import { NewsReducers } from "./home/news";
 import { EventsReducers } from "./home/events";
 import { QuickLinksReducers } from "./home/quickLinks";
 import { NoticeBoardReducers } from "./home/NoticeBoard";
+import { DynamicCardsReducers } from "./home/dynamicCardsSlice";
+
 
 
 export const rootReducers = combineReducers({
@@ -30,4 +32,6 @@ export const rootReducers = combineReducers({
   events:EventsReducers,
   quickLinks:QuickLinksReducers,
   noticeBoard:NoticeBoardReducers,
+  dynamicCards:DynamicCardsReducers,
 });
+

@@ -92,7 +92,14 @@ export const FeaturedVideos = () => {
                         (item, index) => (
                             <div
                                 key={index}
-                                className="w-full flex gap-4 items-center"
+                                className={`w-full flex gap-4 items-center ${
+                                    item.link ? "cursor-pointer" : ""
+                                }`}
+                                onClick={() => {
+                                    if (item.link) {
+                                        window.open(item.link, "_blank");
+                                    }
+                                }}
                             >
                                 <img
                                     src={item.image}
